@@ -1,0 +1,15 @@
+/home/martin/planos/bin/Debug/net8.0/planos
+/home/martin/planos/bin/Debug/net8.0/planos.deps.json
+/home/martin/planos/bin/Debug/net8.0/planos.runtimeconfig.json
+/home/martin/planos/bin/Debug/net8.0/planos.dll
+/home/martin/planos/bin/Debug/net8.0/planos.pdb
+/home/martin/planos/obj/Debug/net8.0/planos.GeneratedMSBuildEditorConfig.editorconfig
+/home/martin/planos/obj/Debug/net8.0/planos.AssemblyInfoInputs.cache
+/home/martin/planos/obj/Debug/net8.0/planos.AssemblyInfo.cs
+/home/martin/planos/obj/Debug/net8.0/planos.csproj.CoreCompileInputs.cache
+/home/martin/planos/obj/Debug/net8.0/planos.sourcelink.json
+/home/martin/planos/obj/Debug/net8.0/planos.dll
+/home/martin/planos/obj/Debug/net8.0/refint/planos.dll
+/home/martin/planos/obj/Debug/net8.0/planos.pdb
+/home/martin/planos/obj/Debug/net8.0/planos.genruntimeconfig.cache
+/home/martin/planos/obj/Debug/net8.0/ref/planos.dll

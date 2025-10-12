@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("classes")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("planos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+28081647ea4e8a1afe5511525c897148bfccd89e")]
-[assembly: System.Reflection.AssemblyProductAttribute("classes")]
-[assembly: System.Reflection.AssemblyTitleAttribute("classes")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0c5834f31b5212f7c671cbdf666849968bea7a5e")]
+[assembly: System.Reflection.AssemblyProductAttribute("planos")]
+[assembly: System.Reflection.AssemblyTitleAttribute("planos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // Generado por la clase WriteCodeFragment de MSBuild.

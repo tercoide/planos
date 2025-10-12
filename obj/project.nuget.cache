@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZSbk6svIL7D1K8hjmmQ6pbWa0lLNwwGoxY1D0unMsvFqrh3KaBkgI4710Xb03wxORpdFB0059tmVpMtLHoU3MQ==",
+  "dgSpecHash": "5JDh4Cb0AV4fgTXK1WZMYfnW99oMLJzvaBcUs88wZ37zsXoFrWBjxyP9LcFXzAk3G1wch8iBIcT/N90n3HubXA==",
   "success": true,
-  "projectFilePath": "/home/martin/planos/classes.csproj",
+  "projectFilePath": "/home/martin/planos/planos.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

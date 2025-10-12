@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "/home/martin/planos/classes.csproj": {}
+    "/home/martin/planos/planos.csproj": {}
   },
   "projects": {
-    "/home/martin/planos/classes.csproj": {
+    "/home/martin/planos/planos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/martin/planos/classes.csproj",
-        "projectName": "classes",
-        "projectPath": "/home/martin/planos/classes.csproj",
+        "projectUniqueName": "/home/martin/planos/planos.csproj",
+        "projectName": "planos",
+        "projectPath": "/home/martin/planos/planos.csproj",
         "packagesPath": "/home/martin/.nuget/packages/",
         "outputPath": "/home/martin/planos/obj/",
         "projectStyle": "PackageReference",
