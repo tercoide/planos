@@ -3,7 +3,7 @@ class HatchPattern
 public string name = "";
 public string description = "";
 public int type = 0;
-public List<Pattern> patterns = new List<Pattern>();   
+public List<Pattern> patterns = [];   
 
 
 // Gambas class file
@@ -17,5 +17,5 @@ class Pattern
     public double BaseY;
     public double OffsetX;
     public double OffsetY;
-    public double[] DashLength;
+    public double[] DashLength = [];
 }

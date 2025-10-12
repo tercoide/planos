@@ -26,6 +26,6 @@ class TextStyle
     public int CodePage = 0;  // ??????????
     public int AlignVert = 0;
     public int AlignHoriz = 0;
-    public int[] TabSpacing = new int[] { 0, 4, 6, 90 }; // 0,4,6,90 user defined
+    public int[] TabSpacing = [0, 4, 6, 90]; // 0,4,6,90 user defined
     public int TabSpacingDefault = 4;
 }

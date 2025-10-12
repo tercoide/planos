@@ -3,7 +3,7 @@ class Layer
 {
     public const string Gender = "LAYER";
     public int Colour = 0;
-    public LineType LineType ; // String = "CONTINUOUS"
+    public LineType? LineType ; // String = "CONTINUOUS"
     public string Name = "";
     public int LineWt = -3;
     public string id="";

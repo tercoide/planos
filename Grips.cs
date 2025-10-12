@@ -23,7 +23,7 @@ using System.Drawing;
 
 class Grip
 {
-    public Entity AsociatedEntity;                //// its a reference
+    public Entity? AsociatedEntity;                //// its a reference
                                                     //public AsociatedNewEntity As Entity             //// una entidad clonada para poder ser editada
     public int AsociatedPoint;            //// el punto al que se asocia este grip, cada clase lo sabe porque es la que genera el grip
     public int AsociatedGrip;             //// otro grip que se ve afectado con este grip
@@ -38,7 +38,7 @@ class Grip
 
 public float Tolerance = Gcd.metros(8);
 public int Action;            //// 0-mover 1-rotar 2-estirar
-public string ToolTip;
+    public string ToolTip = "";
 // public Picture Icon;
 public int Shape;             //// 0-Rectangulo 1-Rombo 2-Circulo 3-Triangulo N 4-Triangulo S 5-Triangulo W 6-Triangulo W
 public Color iColor = Color.Blue;

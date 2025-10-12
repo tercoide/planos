@@ -40,12 +40,12 @@ class Sheet
 
     //public Collection Viewports = new Collection(); // of Viewports
     public int TabOrder = 0;
-    public List<Entity> Entities = new List<Entity>();                      //// Apunta a .BLock.entities
-    public List<Entity> EntitiesSelected = new List<Entity>();
-    public List<Entity> EntitiesSelectedPrevious = new List<Entity>();
-    public List<Entity> EntitiesVisibles = new List<Entity>();
+    public List<Entity> Entities = [];                      //// Apunta a .BLock.entities
+    public List<Entity> EntitiesSelected = [];
+    public List<Entity> EntitiesSelectedPrevious = [];
+    public List<Entity> EntitiesVisibles = [];
 
-    public Entity SkipSearch = new Entity();                         //// entidad que no se tendran en cuenta en las busquedas
+    public Entity SkipSearch = new();                         //// entidad que no se tendran en cuenta en las busquedas
                                                     // public EntitiesSelected As New Collection
 
     //public gtk.GLArea GLArea = new gtk.GLArea();
@@ -55,7 +55,7 @@ class Sheet
     // public Scene3D scene = new Scene3D();
     public bool Shown = false; // esto podria ser una flag, determino si ya la mostre una vez
 
-    public Grip[] Grips = new Grip[0];
+    public Grip[] Grips = [];
 
     public Sheet()
     {

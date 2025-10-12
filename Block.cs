@@ -14,9 +14,9 @@ class Block
     public int Scalability;   // 1=true
     public int Flags;
     public string layer = "";
-    public Entity Parent;                 //// la entidad a la que esta asociado este bloque o null
-    public Sheet Sheet;                   //// la hoja asociada
-    public List<Entity> entities = new List<Entity>();
+    public Entity? Parent;                 //// la entidad a la que esta asociado este bloque o null
+    public Sheet? Sheet;                   //// la hoja asociada
+    public List<Entity> entities = [];
     public bool Filled = false;                //// si este bloque ya se lleno de las entidades que lo definen
     public string id = "";                          // Code 5
     public string idContainer = "";                 // propiedad usado para compatibilidad con DXF

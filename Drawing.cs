@@ -32,20 +32,20 @@ class Drawing
     // public Tables As New Collection // aqui estaran las siguientes tablas
 
     // public AppIDs As New Collection
-    public Dictionary<string, DimStyle> DimStyles = new Dictionary<string, DimStyle>();
+    public Dictionary<string, DimStyle> DimStyles = [];
     // public MLineStyles As New Collection
-    public Dictionary<string, TextStyle> TextStyles = new Dictionary<string, TextStyle>();
+    public Dictionary<string, TextStyle> TextStyles = [];
     // public Views As New Collection
     // public Viewports As New Collection
     // public UCSs As New Collection
-    public Dictionary<string, LineType> LineTypes = new Dictionary<string, LineType>();
-    public Dictionary<string, Layer> Layers = new Dictionary<string, Layer>();
+    public Dictionary<string, LineType> LineTypes = [];
+    public Dictionary<string, Layer> Layers = [];
     //// de objetos Layer
 
     // Blocks of entities
     //public Block_Record As New Collection          //// bloques reutilizables en este grafico
     //public Blocks As New Collection                //// bloques reutilizables en este grafico
-    public Dictionary<string, Block> Blocks = new Dictionary<string, Block>();                //// bloques reutilizables en este grafico
+    public Dictionary<string, Block> Blocks = [];                //// bloques reutilizables en este grafico
                                                                                               // public Dictionary<string, Insert> Inserts = new Dictionary<string, Insert>();               //// bloques insertados en este grafico, incluyen los de las Dimensiones
                                                                                               // public Dictionary<string, Hatch> Hatchs = new Dictionary<string, Hatch>();                //// Datos de Hatch usados por HatchBuilder
                                                                                               // public Dictionary<string, Dim> Dims = new Dictionary<string, Dim>();                   //// Bloques de dimensiones
@@ -55,7 +55,7 @@ class Drawing
     //Objetos
     // public Objects As New Collection
 
-    public Dictionary<string, Sheet> Sheets = new Dictionary<string, Sheet>(); // of handle, Sheet
+    public Dictionary<string, Sheet> Sheets = []; // of handle, Sheet
 
     // //================================================================================================================
     // public IDs As New Collection    // Nuevo 2023: la idea de esta coleccion es acumular IDs aca a medida que se crean
@@ -69,14 +69,14 @@ class Drawing
     public int nDraws = 0;
     public int nDrawsRequired = 0;
     public string id = "";
-    public Entity LastEntity;
+    public Entity? LastEntity;
     public int Lastid;
     public int LastHatch;
     public string LastHatchFile = "";
     public string LastHatchPattern = "";
     public float LastScale = 1.0F;
     public float LastAngle = 0.0F;
-    public Layer LastLayer; // in model
+    public Layer? LastLayer; // in model
     public double Xmenor = 1E100D;
     public double Xmayor = -1E100D;
     public double Ymenor = 1E100D;
@@ -88,19 +88,19 @@ class Drawing
     public bool Has3dEntities = false;
     // Current drawing vars
     //depre public Entities As Collection                   //// apunta a la lista de entidades del objeto actual
-    public List<Entity> EntitiesVisibles = new List< Entity>();
+    public List<Entity> EntitiesVisibles = [];
 
     public Sheet Sheet;                           //// o sea Model, Paper1, Paper2, etc
-    public Sheet Model;
-    public Layer CommonLayer;
-    public Layer CurrLayer;
+    public Sheet? Model;
+    public Layer? CommonLayer;
+    public Layer? CurrLayer;
     public int CurrColor;
-    public LineType CurrLineType;
+    public LineType? CurrLineType;
     public float CurrLineWt;                               //// in mm
     public int CurrBlockLineWt = -3;                   //// config.deflinewt
-    public DimStyle CurrDimStyle;
-    public TextStyle CurrTextStyle;
-    public PrintStyle CurrPrintStyle;
+    public DimStyle? CurrDimStyle;
+    public TextStyle? CurrTextStyle;
+    public PrintStyle? CurrPrintStyle;
     public int HandSeed = 128 * 128;                   //// Last available handle for this drawing
 
     //=======================cosas temporales que no se guardan con el grafico=================
@@ -108,14 +108,14 @@ class Drawing
 
     // interaccion del mouse en pantalla
     // public LastPoint[] LastPoint = new LastPoint[];                 //// ultimo punto marcado o null si no existe
-    public float[] iEntity = new float[3];                  //// las coordenadas del punto encontrado y el tipo de punto
-    public Entity HoveredEntity;                 //// La entidad quee esta debajo del mouse
-    public Entity HoveredInsert;                  //// Si la entidad pertenece a un inserto, es este
-    public List<Entity> HoveredEntities = new List<Entity>();          //// Las entidades que estan debajo del mouse
-    public Entity HoveredEntityPrevious;          //// La entidad que estaba debajo del mouse antes de la ultima detectada
+    public float[] iEntity = [0,0,0];                  //// las coordenadas del punto encontrado y el tipo de punto
+    public Entity? HoveredEntity;                 //// La entidad quee esta debajo del mouse
+    public Entity? HoveredInsert;                  //// Si la entidad pertenece a un inserto, es este
+    public List<Entity> HoveredEntities = [];          //// Las entidades que estan debajo del mouse
+    public Entity? HoveredEntityPrevious;          //// La entidad que estaba debajo del mouse antes de la ultima detectada
 
-    public Entity eLastEntity;                       //// ultima entidad encontrada
-    public Entity LastDimension;                      //// guardo este parametro para hacer las dimensiones continuadas
+    public Entity? eLastEntity;                       //// ultima entidad encontrada
+    public Entity? LastDimension;                      //// guardo este parametro para hacer las dimensiones continuadas
 
     public bool flgShowPOIinfo = true;
 
@@ -139,6 +139,8 @@ public Drawing()
     {
         // inicializo las tablas basicas
         Sheet = new Sheet();
+
+        return ;
        
     }
 
