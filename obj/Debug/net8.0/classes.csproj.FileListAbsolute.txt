@@ -1,0 +1,43 @@
+/home/martin/_c_sharp_practices/classes/bin/Debug/net8.0/classes
+/home/martin/_c_sharp_practices/classes/bin/Debug/net8.0/classes.deps.json
+/home/martin/_c_sharp_practices/classes/bin/Debug/net8.0/classes.runtimeconfig.json
+/home/martin/_c_sharp_practices/classes/bin/Debug/net8.0/classes.dll
+/home/martin/_c_sharp_practices/classes/bin/Debug/net8.0/classes.pdb
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.GeneratedMSBuildEditorConfig.editorconfig
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.AssemblyInfoInputs.cache
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.AssemblyInfo.cs
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.csproj.CoreCompileInputs.cache
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.dll
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/refint/classes.dll
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.pdb
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/classes.genruntimeconfig.cache
+/home/martin/_c_sharp_practices/classes/obj/Debug/net8.0/ref/classes.dll
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.GeneratedMSBuildEditorConfig.editorconfig
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.AssemblyInfoInputs.cache
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.AssemblyInfo.cs
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.csproj.CoreCompileInputs.cache
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.dll
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/refint/classes.dll
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.pdb
+/home/martin/_c_sharp_practices/classes para guardar datos/bin/Debug/net8.0/classes
+/home/martin/_c_sharp_practices/classes para guardar datos/bin/Debug/net8.0/classes.deps.json
+/home/martin/_c_sharp_practices/classes para guardar datos/bin/Debug/net8.0/classes.runtimeconfig.json
+/home/martin/_c_sharp_practices/classes para guardar datos/bin/Debug/net8.0/classes.dll
+/home/martin/_c_sharp_practices/classes para guardar datos/bin/Debug/net8.0/classes.pdb
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/classes.genruntimeconfig.cache
+/home/martin/_c_sharp_practices/classes para guardar datos/obj/Debug/net8.0/ref/classes.dll
+/home/martin/planos/bin/Debug/net8.0/classes
+/home/martin/planos/bin/Debug/net8.0/classes.deps.json
+/home/martin/planos/bin/Debug/net8.0/classes.runtimeconfig.json
+/home/martin/planos/bin/Debug/net8.0/classes.dll
+/home/martin/planos/bin/Debug/net8.0/classes.pdb
+/home/martin/planos/obj/Debug/net8.0/classes.GeneratedMSBuildEditorConfig.editorconfig
+/home/martin/planos/obj/Debug/net8.0/classes.AssemblyInfoInputs.cache
+/home/martin/planos/obj/Debug/net8.0/classes.AssemblyInfo.cs
+/home/martin/planos/obj/Debug/net8.0/classes.csproj.CoreCompileInputs.cache
+/home/martin/planos/obj/Debug/net8.0/classes.sourcelink.json
+/home/martin/planos/obj/Debug/net8.0/classes.dll
+/home/martin/planos/obj/Debug/net8.0/refint/classes.dll
+/home/martin/planos/obj/Debug/net8.0/classes.pdb
+/home/martin/planos/obj/Debug/net8.0/classes.genruntimeconfig.cache
+/home/martin/planos/obj/Debug/net8.0/ref/classes.dll
