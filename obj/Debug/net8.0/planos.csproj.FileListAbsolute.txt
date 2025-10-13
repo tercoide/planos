@@ -13,3 +13,12 @@
 /home/martin/planos/obj/Debug/net8.0/planos.pdb
 /home/martin/planos/obj/Debug/net8.0/planos.genruntimeconfig.cache
 /home/martin/planos/obj/Debug/net8.0/ref/planos.dll
+/home/martin/planos/obj/Debug/net8.0/planos.csproj.AssemblyReference.cache
+/home/martin/planos/bin/Debug/net8.0/AtkSharp.dll
+/home/martin/planos/bin/Debug/net8.0/CairoSharp.dll
+/home/martin/planos/bin/Debug/net8.0/GdkSharp.dll
+/home/martin/planos/bin/Debug/net8.0/GioSharp.dll
+/home/martin/planos/bin/Debug/net8.0/GLibSharp.dll
+/home/martin/planos/bin/Debug/net8.0/GtkSharp.dll
+/home/martin/planos/bin/Debug/net8.0/PangoSharp.dll
+/home/martin/planos/obj/Debug/net8.0/planos.csproj.Up2Date

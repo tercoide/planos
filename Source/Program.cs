@@ -1,14 +1,18 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Gaucho;
+using Gtk;
 
 namespace Gaucho
 {
     class Program
     {
+        private static MainWindow? mainWindow;
+
         // Aca se inicia la ejecucion del programa.
         static void Main(string[] args)
         {
+            // Execute console operations first
             Console.WriteLine("Pruebo instanciar las clases directamente:");
 
             var line = new cadLine();
@@ -62,6 +66,17 @@ namespace Gaucho
                 cad[ent.Gender].Draw();
             }
 
+            // Create GTK4 Application and run
+            Console.WriteLine("Launching GTK4 Application...");
+            var app = Application.New("com.planos.cadapp", Gio.ApplicationFlags.FlagsNone);
+            app.OnActivate += OnActivate;
+            app.Run(0, null);
+        }
+
+        private static void OnActivate(Gio.Application sender, EventArgs args)
+        {
+            mainWindow = new MainWindow();
+            mainWindow.SetApplication((Application)sender);
         }
     }
 }

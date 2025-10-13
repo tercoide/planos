@@ -1,8 +1,25 @@
 {
   "version": 2,
-  "dgSpecHash": "5JDh4Cb0AV4fgTXK1WZMYfnW99oMLJzvaBcUs88wZ37zsXoFrWBjxyP9LcFXzAk3G1wch8iBIcT/N90n3HubXA==",
+  "dgSpecHash": "e8xXV5c1v0E=",
   "success": true,
   "projectFilePath": "/home/martin/planos/planos.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/martin/.nuget/packages/gircore.cairo-1.0/0.6.3/gircore.cairo-1.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.freetype2-2.0/0.6.3/gircore.freetype2-2.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.gdk-4.0/0.6.3/gircore.gdk-4.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.gdkpixbuf-2.0/0.6.3/gircore.gdkpixbuf-2.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.gio-2.0/0.6.3/gircore.gio-2.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.glib-2.0/0.6.3/gircore.glib-2.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.gobject-2.0/0.6.3/gircore.gobject-2.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.graphene-1.0/0.6.3/gircore.graphene-1.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.gsk-4.0/0.6.3/gircore.gsk-4.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.gtk-4.0/0.6.3/gircore.gtk-4.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.harfbuzz-0.0/0.6.3/gircore.harfbuzz-0.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.pango-1.0/0.6.3/gircore.pango-1.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/gircore.pangocairo-1.0/0.6.3/gircore.pangocairo-1.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.17/microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512",
+    "/home/martin/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.17/microsoft.netcore.app.host.linux-x64.8.0.17.nupkg.sha512",
+    "/home/martin/.nuget/packages/microsoft.netcore.app.ref/8.0.17/microsoft.netcore.app.ref.8.0.17.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,11 +1,376 @@
 {
   "version": 3,
   "targets": {
-    "net8.0": {}
+    "net8.0": {
+      "GirCore.Cairo-1.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/cairo-1.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/cairo-1.0.dll": {}
+        }
+      },
+      "GirCore.FreeType2-2.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.GLib-2.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/freetype2-2.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/freetype2-2.0.dll": {}
+        }
+      },
+      "GirCore.Gdk-4.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.Cairo-1.0": "0.6.3",
+          "GirCore.GdkPixbuf-2.0": "0.6.3",
+          "GirCore.Gio-2.0": "0.6.3",
+          "GirCore.Pango-1.0": "0.6.3",
+          "GirCore.PangoCairo-1.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/Gdk-4.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Gdk-4.0.dll": {}
+        }
+      },
+      "GirCore.GdkPixbuf-2.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.Gio-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/GdkPixbuf-2.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GdkPixbuf-2.0.dll": {}
+        }
+      },
+      "GirCore.Gio-2.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/Gio-2.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Gio-2.0.dll": {}
+        }
+      },
+      "GirCore.GLib-2.0/0.6.3": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/GLib-2.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GLib-2.0.dll": {}
+        }
+      },
+      "GirCore.GObject-2.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.GLib-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/GObject-2.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/GObject-2.0.dll": {}
+        }
+      },
+      "GirCore.Graphene-1.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/Graphene-1.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Graphene-1.0.dll": {}
+        }
+      },
+      "GirCore.Gsk-4.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.Gdk-4.0": "0.6.3",
+          "GirCore.Graphene-1.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/Gsk-4.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Gsk-4.0.dll": {}
+        }
+      },
+      "GirCore.Gtk-4.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.Gdk-4.0": "0.6.3",
+          "GirCore.Gsk-4.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/Gtk-4.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Gtk-4.0.dll": {}
+        }
+      },
+      "GirCore.HarfBuzz-0.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.FreeType2-2.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/HarfBuzz-0.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/HarfBuzz-0.0.dll": {}
+        }
+      },
+      "GirCore.Pango-1.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.Cairo-1.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3",
+          "GirCore.Gio-2.0": "0.6.3",
+          "GirCore.HarfBuzz-0.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/Pango-1.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Pango-1.0.dll": {}
+        }
+      },
+      "GirCore.PangoCairo-1.0/0.6.3": {
+        "type": "package",
+        "dependencies": {
+          "GirCore.Cairo-1.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3",
+          "GirCore.Pango-1.0": "0.6.3"
+        },
+        "compile": {
+          "lib/net8.0/PangoCairo-1.0.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/PangoCairo-1.0.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "GirCore.Cairo-1.0/0.6.3": {
+      "sha512": "yemCmT6dVzhreisGNqE/ZGzY0ogONBNA1vpPmdT2IW0HdbDlIRs+Ek1Q3B+MITRHgzPxXfe5p2zaVBbkg2NNcg==",
+      "type": "package",
+      "path": "gircore.cairo-1.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.cairo-1.0.0.6.3.nupkg.sha512",
+        "gircore.cairo-1.0.nuspec",
+        "lib/net8.0/cairo-1.0.dll",
+        "lib/net9.0/cairo-1.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.FreeType2-2.0/0.6.3": {
+      "sha512": "pEu4ZbXO/BYdqA53XF/1vct6rH2NkepPmwOd8rhFs+0q35VSg8iqe1yrr+FJVAj3BQ6EMiQwi4b8dZzUHXy8lQ==",
+      "type": "package",
+      "path": "gircore.freetype2-2.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.freetype2-2.0.0.6.3.nupkg.sha512",
+        "gircore.freetype2-2.0.nuspec",
+        "lib/net8.0/freetype2-2.0.dll",
+        "lib/net9.0/freetype2-2.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.Gdk-4.0/0.6.3": {
+      "sha512": "oCmVwSZCRKG+Nd7qf9t6VlneeVoYPaKM8lpQZohrrPLbnfZ4uqQvbinglUNpRyATOUPR39z4kZJ/r2jYkBQTvg==",
+      "type": "package",
+      "path": "gircore.gdk-4.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.gdk-4.0.0.6.3.nupkg.sha512",
+        "gircore.gdk-4.0.nuspec",
+        "lib/net8.0/Gdk-4.0.dll",
+        "lib/net9.0/Gdk-4.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.GdkPixbuf-2.0/0.6.3": {
+      "sha512": "XCgEZbg9urT3/Zabys+bpN9ouBqD82WhYrcV5VyLyrpZGl5S3dXs3de1O2Q5PZkB3H64a4I4fIO2SI33ftUtJA==",
+      "type": "package",
+      "path": "gircore.gdkpixbuf-2.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.gdkpixbuf-2.0.0.6.3.nupkg.sha512",
+        "gircore.gdkpixbuf-2.0.nuspec",
+        "lib/net8.0/GdkPixbuf-2.0.dll",
+        "lib/net9.0/GdkPixbuf-2.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.Gio-2.0/0.6.3": {
+      "sha512": "H1DNJPs2ggGc2rXTzZuLwf6BcescuuI/zqDjtowuJVY+BGXvDc9XP5BJ1CM8csxEf578EnTNj1aFl5YSSw154g==",
+      "type": "package",
+      "path": "gircore.gio-2.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.gio-2.0.0.6.3.nupkg.sha512",
+        "gircore.gio-2.0.nuspec",
+        "lib/net8.0/Gio-2.0.dll",
+        "lib/net9.0/Gio-2.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.GLib-2.0/0.6.3": {
+      "sha512": "co57cKlsL5igudwOolgkdoPQzjuJJsNFjAJdeAkxa7ggMl8qKlqmSjob3BzV+kI+5WoMdsKtwMZ9YCrKcvS4Yg==",
+      "type": "package",
+      "path": "gircore.glib-2.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.glib-2.0.0.6.3.nupkg.sha512",
+        "gircore.glib-2.0.nuspec",
+        "lib/net8.0/GLib-2.0.dll",
+        "lib/net9.0/GLib-2.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.GObject-2.0/0.6.3": {
+      "sha512": "oXRa48uILktpmN0rBtCetXJfsxbAgSXCSQCOCt0R7OErEVE6tzfL7Rf8uTrd1rncSlrVftRLzB90KutmjUDRxg==",
+      "type": "package",
+      "path": "gircore.gobject-2.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.gobject-2.0.0.6.3.nupkg.sha512",
+        "gircore.gobject-2.0.nuspec",
+        "lib/net8.0/GObject-2.0.dll",
+        "lib/net9.0/GObject-2.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.Graphene-1.0/0.6.3": {
+      "sha512": "OuPWw2TZsexd6diODlNuib1KB5jJEmga3Ij9FMKP+TcUN8fOG7CRJt2ou4PAQ1hZlTEGA9ibH9ZyVG2B4b0EQg==",
+      "type": "package",
+      "path": "gircore.graphene-1.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.graphene-1.0.0.6.3.nupkg.sha512",
+        "gircore.graphene-1.0.nuspec",
+        "lib/net8.0/Graphene-1.0.dll",
+        "lib/net9.0/Graphene-1.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.Gsk-4.0/0.6.3": {
+      "sha512": "fr8s3Na69yIKTDiubxGGR1hTfGxYxzW/afN8sfYLo0ONlDoA8d6mYW1vC5DEjOYNBS/f8yD9iEm80gEPfkKonw==",
+      "type": "package",
+      "path": "gircore.gsk-4.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.gsk-4.0.0.6.3.nupkg.sha512",
+        "gircore.gsk-4.0.nuspec",
+        "lib/net8.0/Gsk-4.0.dll",
+        "lib/net9.0/Gsk-4.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.Gtk-4.0/0.6.3": {
+      "sha512": "2OFqJcTuxzbDdMysiEYkeeo5+TLYpPpAOPuc4vp+zSU68eoGtRFpyOncL5cNftlJUxhbeBjvqY7H1ef69E045Q==",
+      "type": "package",
+      "path": "gircore.gtk-4.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.gtk-4.0.0.6.3.nupkg.sha512",
+        "gircore.gtk-4.0.nuspec",
+        "lib/net8.0/Gtk-4.0.dll",
+        "lib/net9.0/Gtk-4.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.HarfBuzz-0.0/0.6.3": {
+      "sha512": "Svzq3HJFBt7vWQAgni6HvUrXYFJA8c4Jn1lTsYuvbqtMNWWXOoNriEf+vuqo+2jgtEopOdBvTdXSfrN3LGHdlQ==",
+      "type": "package",
+      "path": "gircore.harfbuzz-0.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.harfbuzz-0.0.0.6.3.nupkg.sha512",
+        "gircore.harfbuzz-0.0.nuspec",
+        "lib/net8.0/HarfBuzz-0.0.dll",
+        "lib/net9.0/HarfBuzz-0.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.Pango-1.0/0.6.3": {
+      "sha512": "fRdc/hk8YT2G7GW7epiXdIfmFmJzPv6GWz2aHOiMagb3mqlCt6dm1s1pF9C146RmIzC+/fAMx1i2ZYO5tQZePw==",
+      "type": "package",
+      "path": "gircore.pango-1.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.pango-1.0.0.6.3.nupkg.sha512",
+        "gircore.pango-1.0.nuspec",
+        "lib/net8.0/Pango-1.0.dll",
+        "lib/net9.0/Pango-1.0.dll",
+        "logo-128.png"
+      ]
+    },
+    "GirCore.PangoCairo-1.0/0.6.3": {
+      "sha512": "lEYrk1PY+VPGynmVCoByjNFRRJNp5vHu34PkDVQLsAzc14fUyk/Ik1/Qux3OK9QYgDMEXdq42nXeGGFstDZRcA==",
+      "type": "package",
+      "path": "gircore.pangocairo-1.0/0.6.3",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "NugetReadme.md",
+        "gircore.pangocairo-1.0.0.6.3.nupkg.sha512",
+        "gircore.pangocairo-1.0.nuspec",
+        "lib/net8.0/PangoCairo-1.0.dll",
+        "lib/net9.0/PangoCairo-1.0.dll",
+        "logo-128.png"
+      ]
+    }
+  },
   "projectFileDependencyGroups": {
-    "net8.0": []
+    "net8.0": [
+      "GirCore.Gtk-4.0 >= 0.6.3"
+    ]
   },
   "packageFolders": {
     "/home/martin/.nuget/packages/": {}
@@ -26,6 +391,7 @@
         "net8.0"
       ],
       "sources": {
+        "/usr/lib/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -38,11 +404,23 @@
         "warnAsError": [
           "NU1605"
         ]
-      }
+      },
+      "restoreAuditProperties": {
+        "enableAudit": "true",
+        "auditLevel": "low",
+        "auditMode": "direct"
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
         "targetAlias": "net8.0",
+        "dependencies": {
+          "GirCore.Gtk-4.0": {
+            "target": "Package",
+            "version": "[0.6.3, )"
+          }
+        },
         "imports": [
           "net461",
           "net462",
@@ -54,12 +432,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[8.0.17, 8.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.linux-x64",
+            "version": "[8.0.17, 8.0.17]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[8.0.17, 8.0.17]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/8.0.120/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/lib/dotnet/sdk/9.0.107/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
