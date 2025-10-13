@@ -9,6 +9,12 @@
 
   <ItemGroup>
     <PackageReference Include="GirCore.Gtk-4.0" Version="0.6.3" />
+    <PackageReference Include="OpenTK" Version="4.9.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Source/Gcd.cs" />
+    <Compile Remove="Source/Core/Dxf/dxf.cs" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,9 @@
 // Refexion es lo que en Gb llamamos instrospeccion de clases.
 // Permite listar las clases de un namespace y crear instancias de ellas en tiempo de ejecucion.
 // En este ejemplo, listamos las clases del namespace Gaucho y creamos instancias de las que contienen "cad" en su nombre.
+// Refexion es lo que en Gb llamamos instrospeccion de clases.
+// Permite listar las clases de un namespace y crear instancias de ellas en tiempo de ejecucion.
+// En este ejemplo, listamos las clases del namespace Gaucho y creamos instancias de las que contienen "cad" en su nombre.
 // Particularmente, el uso que le damos es crear las instancias de las
 // clases de CAD, tanto las Tools como las que manejan las entidades.
 
@@ -8,6 +11,8 @@
 using System.Reflection;
 using Gaucho;
 
+namespace Gaucho
+{
 public class ReflectionTest
 {
     public static void List(string targetNamespace)
@@ -41,5 +46,6 @@ public class ReflectionTest
             }
         }
     }
+}
 }
 

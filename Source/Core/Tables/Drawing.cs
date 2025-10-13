@@ -74,8 +74,8 @@ class Drawing
     public int LastHatch;
     public string LastHatchFile = "";
     public string LastHatchPattern = "";
-    public float LastScale = 1.0F;
-    public float LastAngle = 0.0F;
+    public double LastScale = 1.0F;
+    public double LastAngle = 0.0F;
     public Layer? LastLayer; // in model
     public double Xmenor = 1E100D;
     public double Xmayor = -1E100D;
@@ -96,7 +96,7 @@ class Drawing
     public Layer? CurrLayer;
     public int CurrColor;
     public LineType? CurrLineType;
-    public float CurrLineWt;                               //// in mm
+    public double CurrLineWt;                               //// in mm
     public int CurrBlockLineWt = -3;                   //// config.deflinewt
     public DimStyle? CurrDimStyle;
     public TextStyle? CurrTextStyle;
@@ -108,7 +108,7 @@ class Drawing
 
     // interaccion del mouse en pantalla
     // public LastPoint[] LastPoint = new LastPoint[];                 //// ultimo punto marcado o null si no existe
-    public float[] iEntity = [0,0,0];                  //// las coordenadas del punto encontrado y el tipo de punto
+    public double[] iEntity = [0,0,0];                  //// las coordenadas del punto encontrado y el tipo de punto
     public Entity? HoveredEntity;                 //// La entidad quee esta debajo del mouse
     public Entity? HoveredInsert;                  //// Si la entidad pertenece a un inserto, es este
     public List<Entity> HoveredEntities = [];          //// Las entidades que estan debajo del mouse
@@ -124,10 +124,10 @@ class Drawing
     // Grid
     public bool GridActive;
     public int GridStyle = 0;                 //// 0=Dots 1=Lines 2=Dots with major 3=Lines with major
-    public float GridMinorSpacing = 1;
-    public float GridMidSpacing = 5;
-    public float GridMajorSpacing = 10;
-    public float GridCurentSpacing = 1;
+    public double GridMinorSpacing = 1;
+    public double GridMidSpacing = 5;
+    public double GridMajorSpacing = 10;
+    public double GridCurentSpacing = 1;
 
     // OpenGl stuff
     // public GlAreaInuse As GLArea

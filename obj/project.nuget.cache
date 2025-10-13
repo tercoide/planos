@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "e8xXV5c1v0E=",
+  "dgSpecHash": "Qu+SPplx3e8=",
   "success": true,
   "projectFilePath": "/home/martin/planos/planos.csproj",
   "expectedPackageFiles": [
@@ -17,6 +17,18 @@
     "/home/martin/.nuget/packages/gircore.harfbuzz-0.0/0.6.3/gircore.harfbuzz-0.0.0.6.3.nupkg.sha512",
     "/home/martin/.nuget/packages/gircore.pango-1.0/0.6.3/gircore.pango-1.0.0.6.3.nupkg.sha512",
     "/home/martin/.nuget/packages/gircore.pangocairo-1.0/0.6.3/gircore.pangocairo-1.0.0.6.3.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk/4.9.4/opentk.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.audio.openal/4.9.4/opentk.audio.openal.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.compute/4.9.4/opentk.compute.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.core/4.9.4/opentk.core.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.graphics/4.9.4/opentk.graphics.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.input/4.9.4/opentk.input.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.mathematics/4.9.4/opentk.mathematics.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.redist.glfw/3.4.0.44/opentk.redist.glfw.3.4.0.44.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.windowing.common/4.9.4/opentk.windowing.common.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.windowing.desktop/4.9.4/opentk.windowing.desktop.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/opentk.windowing.graphicslibraryframework/4.9.4/opentk.windowing.graphicslibraryframework.4.9.4.nupkg.sha512",
+    "/home/martin/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "/home/martin/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.17/microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512",
     "/home/martin/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.17/microsoft.netcore.app.host.linux-x64.8.0.17.nupkg.sha512",
     "/home/martin/.nuget/packages/microsoft.netcore.app.ref/8.0.17/microsoft.netcore.app.ref.8.0.17.nupkg.sha512"

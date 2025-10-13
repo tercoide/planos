@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("planos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f097e8a7d65651249dc99b85a087bb359e0c9dd")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e39006b066a9eb3c98067fc4d16647ca67610955")]
 [assembly: System.Reflection.AssemblyProductAttribute("planos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("planos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

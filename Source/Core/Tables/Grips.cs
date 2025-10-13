@@ -19,7 +19,7 @@
 // along with this program; if not, write to the Free Software
 // Foundation, Inc., 51 Franklin St, Fifth Floor,
 // Boston, MA  02110-1301  USA
-using System.Drawing;
+using Gaucho;
 
 class Grip
 {
@@ -33,18 +33,19 @@ class Grip
     public float Xr;      //// punto de referencia
     public float Yr;
 
-// public Xn As Float      //// punto nuevo
-// public Yn As Float
+    // public Xn As Float      //// punto nuevo
+    // public Yn As Float
 
-public float Tolerance = Gcd.metros(8);
-public int Action;            //// 0-mover 1-rotar 2-estirar
+// FIXME
+    // public double Tolerance = Gcd.Metros(8);
+    public int Action;            //// 0-mover 1-rotar 2-estirar
     public string ToolTip = "";
 // public Picture Icon;
 public int Shape;             //// 0-Rectangulo 1-Rombo 2-Circulo 3-Triangulo N 4-Triangulo S 5-Triangulo W 6-Triangulo W
-public Color iColor = Color.Blue;
+public System.Drawing.Color iColor = System.Drawing.Color.Blue;
 public bool Filled = true;
-public Color iFillColor = Color.LightCyan;
-public Color iFillColor2 = Color.Blue;
+public System.Drawing.Color iFillColor = System.Drawing.Color.LightCyan;
+public System.Drawing.Color iFillColor2 = System.Drawing.Color.Blue;
 public int glList;
 public float Value;     // para los grips que asumen un valor
 public int Group;     // para los RadioButton

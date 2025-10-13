@@ -1,18 +1,23 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System;
 using Gaucho;
-using Gtk;
+using OpenTK.Windowing.Desktop;
+using OpenTK.Graphics.OpenGL4;
+using OpenTK.Windowing.Common;
+using OpenTK.Mathematics;
+using Config = Gaucho.Config;
+
+
+
 
 namespace Gaucho
 {
     class Program
     {
-        private static MainWindow? mainWindow;
-
         // Aca se inicia la ejecucion del programa.
         static void Main(string[] args)
         {
-            // Execute console operations first
             Console.WriteLine("Pruebo instanciar las clases directamente:");
 
             var line = new cadLine();
@@ -22,10 +27,24 @@ namespace Gaucho
             IEntity job = new cadLine();
             job.Draw();
 
+            Utils.RunShellCommand("ls -la");
+            Utils.CreateButton("icon.svg");
 
             job = new cadCircle();
             job.Draw();
 
+            // Gcd.FileName = "test.txt";
+
+            // Config.FileName = "test.txt";
+            Config.ButtonSize = 24;
+            
+
+            // Config.WhiteAndBlack = System.Drawing.Color.White;
+            // Config.WindowBackColor = System.Drawing.Color.Black;
+            // Config.WindowTextColor = System.Drawing.Color.White;
+            // Config.WindowInfoColor = System.Drawing.Color.Gray;
+            // Config.WindowCursorColor = System.Drawing.Color.Red;
+            // Config.WindowAIdsColor = System.Drawing.Color.Blue;
 
             // En C# no hyay Collection como en Gambas, pero hay Dictionary que es similar.
             // Tambien hay List, que es una lista de cosas, pero no tiene clave.
@@ -47,39 +66,30 @@ namespace Gaucho
 
             // Ahora intento llenar una lista de entidades
 
-            Gcd.drawing.Sheet.Entities.Add(new Entity());
-            Gcd.drawing.Sheet.Entities.Add(new Entity());
-            Gcd.drawing.Sheet.Entities.Add(new Entity());
+            // Gcd.drawing.Sheet.Entities.Add(new Entity());
+            // Gcd.drawing.Sheet.Entities.Add(new Entity());
+            // Gcd.drawing.Sheet.Entities.Add(new Entity());
 
-            Gcd.drawing.Sheet.Entities[0].Gender = "LINE";
-            Gcd.drawing.Sheet.Entities[1].Gender = "CIRCLE";
-            Gcd.drawing.Sheet.Entities[2].Gender = "POLYGON";
+            // Gcd.drawing.Sheet.Entities[0].Gender = "LINE";
+            // Gcd.drawing.Sheet.Entities[1].Gender = "CIRCLE";
+            // Gcd.drawing.Sheet.Entities[2].Gender = "POLYGON";
 
-            foreach (var ent in Gcd.drawing.Sheet.Entities)
-            {
-                if (!cad.ContainsKey(ent.Gender))
-                {
-                    Console.WriteLine($"No tengo la clase {ent.Gender}");
-                    continue;
-                }   
-                Console.WriteLine($"Entidad de tipo {ent.Gender}");
-                cad[ent.Gender].Draw();
-            }
+            // foreach (var ent in Gcd.drawing.Sheet.Entities)
+            // {
+            //     if (!cad.ContainsKey(ent.Gender))
+            //     {
+            //         Console.WriteLine($"No tengo la clase {ent.Gender}");
+            //         continue;
+            //     }   
+            //     Console.WriteLine($"Entidad de tipo {ent.Gender}");
+            //     cad[ent.Gender].Draw();
+            // }
 
-            // Create GTK4 Application and run
-            Console.WriteLine("Launching GTK4 Application...");
-            var app = Application.New("com.planos.cadapp", Gio.ApplicationFlags.FlagsNone);
-            app.OnActivate += OnActivate;
-            app.Run(0, null);
-        }
+            // Create OpenTK Game Window and run
+            Console.WriteLine("Launching OpenTK Window...");
+           
 
-        private static void OnActivate(Gio.Application sender, EventArgs args)
-        {
-            mainWindow = new MainWindow();
-            mainWindow.SetApplication((Application)sender);
+          
         }
     }
-}
- 
-
-
+} // End of Gaucho namespace

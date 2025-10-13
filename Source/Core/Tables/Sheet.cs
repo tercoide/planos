@@ -9,41 +9,41 @@ class Sheet
     public Block block = new Block();                       //// el bloque asociado a esta hoja
     public bool IsModel = false;                   //// si es Model, esta hoja no puede usarse para insertar Viewports de models
     // public model3d As New Model3d
-    public float PaperSizeW = 420F;           //// mm
-    public float PaperSizeH = 297F;           //// mm
+    public double PaperSizeW = 420F;           //// mm
+    public double PaperSizeH = 297F;           //// mm
     public Color BackGroundColor = Color.Black;       ////
     public Color WhiteAndBlack = Color.White;       ////
 
-    public float Scale = 1;                   //// a general scale for its parts
+    public double Scale = 1;                   //// a general scale for its parts
     public PrintStyle pPrintStyle = new PrintStyle();
 
     //// position inside parent GL Area
-    public float PanX;          //// PIXELS
-    public float PanY;          //// PIXELS
-    public float PanZ = 0;
+    public double PanX;          //// PIXELS
+    public double PanY;          //// PIXELS
+    public double PanZ = 0;
 
-    public float RotX = 0;
-    public float RotY = 0;          //// radians
-    public float RotZ = 0;
+    public double RotX = 0;
+    public double RotY = 0;          //// radians
+    public double RotZ = 0;
 
-    public float ScaleZoom = 1;
-    public float ScaleZoomLast = 1;
+    public double ScaleZoom = 1;
+    public double ScaleZoomLast = 1;
     //// Escalado para evitar errores de precision matematica
-    // public float PanBaseX = 0;                     //// pixeles
-// public float PanBaseY = 0;                     //// pixeles
-    public float PanBaseRealX = 0;                 //// REAL
-    public float PanBaseRealY = 0;                 //// REAL
+    // public double PanBaseX = 0;                     //// pixeles
+// public double PanBaseY = 0;                     //// pixeles
+    public double PanBaseRealX = 0;                 //// REAL
+    public double PanBaseRealY = 0;                 //// REAL
 
-    public float ScaleZoomBase = 1;
+    public double ScaleZoomBase = 1;
 
     //public Viewport Viewport = new Viewport();                         //// el viewport actual en uso
 
     //public Collection Viewports = new Collection(); // of Viewports
     public int TabOrder = 0;
-    public List<Entity> Entities = [];                      //// Apunta a .BLock.entities
-    public List<Entity> EntitiesSelected = [];
-    public List<Entity> EntitiesSelectedPrevious = [];
-    public List<Entity> EntitiesVisibles = [];
+    public Dictionary<string, Entity> Entities = new Dictionary<string, Entity>();                      //// Apunta a .BLock.entities
+    public List<Entity> EntitiesSelected = new List<Entity>();
+    public List<Entity> EntitiesSelectedPrevious = new List<Entity>();
+    public List<Entity> EntitiesVisibles = new List<Entity>();
 
     public Entity SkipSearch = new();                         //// entidad que no se tendran en cuenta en las busquedas
                                                     // public EntitiesSelected As New Collection

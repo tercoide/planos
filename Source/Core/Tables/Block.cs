@@ -16,7 +16,7 @@ class Block
     public string layer = "";
     public Entity? Parent;                 //// la entidad a la que esta asociado este bloque o null
     public Sheet? Sheet;                   //// la hoja asociada
-    public List<Entity> entities = [];
+    public Dictionary<string, Entity> entities = []; //// las entidades que forman este bloque
     public bool Filled = false;                //// si este bloque ya se lleno de las entidades que lo definen
     public string id = "";                          // Code 5
     public string idContainer = "";                 // propiedad usado para compatibilidad con DXF

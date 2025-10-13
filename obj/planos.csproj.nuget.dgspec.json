@@ -48,6 +48,10 @@
             "GirCore.Gtk-4.0": {
               "target": "Package",
               "version": "[0.6.3, )"
+            },
+            "OpenTK": {
+              "target": "Package",
+              "version": "[4.9.4, )"
             }
           },
           "imports": [

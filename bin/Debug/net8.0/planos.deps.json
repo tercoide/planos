@@ -8,92 +8,306 @@
     ".NETCoreApp,Version=v8.0": {
       "planos/1.0.0": {
         "dependencies": {
-          "GtkSharp": "3.24.24.95"
+          "GirCore.Gtk-4.0": "0.6.3",
+          "OpenTK": "4.9.4"
         },
         "runtime": {
           "planos.dll": {}
         }
       },
-      "AtkSharp/3.24.24.95": {
+      "GirCore.Cairo-1.0/0.6.3": {
         "dependencies": {
-          "GLibSharp": "3.24.24.95"
+          "GirCore.GObject-2.0": "0.6.3"
         },
         "runtime": {
-          "lib/net6.0/AtkSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
+          "lib/net8.0/cairo-1.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
           }
         }
       },
-      "CairoSharp/3.24.24.95": {
-        "runtime": {
-          "lib/net6.0/CairoSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
-          }
-        }
-      },
-      "GdkSharp/3.24.24.95": {
+      "GirCore.FreeType2-2.0/0.6.3": {
         "dependencies": {
-          "CairoSharp": "3.24.24.95",
-          "GLibSharp": "3.24.24.95",
-          "GioSharp": "3.24.24.95",
-          "PangoSharp": "3.24.24.95"
+          "GirCore.GLib-2.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3"
         },
         "runtime": {
-          "lib/net6.0/GdkSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
+          "lib/net8.0/freetype2-2.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
           }
         }
       },
-      "GioSharp/3.24.24.95": {
+      "GirCore.Gdk-4.0/0.6.3": {
         "dependencies": {
-          "GLibSharp": "3.24.24.95"
+          "GirCore.Cairo-1.0": "0.6.3",
+          "GirCore.GdkPixbuf-2.0": "0.6.3",
+          "GirCore.Gio-2.0": "0.6.3",
+          "GirCore.Pango-1.0": "0.6.3",
+          "GirCore.PangoCairo-1.0": "0.6.3"
         },
         "runtime": {
-          "lib/net6.0/GioSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
+          "lib/net8.0/Gdk-4.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
           }
         }
       },
-      "GLibSharp/3.24.24.95": {
-        "runtime": {
-          "lib/net6.0/GLibSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
-          }
-        }
-      },
-      "GtkSharp/3.24.24.95": {
+      "GirCore.GdkPixbuf-2.0/0.6.3": {
         "dependencies": {
-          "AtkSharp": "3.24.24.95",
-          "CairoSharp": "3.24.24.95",
-          "GLibSharp": "3.24.24.95",
-          "GdkSharp": "3.24.24.95",
-          "GioSharp": "3.24.24.95",
-          "PangoSharp": "3.24.24.95"
+          "GirCore.Gio-2.0": "0.6.3"
         },
         "runtime": {
-          "lib/net6.0/GtkSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
+          "lib/net8.0/GdkPixbuf-2.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
           }
         }
       },
-      "PangoSharp/3.24.24.95": {
+      "GirCore.Gio-2.0/0.6.3": {
         "dependencies": {
-          "CairoSharp": "3.24.24.95",
-          "GLibSharp": "3.24.24.95"
+          "GirCore.GObject-2.0": "0.6.3"
         },
         "runtime": {
-          "lib/net6.0/PangoSharp.dll": {
-            "assemblyVersion": "3.24.24.95",
-            "fileVersion": "3.24.24.95"
+          "lib/net8.0/Gio-2.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
           }
         }
-      }
+      },
+      "GirCore.GLib-2.0/0.6.3": {
+        "runtime": {
+          "lib/net8.0/GLib-2.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.GObject-2.0/0.6.3": {
+        "dependencies": {
+          "GirCore.GLib-2.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/GObject-2.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.Graphene-1.0/0.6.3": {
+        "dependencies": {
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/Graphene-1.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.Gsk-4.0/0.6.3": {
+        "dependencies": {
+          "GirCore.Gdk-4.0": "0.6.3",
+          "GirCore.Graphene-1.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/Gsk-4.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.Gtk-4.0/0.6.3": {
+        "dependencies": {
+          "GirCore.Gdk-4.0": "0.6.3",
+          "GirCore.Gsk-4.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/Gtk-4.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.HarfBuzz-0.0/0.6.3": {
+        "dependencies": {
+          "GirCore.FreeType2-2.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/HarfBuzz-0.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.Pango-1.0/0.6.3": {
+        "dependencies": {
+          "GirCore.Cairo-1.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3",
+          "GirCore.Gio-2.0": "0.6.3",
+          "GirCore.HarfBuzz-0.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/Pango-1.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "GirCore.PangoCairo-1.0/0.6.3": {
+        "dependencies": {
+          "GirCore.Cairo-1.0": "0.6.3",
+          "GirCore.GObject-2.0": "0.6.3",
+          "GirCore.Pango-1.0": "0.6.3"
+        },
+        "runtime": {
+          "lib/net8.0/PangoCairo-1.0.dll": {
+            "assemblyVersion": "0.6.3.0",
+            "fileVersion": "0.6.3.0"
+          }
+        }
+      },
+      "OpenTK/4.9.4": {
+        "dependencies": {
+          "OpenTK.Audio.OpenAL": "4.9.4",
+          "OpenTK.Compute": "4.9.4",
+          "OpenTK.Core": "4.9.4",
+          "OpenTK.Graphics": "4.9.4",
+          "OpenTK.Input": "4.9.4",
+          "OpenTK.Mathematics": "4.9.4",
+          "OpenTK.Windowing.Common": "4.9.4",
+          "OpenTK.Windowing.Desktop": "4.9.4",
+          "OpenTK.Windowing.GraphicsLibraryFramework": "4.9.4"
+        }
+      },
+      "OpenTK.Audio.OpenAL/4.9.4": {
+        "dependencies": {
+          "OpenTK.Core": "4.9.4",
+          "OpenTK.Mathematics": "4.9.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Audio.OpenAL.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Compute/4.9.4": {
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Compute.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Core/4.9.4": {
+        "runtime": {
+          "lib/netstandard2.1/OpenTK.Core.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Graphics/4.9.4": {
+        "dependencies": {
+          "OpenTK.Core": "4.9.4",
+          "OpenTK.Mathematics": "4.9.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Graphics.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Input/4.9.4": {
+        "runtime": {
+          "lib/netstandard2.0/OpenTK.Input.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Mathematics/4.9.4": {
+        "dependencies": {
+          "System.Runtime.CompilerServices.Unsafe": "6.0.0"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Mathematics.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.redist.glfw/3.4.0.44": {
+        "runtimeTargets": {
+          "runtimes/linux-x64/native/libglfw.so.3": {
+            "rid": "linux-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-arm64/native/libglfw.3.dylib": {
+            "rid": "osx-arm64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/osx-x64/native/libglfw.3.dylib": {
+            "rid": "osx-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x64/native/glfw3.dll": {
+            "rid": "win-x64",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          },
+          "runtimes/win-x86/native/glfw3.dll": {
+            "rid": "win-x86",
+            "assetType": "native",
+            "fileVersion": "0.0.0.0"
+          }
+        }
+      },
+      "OpenTK.Windowing.Common/4.9.4": {
+        "dependencies": {
+          "OpenTK.Core": "4.9.4",
+          "OpenTK.Mathematics": "4.9.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Windowing.Common.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Windowing.Desktop/4.9.4": {
+        "dependencies": {
+          "OpenTK.Core": "4.9.4",
+          "OpenTK.Mathematics": "4.9.4",
+          "OpenTK.Windowing.Common": "4.9.4",
+          "OpenTK.Windowing.GraphicsLibraryFramework": "4.9.4"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Windowing.Desktop.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "OpenTK.Windowing.GraphicsLibraryFramework/4.9.4": {
+        "dependencies": {
+          "OpenTK.Core": "4.9.4",
+          "OpenTK.redist.glfw": "3.4.0.44"
+        },
+        "runtime": {
+          "lib/netcoreapp3.1/OpenTK.Windowing.GraphicsLibraryFramework.dll": {
+            "assemblyVersion": "4.9.4.0",
+            "fileVersion": "4.9.4.0"
+          }
+        }
+      },
+      "System.Runtime.CompilerServices.Unsafe/6.0.0": {}
     }
   },
   "libraries": {
@@ -102,54 +316,180 @@
       "serviceable": false,
       "sha512": ""
     },
-    "AtkSharp/3.24.24.95": {
+    "GirCore.Cairo-1.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LnSfsc0y11gfzczZj5bnpwcFkXFZuVTSSd92ML/FcHIM7FU+cAfm1UkAonv5BdwTRhzDbNDE39vihao/k75sUA==",
-      "path": "atksharp/3.24.24.95",
-      "hashPath": "atksharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-yemCmT6dVzhreisGNqE/ZGzY0ogONBNA1vpPmdT2IW0HdbDlIRs+Ek1Q3B+MITRHgzPxXfe5p2zaVBbkg2NNcg==",
+      "path": "gircore.cairo-1.0/0.6.3",
+      "hashPath": "gircore.cairo-1.0.0.6.3.nupkg.sha512"
     },
-    "CairoSharp/3.24.24.95": {
+    "GirCore.FreeType2-2.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-EZ9KT3pwVAol35XbZW0Uwdg2LqhDvPnWdhqIrsedhDx+Omnu56hLzxh8mZGqmQvEwJE8Opbda4w9CqDtXbX6Vw==",
-      "path": "cairosharp/3.24.24.95",
-      "hashPath": "cairosharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-pEu4ZbXO/BYdqA53XF/1vct6rH2NkepPmwOd8rhFs+0q35VSg8iqe1yrr+FJVAj3BQ6EMiQwi4b8dZzUHXy8lQ==",
+      "path": "gircore.freetype2-2.0/0.6.3",
+      "hashPath": "gircore.freetype2-2.0.0.6.3.nupkg.sha512"
     },
-    "GdkSharp/3.24.24.95": {
+    "GirCore.Gdk-4.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-rABpIGkxr8lOdyhEmrKXzjih3z3932kjqUmm5qaQhWVSvu9YepEk3J1FApgnKCW/EWEzlerzxnJArsyOlgMsZQ==",
-      "path": "gdksharp/3.24.24.95",
-      "hashPath": "gdksharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-oCmVwSZCRKG+Nd7qf9t6VlneeVoYPaKM8lpQZohrrPLbnfZ4uqQvbinglUNpRyATOUPR39z4kZJ/r2jYkBQTvg==",
+      "path": "gircore.gdk-4.0/0.6.3",
+      "hashPath": "gircore.gdk-4.0.0.6.3.nupkg.sha512"
     },
-    "GioSharp/3.24.24.95": {
+    "GirCore.GdkPixbuf-2.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-avYEDFlYgbogb+Y7ZhIXQpyJfL83bnPpBKY642YEW9PQ+pRK3qf2k0opvd5oHccXfByj6kAQjmRUSIS0pj19Fg==",
-      "path": "giosharp/3.24.24.95",
-      "hashPath": "giosharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-XCgEZbg9urT3/Zabys+bpN9ouBqD82WhYrcV5VyLyrpZGl5S3dXs3de1O2Q5PZkB3H64a4I4fIO2SI33ftUtJA==",
+      "path": "gircore.gdkpixbuf-2.0/0.6.3",
+      "hashPath": "gircore.gdkpixbuf-2.0.0.6.3.nupkg.sha512"
     },
-    "GLibSharp/3.24.24.95": {
+    "GirCore.Gio-2.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-1viZRMVjddf2HUCW7WDXT47rHssteHkAOimXQ2/pI8oGrPGNFuuw5MbX8BOIy73hCWVqo7JEMONv3z32OrCoCQ==",
-      "path": "glibsharp/3.24.24.95",
-      "hashPath": "glibsharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-H1DNJPs2ggGc2rXTzZuLwf6BcescuuI/zqDjtowuJVY+BGXvDc9XP5BJ1CM8csxEf578EnTNj1aFl5YSSw154g==",
+      "path": "gircore.gio-2.0/0.6.3",
+      "hashPath": "gircore.gio-2.0.0.6.3.nupkg.sha512"
     },
-    "GtkSharp/3.24.24.95": {
+    "GirCore.GLib-2.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-RRUY45hAa5gsMcadvVjcLUzMjVtmuHSYTcIwM6j8LNgKhzFFHk69qM1D5ULfGxaWmVjicqNWiFtOtk8WsvPqaQ==",
-      "path": "gtksharp/3.24.24.95",
-      "hashPath": "gtksharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-co57cKlsL5igudwOolgkdoPQzjuJJsNFjAJdeAkxa7ggMl8qKlqmSjob3BzV+kI+5WoMdsKtwMZ9YCrKcvS4Yg==",
+      "path": "gircore.glib-2.0/0.6.3",
+      "hashPath": "gircore.glib-2.0.0.6.3.nupkg.sha512"
     },
-    "PangoSharp/3.24.24.95": {
+    "GirCore.GObject-2.0/0.6.3": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-H7JeyEvLsgvsbamGpRgoNtdvzPiGwwsUuoeTobN1C/JRjw1J8Snw0yf2WBr7CKx5GLwbrwpQYOb7N/HD17ME8A==",
-      "path": "pangosharp/3.24.24.95",
-      "hashPath": "pangosharp.3.24.24.95.nupkg.sha512"
+      "sha512": "sha512-oXRa48uILktpmN0rBtCetXJfsxbAgSXCSQCOCt0R7OErEVE6tzfL7Rf8uTrd1rncSlrVftRLzB90KutmjUDRxg==",
+      "path": "gircore.gobject-2.0/0.6.3",
+      "hashPath": "gircore.gobject-2.0.0.6.3.nupkg.sha512"
+    },
+    "GirCore.Graphene-1.0/0.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-OuPWw2TZsexd6diODlNuib1KB5jJEmga3Ij9FMKP+TcUN8fOG7CRJt2ou4PAQ1hZlTEGA9ibH9ZyVG2B4b0EQg==",
+      "path": "gircore.graphene-1.0/0.6.3",
+      "hashPath": "gircore.graphene-1.0.0.6.3.nupkg.sha512"
+    },
+    "GirCore.Gsk-4.0/0.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fr8s3Na69yIKTDiubxGGR1hTfGxYxzW/afN8sfYLo0ONlDoA8d6mYW1vC5DEjOYNBS/f8yD9iEm80gEPfkKonw==",
+      "path": "gircore.gsk-4.0/0.6.3",
+      "hashPath": "gircore.gsk-4.0.0.6.3.nupkg.sha512"
+    },
+    "GirCore.Gtk-4.0/0.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2OFqJcTuxzbDdMysiEYkeeo5+TLYpPpAOPuc4vp+zSU68eoGtRFpyOncL5cNftlJUxhbeBjvqY7H1ef69E045Q==",
+      "path": "gircore.gtk-4.0/0.6.3",
+      "hashPath": "gircore.gtk-4.0.0.6.3.nupkg.sha512"
+    },
+    "GirCore.HarfBuzz-0.0/0.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-Svzq3HJFBt7vWQAgni6HvUrXYFJA8c4Jn1lTsYuvbqtMNWWXOoNriEf+vuqo+2jgtEopOdBvTdXSfrN3LGHdlQ==",
+      "path": "gircore.harfbuzz-0.0/0.6.3",
+      "hashPath": "gircore.harfbuzz-0.0.0.6.3.nupkg.sha512"
+    },
+    "GirCore.Pango-1.0/0.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fRdc/hk8YT2G7GW7epiXdIfmFmJzPv6GWz2aHOiMagb3mqlCt6dm1s1pF9C146RmIzC+/fAMx1i2ZYO5tQZePw==",
+      "path": "gircore.pango-1.0/0.6.3",
+      "hashPath": "gircore.pango-1.0.0.6.3.nupkg.sha512"
+    },
+    "GirCore.PangoCairo-1.0/0.6.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-lEYrk1PY+VPGynmVCoByjNFRRJNp5vHu34PkDVQLsAzc14fUyk/Ik1/Qux3OK9QYgDMEXdq42nXeGGFstDZRcA==",
+      "path": "gircore.pangocairo-1.0/0.6.3",
+      "hashPath": "gircore.pangocairo-1.0.0.6.3.nupkg.sha512"
+    },
+    "OpenTK/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-fp9ZI6akO4ZuIGzuUE0QRU5zRJhXbSXa5racehFoTdvodhRDecXCOcH68mRsZaMwnxLO9ECnf2LGM9BmiJKvhw==",
+      "path": "opentk/4.9.4",
+      "hashPath": "opentk.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Audio.OpenAL/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-N/SCeFrLJ3ckUbshyfsonbtjmDxh55urGiR+Fe1iPkTWyEW5OKfQRoIOZyjEva/4eRqOXdt3bV2ka4IJ2+JvZw==",
+      "path": "opentk.audio.openal/4.9.4",
+      "hashPath": "opentk.audio.openal.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Compute/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-30G+/9mtrUJwX5xcRyz2qcujQ2s+wDm+C7qg6jDsLyGWUdND3j/vD+nlQ6tuKuAow51zWduFVujPkaS8VrBinQ==",
+      "path": "opentk.compute/4.9.4",
+      "hashPath": "opentk.compute.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Core/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/4Mn3ABf1xNfHMzDFUapVY2K4PG3oP/oWTQJlK0JacT20HwsNe/HPIAhnAJWz27EM3ukOJDtqyQRukvQKqkcLw==",
+      "path": "opentk.core/4.9.4",
+      "hashPath": "opentk.core.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Graphics/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-yZeq5swIsRnNzifVA9fLtl+qMAQvmYiF1b7U/XQLARmmU4PYQ23lPNahqAdD22XzA21ew7eG3yDyPLkYw+hDBA==",
+      "path": "opentk.graphics/4.9.4",
+      "hashPath": "opentk.graphics.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Input/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-njbC7fySQEK30rjOQ1uRjlycEkLw+UVoPT3nRQ8uBPNLotDgr47NEcPEjmJyX1ll+pm/wmtcvJIYHBRi1HbOqg==",
+      "path": "opentk.input/4.9.4",
+      "hashPath": "opentk.input.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Mathematics/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-2ucF25RVJzdSLXUHgjAgB058gVfSgerrR5pLCn9J+Bnyqi45NrBfPu9wyTT35ZCjYwLJCu/HJMnzKFLjq+uFIA==",
+      "path": "opentk.mathematics/4.9.4",
+      "hashPath": "opentk.mathematics.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.redist.glfw/3.4.0.44": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-HEjbdk0wWxSRrXHl3DSmrA8trecndgJpAHHloJJ1vPseNfeu/ynmrH/LturU1KguRn4r3IzZ81UIp5xRjnyahg==",
+      "path": "opentk.redist.glfw/3.4.0.44",
+      "hashPath": "opentk.redist.glfw.3.4.0.44.nupkg.sha512"
+    },
+    "OpenTK.Windowing.Common/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-xNjvKjoptAh6w5/YYIx/9sNv3/A2VVlTahlekTlLP+qfNyig+0jBuLHO4bWELWZ7Ta3Y1m/2Pvk0Z1KCG8VZOA==",
+      "path": "opentk.windowing.common/4.9.4",
+      "hashPath": "opentk.windowing.common.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Windowing.Desktop/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LBX4jwCneISIBST2vWYLI8cdR8tLwHNcswK1decElbTAXMB+H6uFIoF41ld+af4q3TsHpjR5fyP2ilbTK3T0rA==",
+      "path": "opentk.windowing.desktop/4.9.4",
+      "hashPath": "opentk.windowing.desktop.4.9.4.nupkg.sha512"
+    },
+    "OpenTK.Windowing.GraphicsLibraryFramework/4.9.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-wNlxnPrD7veMV8EGTTi/sCDeg5V8w/18vC0aw0Ao69eNneD7YSq9Ad+C389rVA957eHNR6Xieu/5qzHQeEOyxQ==",
+      "path": "opentk.windowing.graphicslibraryframework/4.9.4",
+      "hashPath": "opentk.windowing.graphicslibraryframework.4.9.4.nupkg.sha512"
+    },
+    "System.Runtime.CompilerServices.Unsafe/6.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
+      "path": "system.runtime.compilerservices.unsafe/6.0.0",
+      "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
     }
   }
 }
