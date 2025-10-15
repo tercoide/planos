@@ -1,4 +1,4 @@
-class HatchPattern  
+public class HatchPattern  
 {
 public string name = "";
 public string description = "";
@@ -10,7 +10,7 @@ public List<Pattern> patterns = [];
 // type: 0=User, 1=Predefined
 }
 
-class Pattern
+public class Pattern
 {
     public double AngleDeg;
     public double BaseX;

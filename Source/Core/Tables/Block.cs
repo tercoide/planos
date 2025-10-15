@@ -1,5 +1,5 @@
 // Gambas class file
-class Block
+public class Block
 {
     public const string Gender = "BLOCK";
     public string name = "";                       //// nombre del bloque

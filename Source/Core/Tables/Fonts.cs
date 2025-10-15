@@ -1,4 +1,4 @@
-class Letter
+public class Letter
 {
 
     // Las letras LFF se dibujan como una LWPOLYLINE, con trazos y bulges.
@@ -8,7 +8,7 @@ class Letter
 
 }
 
-class Font
+public class Font
 {
 
     public string FileName="";

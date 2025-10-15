@@ -1,4 +1,4 @@
-class TextStyle
+public class TextStyle
 {
     // identification
     public string Id = "";

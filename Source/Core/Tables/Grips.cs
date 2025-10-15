@@ -21,9 +21,9 @@
 // Boston, MA  02110-1301  USA
 using Gaucho;
 
-class Grip
+public class Grip
 {
-    public Entity? AsociatedEntity;                //// its a reference
+    public Entity? AsociatedEntity= new();                //// its a reference
                                                     //public AsociatedNewEntity As Entity             //// una entidad clonada para poder ser editada
     public int AsociatedPoint;            //// el punto al que se asocia este grip, cada clase lo sabe porque es la que genera el grip
     public int AsociatedGrip;             //// otro grip que se ve afectado con este grip

@@ -1,5 +1,5 @@
 
-class Entity
+public class Entity
 {
     public string Gender="";                 // Type of entity
     public float[] P = new float[0];                     // X,Y pairs

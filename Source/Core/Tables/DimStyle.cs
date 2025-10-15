@@ -1,5 +1,5 @@
 // Gambas class file
-class DimStyle
+public class DimStyle
 {
     public const string Gender = "DIMSTYLE";
     public string name="";

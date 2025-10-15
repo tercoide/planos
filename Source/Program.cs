@@ -2,13 +2,6 @@
 
 using System;
 using Gaucho;
-using OpenTK.Windowing.Desktop;
-using OpenTK.Graphics.OpenGL4;
-using OpenTK.Windowing.Common;
-using OpenTK.Mathematics;
-using Config = Gaucho.Config;
-
-
 
 
 namespace Gaucho
@@ -37,6 +30,8 @@ namespace Gaucho
 
             // Config.FileName = "test.txt";
             Config.ButtonSize = 24;
+            Config.Root = Environment.CurrentDirectory;
+            
             
 
             // Config.WhiteAndBlack = System.Drawing.Color.White;

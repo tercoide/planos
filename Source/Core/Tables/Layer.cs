@@ -1,5 +1,5 @@
 // Gambas class file
-class Layer
+public class Layer
 {
     public const string Gender = "LAYER";
     public int Colour = 0;

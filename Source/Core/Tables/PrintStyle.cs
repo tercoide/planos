@@ -3,7 +3,7 @@
 //// Printing styles
 //// Esto se guarda en el sistema, no con el archivo.
 /// 
-class PrintStyle
+public class PrintStyle
 {
     public const string Gender = "PRINTSTYLE";
     public string Name = "";                       //// El nombre de este estilo

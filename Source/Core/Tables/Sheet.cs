@@ -1,7 +1,7 @@
 // Gambas class file
 using System.Drawing;
 
-class Sheet
+public class Sheet
 {
     public const string Gender = "SHEET";
     public string Name = "";                       //// Nombre visible en la tabstrip

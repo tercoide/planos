@@ -1,5 +1,5 @@
 // Gambas class file
-class LineType
+public class LineType
 {
     public const string Gender = "LINETYPE";
     public int Colour;
