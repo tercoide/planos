@@ -26,7 +26,17 @@ namespace Gaucho
 
     public interface IEntity
     {
-        public  void Draw(){}
+        
+        public void Draw() { }
+
+        public void Draw2()
+        
+        {
+            Console.WriteLine("Imprimo desde la interface IEntity" );
+            return;
+        }
     }
+    
+    
 
 }

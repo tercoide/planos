@@ -20,8 +20,8 @@ namespace Gaucho
             IEntity job = new cadLine();
             job.Draw();
 
-            Utils.Shell("ls -la");
-            Utils.CreateButton("icon.svg");
+            // Utils.Shell("ls -la");
+            // Utils.CreateButton("icon.svg");
 
             job = new cadCircle();
             job.Draw();
@@ -53,7 +53,7 @@ namespace Gaucho
 
             cad["LINE"].Draw();
             cad["CIRCLE"].Draw();
-
+            cad["CIRCLE"].Draw2();
 
             Console.WriteLine("Pruebo la reflexion");
             ReflectionTest.List("Gaucho");

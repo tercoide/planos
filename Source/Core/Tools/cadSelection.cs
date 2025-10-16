@@ -1,4 +1,5 @@
-using Gaucho;
+namespace Gaucho;
+
 class cadSelection
 {
  // Gambas class file
@@ -65,9 +66,9 @@ const int SelectModeNew = 0;
 const int SelectModeAdd = 1;
 const int SelectModeRem = 2;
 
-public bool SelectCrossing = False;                 // las entidades puedn estar parcialmente dentro del contorno
+public bool SelectCrossing = false;                 // las entidades puedn estar parcialmente dentro del contorno
 
-public New Float[] SelectionPoly ;         
+public double[] SelectionPoly ;         
 
  // Funcionamiento:
 
@@ -220,11 +221,17 @@ public static void MouseDown()
     if ( Mouse.Left )
     {
 
-         // veo si esta en un grip(solo si ToolActive = False)
+            // veo si esta en un grip(solo si ToolActive = False)
 
-         // chequeo si estoy sobre un grip
-        if ( AllowGripEdit ) GripPoint = FindGrip(Me.SelStartXr, this.SelStartYr) else GripPoint = Null;
-
+            // chequeo si estoy sobre un grip
+            if (AllowGripEdit) 
+                {
+                GripPoint = FindGrip(Me.SelStartXr, this.SelStartYr);
+                }
+            else
+                {
+                GripPoint = Null;
+            }
         if ( GripPoint )
         {
 
@@ -321,7 +328,7 @@ public static void MouseUp()
     string tipo ;         
     double t = Timer;
     Entity e ;         
-    New Collection cSel ;         
+    Dictionary<string, Entity> cSel =[] ;         
 
     gcd.Drawing.iEntity.Clear;
     gcd.Drawing.Sheet.SkipSearch = Null;
@@ -365,19 +372,19 @@ public static void MouseUp()
              // C.1.1 ActionActive = ActionRectActive -> Finalizo la seleccion por recuadro
             RectActive = False;
             gcd.flgSearchingAllowed = True;
-             // corrijo para start<end  <- DEPRE
-             // If Me.SelStartX > Me.SelEndX Then
-             //     crossing = True <- DEPRE
-             //     Swap Me.SelStartX, Me.SelEndX
-             // Else
-             //     crossing = False  <- DEPRE
-             // End If
+                // corrijo para start<end  <- DEPRE
+                // If Me.SelStartX > Me.SelEndX Then
+                //     crossing = True <- DEPRE
+                //     Swap Me.SelStartX, Me.SelEndX
+                // Else
+                //     crossing = False  <- DEPRE
+                // End If
 
-            if ( Me.SelStartX > Me.SelEndX ) swap this.SelStartX, this.SelEndX;
-            if ( Me.SelStartY < Me.SelEndy ) swap this.SelStartY, this.SelEndy; // this is FLIPPED
+            if (Me.SelStartX > Me.SelEndX) Utils.Swap(ref this.SelStartX, ref this.SelEndX);
+            if ( Me.SelStartY < Me.SelEndy ) Utils.Swap(ref this.SelStartY, ref this.SelEndy); // this is FLIPPED
 
-            if ( Me.SelStartXr > Me.SelEndXr ) swap this.SelStartXr, this.SelEndXr;
-            if ( Me.SelStartYr > Me.SelEndyr ) swap this.SelStartYr, this.SelEndyr;
+            if ( Me.SelStartXr > Me.SelEndXr ) Utils.Swap(ref this.SelStartXr, ref this.SelEndXr);
+            if ( Me.SelStartYr > Me.SelEndyr ) Utils.Swap(ref this.SelStartYr, ref this.SelEndyr);
 
              // veo si el rectangulo es suficientemente grande como para representar una seleccion por rectangulo
             if ( (Me.SelEndX - Me.SelStartX + (-Me.SelEndy + Me.SelStartY)) > 10 )
@@ -895,7 +902,7 @@ public void Draw()
 
     if ( Me.SelectCrossing )
     {
-        iColor = Color.red;
+        iColor = Color.Red;
     }
     else
     {
@@ -910,7 +917,7 @@ public void Draw()
         {
             this.SelectionPoly.Clear; // aprovecho
 
-            glx.Rectangle2D(Me.SelStartXr, this.SelStartYr, this.SelEndXr - this.SelStartXr, this.SelEndyr - this.SelStartYr, Color.RGB(224, 220, 207, 215),,,, iColor, 1, gcd.stiDashedSmall, 2);
+            glx.Rectangle2D(Me.SelStartXr, this.SelStartYr, this.SelEndXr - this.SelStartXr, this.SelEndyr - this.SelStartYr, Color.RGB(224, 220, 207, 215),0,0,0, iColor, 1, gcd.stiDashedSmall, 2);
 
             return;
         }

@@ -15,7 +15,7 @@ namespace Gaucho
 
     public class cadLine: IEntity
     {
-
+        public static string Gender = "LINE";
         // Constructor, equivalente a _New en Gambas.
         public cadLine()
         {
@@ -40,6 +40,7 @@ namespace Gaucho
 
     public class cadCircle: IEntity
     {
+        public static string Gender = "CIRCLE";
         public cadCircle()
         {
             Console.WriteLine("Creo un circulo");

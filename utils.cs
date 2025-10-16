@@ -9,12 +9,44 @@ using Gaucho;
 
 
 using System.Diagnostics;
+using Graphene.Internal;
 
 namespace Gaucho
 {
+    public struct Color
+    {
+        int Black = 0;
+        int White = 1;
+        int Red = 2;
+        int Green = 3;
+        int Blue = 4;
+        int Yellow = 5;
+        int Magenta = 6;
+        int Cyan = 7;
+        int Gray = 8;
+        int DarkGray = 9;
+        int LightRed = 10;
+        int LightGreen = 11;
+        int LightBlue = 12;
+        int LightYellow = 13;
+        int LightMagenta = 14;
+        int LightCyan = 15;
+        public Color()
+        {
+        }
+    }
+
 
     public class Utils
     {
+
+
+        public static void Swap<T>(ref T a, ref T b)
+{
+    T temp = a;
+    a = b;
+    b = temp;
+}
         public static Gtk.Image? LoadSvgToImage(string svgPath, int width, int height)
         {
             if (!System.IO.File.Exists(svgPath))
