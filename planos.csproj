@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Source/Gcd.cs" />
+    <Compile Remove="main.cs" />
     <Compile Remove="Source/Core/Dxf/dxf.cs" />
   </ItemGroup>
 

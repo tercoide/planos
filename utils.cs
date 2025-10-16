@@ -62,7 +62,7 @@ namespace Gaucho
         }
 
 
-        public static void RunShellCommand(string command)
+        public static void Shell(string command)
         {
             var process = new Process
             {

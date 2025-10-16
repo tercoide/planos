@@ -20,7 +20,7 @@ namespace Gaucho
             IEntity job = new cadLine();
             job.Draw();
 
-            Utils.RunShellCommand("ls -la");
+            Utils.Shell("ls -la");
             Utils.CreateButton("icon.svg");
 
             job = new cadCircle();

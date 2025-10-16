@@ -1,4 +1,7 @@
 
+using System.Text.Json;
+using System.Reflection;
+
 namespace Gaucho
 {
     public static class Config
@@ -8,9 +11,10 @@ namespace Gaucho
 
         //TINCHO 2023.05.22 > Config.class implementation
         // STANDAR VARIABLES
-        public static string Root;
-        public static string Depot;
-        public static string Log;
+        public static string Root="/usr/share/gambascad";
+        public static string Depot="/usr/share/gambascad";
+        public static string Log = "/usr/share/gambascad/log.txt";
+        public static string ConfigFile = "/usr/share/gambascad/config.json";
 
         // GambasCAD Variables
         // INTERFACE
@@ -20,7 +24,7 @@ namespace Gaucho
         public static bool ShowEntityInspector;          //Show entity inspector
         public static int DecimalDigitsCoords;          //Decimal digits for coordinates
         public static int DecimalDigitsInquiries;          //Decimal digits for inquiries
-        public static string IconFamily;          //Icon family
+        public static string IconFamily="";          //Icon family
 
         // GRID
         public static int GrIdSize = 50;                  // pixels
@@ -58,6 +62,7 @@ namespace Gaucho
         public static string dirBlocks;          //= gcd.dirResources &/ "library"
         public static string dirPrintStyles;
         public static string dirPatterns;
+        public static string Home;
 
         //TODO: Estas faltan definir como seran editadas
         // ==============Variables de configuracion a guardar, agregar las necesarias=======================
@@ -115,13 +120,130 @@ namespace Gaucho
         public static string FilesLastOpen9 = "";
         public static string FilesLastOpen10 = "";
 
+        /// <summary>
+        /// Saves all static fields of the Config class to a JSON file
+        /// </summary>
+        /// <param name="filePath">Path to the JSON file to save</param>
+        public static void Save()
+        {
 
+            var filePath = ConfigFile;
+            try
+            {
+                var configData = new Dictionary<string, object>();
+                
+                // Get all static fields using reflection
+                var fields = typeof(Config).GetFields(BindingFlags.Public | BindingFlags.Static);
+                
+                foreach (var field in fields)
+                {
+                    var value = field.GetValue(null);
+                    configData[field.Name] = value ?? "";
+                }
+                
+                // Create directory if it doesn't exist
+                var directory = Path.GetDirectoryName(filePath);
+                if (!string.IsNullOrEmpty(directory) && !Directory.Exists(directory))
+                {
+                    Directory.CreateDirectory(directory);
+                }
+                
+                // Serialize to JSON with indentation for readability
+                var options = new JsonSerializerOptions
+                {
+                    WriteIndented = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
+                
+                var jsonString = JsonSerializer.Serialize(configData, options);
+                File.WriteAllText(filePath, jsonString);
+                
+                Console.WriteLine($"Config saved to: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving config: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Loads configuration from a JSON file and updates the static fields
+        /// </summary>
+        /// <param name="filePath">Path to the JSON file to load</param>
+        public static void Load()
+        {
+            var filePath = ConfigFile;
+            try
+            {
+                if (!File.Exists(filePath))
+                {
+                    Console.WriteLine($"Config file not found: {filePath}");
+                    return;
+                }
+                
+                var jsonString = File.ReadAllText(filePath);
+                var configData = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(jsonString);
+                
+                if (configData == null) return;
+                
+                // Get all static fields using reflection
+                var fields = typeof(Config).GetFields(BindingFlags.Public | BindingFlags.Static);
+                
+                foreach (var field in fields)
+                {
+                    if (configData.TryGetValue(field.Name, out var jsonValue))
+                    {
+                        try
+                        {
+                            object? value = ConvertJsonValue(jsonValue, field.FieldType);
+                            if (value != null)
+                            {
+                                field.SetValue(null, value);
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Error setting field {field.Name}: {ex.Message}");
+                        }
+                    }
+                }
+                
+                Console.WriteLine($"Config loaded from: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error loading config: {ex.Message}");
+            }
+        }
+        
+        /// <summary>
+        /// Converts JsonElement to the appropriate type
+        /// </summary>
+        private static object? ConvertJsonValue(JsonElement jsonValue, Type targetType)
+        {
+            if (targetType == typeof(string))
+                return jsonValue.GetString();
+            else if (targetType == typeof(int))
+                return jsonValue.GetInt32();
+            else if (targetType == typeof(double))
+                return jsonValue.GetDouble();
+            else if (targetType == typeof(bool))
+                return jsonValue.GetBoolean();
+            else if (targetType == typeof(byte))
+                return jsonValue.GetByte();
+            else if (targetType == typeof(int[]))
+                return JsonSerializer.Deserialize<int[]>(jsonValue.GetRawText());
+            else if (targetType == typeof(string[]))
+                return JsonSerializer.Deserialize<string[]>(jsonValue.GetRawText());
+            else
+                return JsonSerializer.Deserialize(jsonValue.GetRawText(), targetType);
+        }
 
 //         public Config()
 // {
 
 // } 
-}
+    }
 
 // public void Load(string sFile)
 //     {

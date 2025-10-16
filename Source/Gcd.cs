@@ -1,9 +1,10 @@
 using System.Drawing;
-using Gtk4;
-using OpenTK.GTK4;
+using OpenTK.Graphics.OpenGL;
 using Gaucho;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
+using Gtk;
+using OpenTK;
 
 
 namespace Gaucho
@@ -82,13 +83,13 @@ namespace Gaucho
         public static string[] LineTypes;
 
         // dibujos
-        public static image picVisibleOn;
-        public static Gtk.Image picVisibleOff;
-        public static Gtk.Image picFrozenOn;
-        public static Gtk.Image picFrozenOff;
-        public static Gtk.Image picLockedOn;
-        public static Gtk.Image picLockedOff;
-        public static Gtk.Image picPrintOn;
+        public static Image picVisibleOn;
+        public static Image picVisibleOff;
+        public static Image picFrozenOn;
+        public static Image picFrozenOff;
+        public static Image picLockedOn;
+        public static Image picLockedOff;
+        public static Image picPrintOn;
         public static Image picPrintOff;
 
         //---------------------------------------------------------------
@@ -182,13 +183,13 @@ namespace Gaucho
 
         public static Dictionary<string, Drawing> Drawings = new();
         public static Dictionary<string, Entity> EntitiesSelected = new();
-        public static int[] gColor = new int[] { };          // Colors list
+        public static int[] gColor = [];          // Colors list
 
-        public static Gtk.Cursor CursorCross;
-        public static Gtk.Cursor CursorSelect;
-        public static Gtk.Cursor CursorSelectAdd;
-        public static Gtk.Cursor CursorSelectRem;
-        public static Gtk.Cursor CursorSelectXchange;
+        public static Gdk.Cursor CursorCross;
+        public static Gdk.Cursor CursorSelect;
+        public static Gdk.Cursor CursorSelectAdd;
+        public static Gdk.Cursor CursorSelectRem;
+        public static Gdk.Cursor CursorSelectXchange;
 
         public static double PrintingScale { get => printingScale; set => printingScale = value; }
 
@@ -219,8 +220,9 @@ namespace Gaucho
             {
                 stiAxis[i] *= Metros(1);
             }
-
         }
+
+
 
         // public static TextStyle FindStyle(string sName)
         // {
@@ -370,10 +372,10 @@ namespace Gaucho
             {
                 case Color.Black:
                     //Case &1B2224
-                    Config.WhiteAndBlack = Color.White;
-                    (
-                                    default:
-                    Config.WhiteAndBlack = Color.Black;
+                    Config.WhiteAndBlack = RGB(Color.White);
+                    break;
+                default:
+                    Config.WhiteAndBlack = RGB(Color.Black);
 
             }
 
@@ -384,8 +386,8 @@ namespace Gaucho
 
             //FileName = User.Home &/ "autosaveV5.xml"
 
-            debuginfo("Reading fonts from " + Gcd.dirResources &/ "fonts/lff",,, true);
-            FontList = glx.LoadFonts(Gcd.dirResources &/ "fonts/lff");
+            debuginfo("Reading fonts from " + System.IO.Path.Combine(Gcd.dirResources, "fonts", "lff"), false, false, true);
+            FontList = glx.LoadFonts(System.IO.Path.Combine(Gcd.dirResources, "fonts", "lff"));
             //FontList = glx.LoadFonts(Gcd.sFonts)
             glx.SelectFont("romans");
 
@@ -397,18 +399,18 @@ namespace Gaucho
 
             FontReplacements.Add("kochigothic", "arial");
 
-            texturelist = glx.LoadTextures(Gcd.dirResources &/ "textures");
+            TextureList = glx.LoadTextures(System.IO.Path.Combine(Gcd.dirResources, "textures"));
             //texturelist = glx.LoadTextures(Gcd.sTextures)
 
             // otros recursos
-            picVisibleOn = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_on.png"));
-            picVisibleOff = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_off.png"));
-            picFrozenOn = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_on.png"));
-            picFrozenOff = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_off.png"));
-            picLockedOn = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_on.png"));
-            picLockedOff = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_off.png"));
-            picPrintOn = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "printOn.png"));
-            picPrintOff = Image.Load(System.IO.Path.Combine(Gcd.dirResources, "png", "printOff.png"));
+            picVisibleOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_on.png"));
+            picVisibleOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_off.png"));
+            picFrozenOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_on.png"));
+            picFrozenOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_off.png"));
+            picLockedOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_on.png"));
+            picLockedOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_off.png"));
+            picPrintOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "printOn.png"));
+            picPrintOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "printOff.png"));
 
             // this is what we are doing now
             Gcd.clsJob = cadSelection;
@@ -416,7 +418,7 @@ namespace Gaucho
             Gcd.clsJobPreZoom = cadSelection;
             Gcd.clsJobPreviousParam = 0;
 
-            debuginfo("Gcd initialized OK",,, true);
+            debuginfo("Gcd initialized OK", false, false, true);
 
             // test
             // Dim flxTest As New double[]
@@ -473,7 +475,7 @@ namespace Gaucho
         //     Dim hLay As Layer
         //     Dim e As Entity
         //
-        //     Gcd.debugInfo("Filling layers",,, true)
+        //     Gcd.debugInfo("Filling layers",false,false,true)
         //
         //     // primero eliminamos lo q haya
         //     For Each hLay In drw.Layers
@@ -484,7 +486,7 @@ namespace Gaucho
         //             If e.pLayer Then e.pLayer.Entities.Add(e)
         //         Next
         //     End If
-        //     Gcd.debugInfo("Llenados los Layers",,, true)
+        //     Gcd.debugInfo("Llenados los Layers",false,false,true)
         //
         // End
 
@@ -494,7 +496,7 @@ namespace Gaucho
         //     Dim e As Entity
         //     Dim s As Sheet
         //
-        //     Gcd.debugInfo("Filling Sheets",,, true)
+        //     Gcd.debugInfo("Filling Sheets",false,false,true)
         //
         //     If drw.Entities Then
         //         For Each e In drw.Entities
@@ -506,7 +508,7 @@ namespace Gaucho
         //             Endif
         //         Next
         //     End If
-        //     Gcd.debugInfo("Llenadas las Sheets",,, true)
+        //     Gcd.debugInfo("Llenadas las Sheets",false,false,true)
         //
         // End
 
@@ -515,7 +517,7 @@ namespace Gaucho
         //
         //     Dim e As Entity
         //
-        //     Gcd.debugInfo("Filling Inserts",,, true)
+        //     Gcd.debugInfo("Filling Inserts",false,false,true)
         //
         //     If drw.Entities Then
         //         For Each e In drw.Entities
@@ -524,7 +526,7 @@ namespace Gaucho
         //             Endif
         //         Next
         //     End If
-        //     Gcd.debugInfo("Llenados los Inserts",,, true)
+        //     Gcd.debugInfo("Llenados los Inserts",false,false,true)
         //
         // End
 
@@ -758,7 +760,7 @@ namespace Gaucho
             }
 
             //s = "{" & Trim(s) & "}"
-            s = Trim(s);
+            s = string.Trim(s);
             return s;
 
         }
@@ -790,7 +792,7 @@ namespace Gaucho
             string hHex;
 
             if (!d) d = Drawing;
-            Inc D.HandSeed; // esta es la ultima handle utilizada, le sumo 1
+            d.HandSeed++; // esta es la ultima handle utilizada, le sumo 1
             hHex = Hex(D.HandSeed);
             d.Headers.HANDSEED = hHex;
 
@@ -854,23 +856,23 @@ namespace Gaucho
 
             steps = 0; // elimino el archivo temporal que hubiese creado
 
-            if (Exist(config.dirDwgIn &/ filebase)) Kill config.dirDwgIn &/ filebase;
+            if (File.Exists(System.IO.Path.Combine(config.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(config.dirDwgIn, filebase));
 
             Steps = 1; // hago una copia previa a la conversion
-            Copy sDwgFile To config.dirDwgIn &/ filebase;
+            Copy(sDwgFile, System.IO.Path.Combine(config.dirDwgIn, filebase));
 
             Steps = 2; // Calling the converter
 
-            Shell "ODAFileConverter; //" & config.dirDwgIn & "// //" & config.dirDxfIn & "// //ACAD2018// //DXF// 0 0" Wait To str
+            utils.Shell("ODAFileConverter; //" & config.dirDwgIn & "// //" & config.dirDxfIn & "// //ACAD2018// //DXF// 0 0", WaitTo: str);
 
             steps = 3;
             // vacio el directorio de entrada
-            Kill config.dirDwgIn &/ filebase;
+            Kill(System.IO.Path.Combine(config.dirDwgIn, filebase));
 
-            if (Exist(config.dirDxfIn &/ utils.FileWithoutExtension(filebase) + ".dxf"))
+            if (File.Exists(System.IO.Path.Combine(config.dirDxfIn, utils.FileWithoutExtension(filebase) + ".dxf")))
             {
-                Gcd.debuginfo("Conversion to DXF correct",, true, true);
-                return config.dirDxfIn &/ utils.FileWithoutExtension(filebase) + ".dxf";
+                Gcd.debuginfo("Conversion to DXF correct", false, false, true);
+                return System.IO.Path.Combine(config.dirDxfIn, utils.FileWithoutExtension(filebase) + ".dxf");
             }
             else
             {
@@ -884,19 +886,19 @@ namespace Gaucho
             {
                 case 0:
                     // esto puede fallar por acceso denegado
-                    Gcd.debuginfo("Acces denied to temp file",, true, true);
+                    Gcd.debuginfo("Acces denied to temp file", false, false, true);
                     return null;
                 case 1:
                     // esto puede fallar por file corrupt
-                    Gcd.debuginfo("File corrupt",, true, true);
+                    Gcd.debuginfo("File corrupt", false, false, true);
                     return null;
                 case 2:
                     // esto puede fallar por diversas cuestiones
-                    Gcd.debuginfo("Conversion failed",, true, true);
+                    Gcd.debuginfo("Conversion failed", false, false, true);
                     return null;
                 case 3:
                     // esto puede fallar por diversas cuestiones
-                    Gcd.debuginfo("Could't empty temp dir",, true, true);
+                    Gcd.debuginfo("Could't empty temp dir", false, false, true);
                     return null;
 
             }
@@ -914,22 +916,22 @@ namespace Gaucho
             filebase = utils.FileFromPath(sDxfFile); // deberia estar en main.dirDxfIn
 
             steps = 0; // elimino el archivo temporal que hubiese creado
-            if (Exist(config.dirDxfOut &/ filebase)) Kill config.dirDxfOut &/ filebase;
+            if (File.Exists(System.IO.Path.Combine(config.dirDxfOut, filebase))) File.Delete(System.IO.Path.Combine(config.dirDxfOut, filebase));
 
             Steps = 1; // hago una copia previa a la conversion
-            if (sDxfFile != (config.dirDxfOut &/ filebase)) Copy sDxfFile To config.dirDxfOut &/ filebase;
+            if (sDxfFile != (System.IO.Path.Combine(config.dirDxfOut, filebase))) File.Copy(sDxfFile, System.IO.Path.Combine(config.dirDxfOut, filebase));
 
             Steps = 2; // Calling the converter
-            Shell "ODAFileConverter; //" & config.dirDxfOut & "// //" & config.dirDwgOut & "// //ACAD2010// //DWG// 0 0" Wait To str
+            utils.Shell("ODAFileConverter; //" & config.dirDxfOut & "// //" & config.dirDwgOut & "// //ACAD2010// //DWG// 0 0", WaitTo: str);
 
 
-    Gcd.debuginfo(str);
+            Gcd.debuginfo(str);
 
             steps = 3;
             // vacio el directorio de entrada
             //Kill main.dirDxfOut &/ filebase //FIXME: descomentar esto despues del debug
 
-            return config.dirDwgOut &/ utils.FileWithoutExtension(filebase) + ".dwg";
+            return System.IO.Path.Combine(config.dirDwgOut, utils.FileWithoutExtension(filebase) + ".dwg");
 
             Catch;
 
@@ -959,7 +961,7 @@ namespace Gaucho
         //  Lee entidades e intenta dibujarlas centrado en el contenedor: DrawingArea, Image, Image
         //  iColor: CAD color o -1 para usar como vienen en el DXF
         //  fLineWidth: -1=como vienen, 0=automatico, >0 = fijo en ese valor
-        public static bool FitEntitiesToImage(Collection cEntities, Object imgPreview, int iColor = 0, double fLineWIdth = 1, int iBackGround = -1)
+        public static bool FitEntitiesToImage(Dictionary<string, Entity> cEntities, Object imgPreview, int iColor = 0, double fLineWIdth = 1, int iBackGround = -1)
         {
 
 
@@ -967,9 +969,8 @@ namespace Gaucho
             double scale;
             double scaleY;
 
-            Entity entIdad;
 
-            New double[] flxLimits;
+            double[] flxLimits;
 
             //depre clsEntities.BuildPoi(cEntities)
             if (cEntities.Count > 0)
@@ -981,9 +982,18 @@ namespace Gaucho
 
                 Paint.Reset; // vuelvo escalas y traslados a cero
                 Paint.Translate(Paint.W / 2, Paint.H / 2); // centro el dibujo
-                if ((flxLimits[2] - flxLimits[0]) > 1e-10) scaleX = Paint.w / (flxLimits[2] - flxLimits[0]) else scaleX = 1e10;
-                if ((flxLimits[3] - flxLimits[1]) > 1e-10) scaleY = Paint.H / (flxLimits[3] - flxLimits[1]) else scaleY = 1e10;
-                if (scaleX < scaleY) Scale = scaleX else Scale = scaley;
+                if ((flxLimits[2] - flxLimits[0]) > 1e-10)
+                    scaleX = Paint.w / (flxLimits[2] - flxLimits[0]);
+                else
+                    scaleX = 1e10;
+                if ((flxLimits[3] - flxLimits[1]) > 1e-10)
+                    scaleY = Paint.H / (flxLimits[3] - flxLimits[1]);
+                else
+                    scaleY = 1e10;
+                if (scaleX < scaleY)
+                    Scale = scaleX;
+                else
+                    Scale = scaleY;
                 Paint.Scale(scale * 0.85, -scale * 0.85);
 
                 PrintingScale = scale * 0.85;
@@ -991,7 +1001,7 @@ namespace Gaucho
                 // centro el dibujo
                 Paint.Translate(-(flxLimits[2] + flxLimits[0]) / 2, -(flxLimits[3] + flxLimits[1]) / 2);
 
-                foreach (entIdad in cEntities)
+                foreach (var entIdad in cEntities)
                 {
                     if (entIdad.pLayer == null) entIdad.pLayer = Gcd.Drawing.CurrLayer;
                     if (iColor < 0)
@@ -1045,34 +1055,43 @@ namespace Gaucho
 
             Variant v;
             string[] slx;
-            string s;
+
             double f;
 
             sVal = Trim(sVal);
-            if (Left$(sVal) == "@" ) sval = Mid(sval, 2);
+            if (sVal.StartsWith("@")) sVal = sVal.Substring(1);
 
             slx = Split(sval, ",");
 
-            foreach (s in slx)
+            foreach (var s in slx)
             {
-                f = Cdouble(s);
+                try
+                {
+                    f = string.toDouble(s);
+                }
+                catch
+                {
+                    return false;
+                }
             }
-            if (slx.Count == 2 || slx.Count == 3) return true else return false;
-            Catch;
-            return false;
+            if (slx.Count == 2 || slx.Count == 3)
+                return true;
+            else
+                return false;
+
 
         }
 
-        public static double Xreal(ScreenX As integer)
+        public static double Xreal(int ScreenX)
         {
 
             //Return Metros((screenx - Gcd.Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX + Gcd.Drawing.Sheet.PanBaseX)))
             if (Isnull(Gcd.Drawing.Sheet.GlSheet)) return 0;
-            return Metros((screenx - Gcd.Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX))) + Gcd.Drawing.Sheet.PanBaseRealX;
+            return Metros((ScreenX - Gcd.Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX))) + Gcd.Drawing.Sheet.PanBaseRealX;
 
         }
 
-        public static double Yreal(ScreenY As integer)
+        public static double Yreal(int ScreenY)
         {
 
             //Return Metros((-ScreenY + Gcd.Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY + Gcd.Drawing.Sheet.PanBaseY)))
@@ -1169,7 +1188,7 @@ namespace Gaucho
             clsEntities.glGenDrawList;
             //clsEntities.glGenDrawList2
             clsEntities.glGenDrawListLAyers;
-            // Gcd.debugInfo("Entities GL list generated",,, true, true)
+            // Gcd.debugInfo("Entities GL list generated",false,false,true, true)
             //clsEntities.glGenDrawListSel
             if (Gcd.Drawing.Has3dEntities)
             {
@@ -1183,12 +1202,13 @@ namespace Gaucho
         }
 
         // Centra el grafico en una posicion
-        public static void PanTo(double Xr, double Yr, Sheet s = drawing.Sheet)
+        public static void PanTo(double Xr, double Yr, Sheet s  = null)
         {
 
 
             double Xcentro;
             double Ycentro;
+            if (!s) s = Gcd.Drawing.Sheet;
 
             Xcentro = Xreal(s.GlSheet.w / 2);
             Ycentro = Yreal(s.GlSheet.h / 2);
@@ -1204,13 +1224,14 @@ namespace Gaucho
 
         }
 
-        public static void PanToOrigin(Sheet s = drawing.Sheet)
+        public static void PanToOrigin(Sheet s = null)
         {
 
 
             // muevo el grafico desde la posicion actual al 0,0
             double Xcentro;
             double Ycentro;
+            if (!s) s = Gcd.Drawing.Sheet;
 
             Xcentro = Metros((int)-(Gcd.Drawing.Sheet.PanX));
             Ycentro = Metros((int)-(Gcd.Drawing.Sheet.PanY));
@@ -1230,7 +1251,7 @@ namespace Gaucho
 
 
             // La parte de los VBO
-            Gcd.debugInfo("Generating GL graphics" ,false,false,true, true);
+            Gcd.debugInfo("Generating GL graphics", false, false, true, true);
 
             //clsEntities.glGenBuffers()
             //clsEntities.FillLayersWithEntities(Drawing)
@@ -1277,7 +1298,7 @@ namespace Gaucho
         {
 
 
-            double[] limits=[];
+            double[] limits = [];
             double SZx;
             // ahora calculo donde estaria el centro de este dibujo
 
@@ -1329,7 +1350,7 @@ namespace Gaucho
             if (File.Exists(System.IO.Path.Combine(main.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(main.dirDwgIn, filebase));
 
             Steps = 1; // hago una copia previa a la conversion
-            File.Copy(sDwgFile , System.IO.Path.Combine(main.dirDwgIn, filebase));
+            File.Copy(sDwgFile, System.IO.Path.Combine(main.dirDwgIn, filebase));
 
             Steps = 2; // Calling the converter
             Shell("dwgread -O DXF -o \"" + System.IO.Path.Combine(main.dirDxfOut, utils.FileWithoutExtension(filebase) + ".dxf") + "\" \"" + System.IO.Path.Combine(main.dirDwgIn, filebase) + "\"", out str);
@@ -1399,24 +1420,24 @@ namespace Gaucho
 
             d.Blocks.Add(b, b.name);
 
-            Layer L=new();
+            Layer L = new();
             L.Name = "0";
             L.id = "20";
             d.Layers.Add(L, L.name); //Agrego un layer
             d.CurrLayer = L;
 
-            LineType LT=new();
+            LineType LT = new();
             LT.Name = "CONTINUOUS";
             LT.id = "21";
             d.LineTypes.Add(LT, LT.Name); // Agrego un LineType
             L.LineType = LT;
             d.CurrLineType = LT;
 
-            DimStyle DS=new();
+            DimStyle DS = new();
             DS.id = "22"; //Gcd.NewHandle(d)
             DS.name = "standard";
 
-            
+
             d.CurrDimStyle = DS;
             d.DimStyles.Add(DS, DS.name); // Agrego un DimStyle
 
@@ -1429,7 +1450,7 @@ namespace Gaucho
             // d.Tables.Add(d.AppIDs, "15")
             // d.Tables.Add(d.DimStyles, "16")
 
-            TextStyle ts=new();
+            TextStyle ts = new();
             ts.FontName = "romans";
             ts.name = "standard";
             ts.sFont_3 = "romans";
@@ -1467,59 +1488,59 @@ namespace Gaucho
             f = File.Open(sfile, FileMode.Open, FileAccess.Read);
 
             do {
-                    f.ReadLine(s);
+                f.ReadLine(s);
 
-        s = Replace(s, "\r", "");
+                s = Replace(s, "\r", "");
 
-                    s2 = Left(s, 1);
-                    if (s2 == ";") // es un comentario, se ignora
+                s2 = Left(s, 1);
+                if (s2 == ";") // es un comentario, se ignora
+                {
+
+                } // es un nuevo patron
+                else if (s2 == "*")
+                {
+
+                    // si tenia un patron anterior, lo guardo
+                    if (hp)
                     {
-
-                    } // es un nuevo patron
-                    else if (s2 == "*")
-                    {
-
-                        // si tenia un patron anterior, lo guardo
-                        if (hp)
-                        {
-                            Gcd.HatchPatterns.Add(hp, hp.name);
-                        }
-                        s = Mid(s, 2);
-                        hp = new HatchPattern;
-                        sp = Split(s, ",");
-                        hp.name = sp[0];
-                        hp.description = sp[1];
-
+                        Gcd.HatchPatterns.Add(hp, hp.name);
                     }
-                    else if (s != "")
+                    s = Mid(s, 2);
+                    hp = new HatchPattern();
+                    sp = Split(s, ",");
+                    hp.name = sp[0];
+                    hp.description = sp[1];
+
+                }
+                else if (s != "")
+                {
+                    p = new Pattern();
+                    s = Replace(s, " ", "");
+                    sp = Split(s, ",");
+                    p.AngleDeg = Cdouble(sp[0]);
+                    p.BaseX = Cdouble(sp[1]);
+                    p.BaseY = Cdouble(sp[2]);
+                    p.OffsetX = Cdouble(sp[3]);
+                    p.OffsetY = Cdouble(sp[4]);
+                    for (i = 5; i <= sp.Length - 1; i + 1)
                     {
-                        p = new Pattern;
-                        s = Replace(s, " ", "");
-                        sp = Split(s, ",");
-                        p.AngleDeg = Cdouble(sp[0]);
-                        p.BaseX = Cdouble(sp[1]);
-                        p.BaseY = Cdouble(sp[2]);
-                        p.OffsetX = Cdouble(sp[3]);
-                        p.OffsetY = Cdouble(sp[4]);
-                        for (i = 5; i <= sp.Length - 1; i + 1)
+                        if (Left(sp[i], 1) == "-")
                         {
-                            if (Left(sp[i], 1) == "-")
-                            {
-                                sp[i] = "-0" + Mid(sp[i], 2);
-                            }
-                            else
-                            {
-                                sp[i] = "0" + sp[i];
-                            }
-                            p.DashLength.Add(Cdouble(sp[i]));
+                            sp[i] = "-0" + Mid(sp[i], 2);
                         }
-                        hp.patterns.Add(p);
-
+                        else
+                        {
+                            sp[i] = "0" + sp[i];
+                        }
+                        p.DashLength.Add(Cdouble(sp[i]));
                     }
+                    hp.patterns.Add(p);
 
-                } while (!f.EOF);
+                }
 
-}
+            } while (!f.EOF);
+
+        }
 
         // public static  Sub DigestInserts()
         //
@@ -1571,7 +1592,11 @@ namespace Gaucho
                 txt = ": " + txt + gb.CrLf;
             }
 
-            if (LogToFile) Write #main.MyLog, Format(Now, "hh:nn:ss") + " -> " + txt + gb.CrLf;
+            if (LogToFile)
+            {
+                System.IO.File.AppendAllText(main.MyLog,
+                    DateTime.Now.ToString("HH:mm:ss") + " -> " + txt + Environment.NewLine);
+            }
 
     if (MismaLineaAnterior)
             {
@@ -1627,3 +1652,4 @@ namespace Gaucho
 
         }
     }
+}

@@ -9,31 +9,31 @@ public class Headers
 
 public int ACADMAINTVER = 0;  //Maintenance version number (should be ignored)
 public string ACADVER = "AC1024";   //The AutoCAD drawing database version number:  AC1006 = R10  AC1009 = R11 and R12  AC1012 = R13  AC1014 = R14  AC1015 = AutoCAD 2000  AC1018 = AutoCAD 2004  AC1021 = AutoCAD 2007  AC1024 = AutoCAD 2010  AC1027 = AutoCAD 2013  AC1032 = AutoCAD 2018
-public float ANGBASE = 0;  //Angle 0 direction
+public double ANGBASE = 0;  //Angle 0 direction
 public int ANGDIR = 0;  //1 = Clockwise angles  0 = Counterclockwise angles
 public int ATTMODE = 1;  //Attribute visibility:  0 = None  1 = Normal  2 = All
 public int AUNITS = 0; //Units format for angles
 public int AUPREC = 0;    //Units precision for angles
-public float CECOLOR = 256;  //Current entity color number:  0 = BYBLOCK; 256 = BYLAYER
-public float CELTSCALE = 1;   //Current entity linetype scale
+public double CECOLOR = 256;  //Current entity color number:  0 = BYBLOCK; 256 = BYLAYER
+public double CELTSCALE = 1;   //Current entity linetype scale
 public string CELTYPE = "ByLayer";  //Entity linetype name, or BYBLOCK or BYLAYER
 public int CELWEIGHT = -1;   //Lineweight of new objects
 public int CEPSNID = 0;  //Plotstyle handle of new objects; if CEPSNTYPE is 3, then this value indicates the handle
 public int CEPSNTYPE = 0;   //Plot style type of new objects:  0 = Plot style by layer  1 = Plot style by block  2 = Plot style by dictionary default  3 = Plot style by object ID/handle
-public float CHAMFERA = 10;  //First chamfer distance
-public float CHAMFERB = 10;   //Second chamfer distance
-public float CHAMFERC = 20;   //Chamfer length
-public float CHAMFERD = 0;  //Chamfer angle
+public double CHAMFERA = 10;  //First chamfer distance
+public double CHAMFERB = 10;   //Second chamfer distance
+public double CHAMFERC = 20;   //Chamfer length
+public double CHAMFERD = 0;  //Chamfer angle
 public string CLAYER = "0";  //Current layer name
 public int CMLJUST = 0;  //Current multiline justification:  0 = Top; 1 = Middle; 2 = Bottom
-public float CMLSCALE = 1;  //Current multiline scale
+public double CMLSCALE = 1;  //Current multiline scale
 public string CMLSTYLE = "standard";  //Current multiline style name
 public int CSHADOW = 0;   //Shadow mode for a 3D object:  0 = Casts and receives shadows  1 = Casts shadows  2 = Receives shadows  3 = Ignores shadows  Note: Starting with AutoCAD 2016-based products, this variable is obsolete but still supported for backwards compatibility.
 public int DIMADEC = 0;   //Number of precision places displayed in angular dimensions
 public int DIMALT = 0;  //Alternate unit dimensioning performed if nonzero
 public int DIMALTD = 2;  //Alternate unit decimal places
-public float DIMALTF = 1;  //Alternate unit scale factor
-public float DIMALTRND = 0;  //Determines rounding of alternate units
+public double DIMALTF = 1;  //Alternate unit scale factor
+public double DIMALTRND = 0;  //Determines rounding of alternate units
 public int DIMALTTD = 2;   //Number of decimal places for tolerance values of an alternate units dimension
 public int DIMALTTZ = 0;   //Controls suppression of zeros for alternate tolerance values:  0 = Suppresses zero feet and precisely zero inches  1 = Includes zero feet and precisely zero inches  2 = Includes zero feet and suppresses zero inches  3 = Includes zero inches and suppresses zero feet  To suppress leading or trailing zeros, add the following values to one of the preceding values:  4 = Suppresses leading zeros  8 = Suppresses trailing zeros
 public int DIMALTU = 2;   //Units format for alternate units of all dimension style family members except angular:  1 = Scientific  2 = Decimal  3 = Engineering  4 = Architectural (stacked)  5 = Fractional (stacked)  6 = Architectural  7 = Fractional  8 = Operating system defines the decimal separator and number grouping symbols
@@ -41,36 +41,36 @@ public int DIMALTZ = 0;   //Controls suppression of zeros for alternate unit dim
 public string DIMAPOST = "";  //Alternate dimensioning suffix
 public int DIMASO = 1;  //1 = Create associative dimensioning  0 = Draw individual entities  Note: Obsolete; see $DIMASSOC.
 public int DIMASSOC = 2;   //Controls the associativity of dimension objects  0 = Creates exploded dimensions; there is no association between elements of the dimension, and the lines, arcs, arrowheads, and text of a dimension are drawn as separate objects  1 = Creates non-associative dimension objects; the elements of the dimension are formed into a single object, and if the definition point on the object moves, then the dimension value is updated  2 = Creates associative dimension objects; the elements of the dimension are formed into a single object and one or more definition points of the dimension are coupled with association points on geometric objects
-public float DIMASZ = 1;  //Dimensioning arrow size
+public double DIMASZ = 1;  //Dimensioning arrow size
 public int DIMATFIT = 2;   //Controls dimension text and arrow placement when space is not sufficient to place both within the extension lines:  0 = Places both text and arrows outside extension lines  1 = Moves arrows first, then text  2 = Moves text first, then arrows  3 = Moves either text or arrows, whichever fits best  AutoCAD adds a leader to moved dimension text when DIMTMOVE is set to 1
 public int DIMAUNIT = 0;   //Angle format for angular dimensions:  0 = Decimal degrees  1 = Degrees/minutes/seconds;  2 = Gradians  3 = Radians  4 = Surveyor//s units
 public int DIMAZIN = 0;  //Controls suppression of zeros for angular dimensions:  0 = Displays all leading and trailing zeros  1 = Suppresses leading zeros in decimal dimensions  2 = Suppresses trailing zeros in decimal dimensions  3 = Suppresses leading and trailing zeros
 public string DIMBLK = "OBLIQUE";  //Arrow block name
 public string DIMBLK1 = "";   //First arrow block name
 public string DIMBLK2 = "";  //Second arrow block name
-public float DIMCEN = 0.1;  //Size of center mark/lines
+public double DIMCEN = 0.1d;  //Size of center mark/lines
 public int DIMCLRD = 0;  //Dimension line color:  range is 0 = BYBLOCK; 256 = BYLAYER
 public int DIMCLRE = 0;   //Dimension extension line color:  range is 0 = BYBLOCK; 256 = BYLAYER
 public int DIMCLRT = 0;   //Dimension text color:  range is 0 = BYBLOCK; 256 = BYLAYER
 public int DIMDEC = 2;  //Number of decimal places for the tolerance values of a primary units dimension
-public float DIMDLE = 0;   //Dimension line extension
-public float DIMDLI = 0.001;  //Dimension line increment
+public double DIMDLE = 0;   //Dimension line extension
+public double DIMDLI = 0.001d;  //Dimension line increment
 public int DIMDSEP = 44;   //Single-character decimal separator used when creating dimensions whose unit format is decimal
-public float DIMEXE = 0.0005;  //Extension line extension
-public float DIMEXO = 0.0001;  //Extension line offset
-public float DIMFRAC = 0;  //Scale factor used to calculate the height of text for dimension fractions and tolerances. AutoCAD multiplies DIMTXT by DIMTFAC to set the fractional or tolerance text height.
-public float DIMGAP = 0;  //Dimension line gap
+public double DIMEXE = 0.0005d;  //Extension line extension
+public double DIMEXO = 0.0001d;  //Extension line offset
+public double DIMFRAC = 0d;  //Scale factor used to calculate the height of text for dimension fractions and tolerances. AutoCAD multiplies DIMTXT by DIMTFAC to set the fractional or tolerance text height.
+public double DIMGAP = 0d;  //Dimension line gap
 public int DIMJUST = 0;   //Horizontal dimension text position:  0 = Above dimension line and center-justified between extension lines  1 = Above dimension line and next to first extension line  2 = Above dimension line and next to second extension line  3 = Above and center-justified to first extension line  4 = Above and center-justified to second extension line
 public string DIMLDRBLK = "ARROW";   //Arrow block name for leaders
-public float DIMLFAC = 1;  //Linear measurements scale factor
+public double DIMLFAC = 1d;  //Linear measurements scale factor
 public int DIMLIM = 0;   //Dimension limits generated if nonzero
 public int DIMLUNIT = 1;   //Sets units for all dimension types except Angular:  1 = Scientific  2 = Decimal  3 = Engineering  4 = Architectural  5 = Fractional  6 = Operating system
 public int DIMLWD = -3;   //Dimension line lineweight:  -3 = Standard  -2 = ByLayer  -1 = ByBlock  0-211 = an integer representing 100th of mm
 public int DIMLWE = -3;   //Extension line lineweight:  -3 = Standard  -2 = ByLayer  -1 = ByBlock  0-211 = an integer representing 100th of mm
 public string DIMPOST = "";   //General dimensioning suffix
-public float DIMRND = 0;  //Rounding value for dimension distances
+public double DIMRND = 0;  //Rounding value for dimension distances
 public int DIMSAH = 0;   //Use separate arrow blocks if nonzero
-public float DIMSCALE = 1;   //Overall dimensioning scale factor
+public double DIMSCALE = 1;   //Overall dimensioning scale factor
 public int DIMSD1 = 0;   //Suppression of first extension line:  0 = Not suppressed  1 = Suppressed
 public int DIMSD2 = 0;  //Suppression of second extension line:  0 = Not suppressed  1 = Suppressed
 public int DIMSE1 = 0;   //First extension line suppressed if nonzero
@@ -80,56 +80,56 @@ public int DIMSOXD = 0;   //Suppress outside-extensions dimension lines if nonze
 public string DIMSTYLE = "standard";   //Dimension style name
 public int DIMTAD = 1;  //Text above dimension line if nonzero
 public int DIMTDEC = 2;   //Number of decimal places to display the tolerance values
-public float DIMTFAC = 1;  //Dimension tolerance display scale factor
+public double DIMTFAC = 1;  //Dimension tolerance display scale factor
 public int DIMTIH = 0;  //Text inside horizontal if nonzero
 public int DIMTIX = 0;  //Force text inside extensions if nonzero
-public float DIMTM = 0;  //Minus tolerance
+public double DIMTM = 0;  //Minus tolerance
 public int DIMTMOVE = 0;   //Dimension text movement rules:  0 = Moves the dimension line with dimension text  1 = Adds a leader when dimension text is moved  2 = Allows text to be moved freely without a leader
 public int DIMTOFL = 0;   //If text is outside the extension lines, dimension lines are forced between the extension lines if nonzero
 public int DIMTOH = 0;  //Text outside horizontal if nonzero
 public int DIMTOL = 0;  //Dimension tolerances generated if nonzero
 public int DIMTOLJ = 1;   //Vertical justification for tolerance values:  0 = Top  1 = Middle  2 = Bottom
-public float DIMTP = 0;  //Plus tolerance
-public float DIMTSZ = 0;  //Dimensioning tick size:  0 = Draws arrowheads  >0 = Draws oblique strokes instead of arrowheads
-public float DIMTVP = 0;  //Text vertical position
+public double DIMTP = 0;  //Plus tolerance
+public double DIMTSZ = 0;  //Dimensioning tick size:  0 = Draws arrowheads  >0 = Draws oblique strokes instead of arrowheads
+public double DIMTVP = 0;  //Text vertical position
 public string DIMTXSTY = "standard";  //Dimension text style
-public float DIMTXT = 2;  //Dimensioning text height
+public double DIMTXT = 2;  //Dimensioning text height
 public int DIMTZIN = 0;   //Controls suppression of zeros for tolerance values:  0 = Suppresses zero feet and precisely zero inches  1 = Includes zero feet and precisely zero inches  2 = Includes zero feet and suppresses zero inches  3 = Includes zero inches and suppresses zero feet  4 = Suppresses leading zeros in decimal dimensions  8 = Suppresses trailing zeros in decimal dimensions  12 = Suppresses both leading and trailing zeros
 public int DIMUPT = 0;  //Cursor functionality for user-positioned text:  0 = Controls only the dimension line location  1 = Controls the text position as well as the dimension line location
 public int DIMZIN = 0;  //Controls suppression of zeros for primary unit values:  0 = Suppresses zero feet and precisely zero inches  1 = Includes zero feet and precisely zero inches  2 = Includes zero feet and suppresses zero inches  3 = Includes zero inches and suppresses zero feet  4 = Suppresses leading zeros in decimal dimensions  8 = Suppresses trailing zeros in decimal dimensions  12 = Suppresses both leading and trailing zeros
 public int DISPSILH = 0;  //Controls the display of silhouette curves of body objects in Wireframe mode:  0 = Off  1 = On
 public int DRAGVS = 0;  //Hard-pointer ID to visual style while creating 3D solid primitives. The default value is NULL
 public string DWGCODEPAGE = "ANSI_1252";   //Drawing code page; set to the system code page when a new drawing is created, but not otherwise maintained by AutoCAD
-public float ELEVATION = 0;   //Current elevation set by ELEV command
+public double ELEVATION = 0;   //Current elevation set by ELEV command
 public int ENDCAPS = 0;  //Lineweight endcaps setting for new objects:  0 = None  1 = Round  2 = Angle  3 = Square
-public float[] EXTMAX ;          //X, Y, and Z drawing extents upper-right corner (in WCS)
+public double[] EXTMAX =[];          //X, Y, and Z drawing extents upper-right corner (in WCS)
 
-public float[] EXTMIN ;          //X, Y, and Z drawing extents lower-left corner (in WCS)
+public double[] EXTMIN =[];          //X, Y, and Z drawing extents lower-left corner (in WCS)
 
 public int EXTNAMES = 1;    //Controls symbol table naming:  0 = Release 14 compatibility. Limits names to 31 characters in length. Names can include the letters A to Z, the numerals 0 to 9, and the special characters dollar sign ($), underscore (_), and hyphen (-).  1 = AutoCAD 2000. Names can be up to 255 characters in length, and can include the letters A to Z, the numerals 0 to 9, spaces, and any special characters not used for other purposes by Microsoft Windows and AutoCAD
-public float FILLETRAD = 0;   //Fillet radius
+public double FILLETRAD = 0;   //Fillet radius
 public int FILLMODE = 1;   //Fill mode on if nonzero
-public string FINGERPRINTGUID ;          //Set at creation time, uniquely identifies a particular drawing
+public string FINGERPRINTGUID = "";          //Set at creation time, uniquely identifies a particular drawing
 public int HALOGAP = 0;    //Specifies a gap to be displayed where an object is hidden by another object; the value is specified as a percent of one unit and is independent of the zoom level. A haloed line is shortened at the point where it is hidden when HIDE or the Hidden option of SHADEMODE is used
 public string HANDSEED = "10";  //Next available handle
 public int HIDETEXT = 1;  //Specifies HIDETEXT system variable:  0 = HIDE ignores text objects when producing the hidden view  1 = HIDE does not ignore text objects
 public string HYPERLINKBASE = "";   //Path for all relative hyperlinks in the drawing. If null, the drawing path is used
 public int INDEXCTL = 0;   //Controls whether layer and spatial indexes are created and saved in drawing files:  0 = No indexes are created  1 = Layer index is created  2 = Spatial index is created  3 = Layer and spatial indexes are created
-public  Single[]    INSBASE ;          //Insertion base set by BASE command (in WCS)
+public float[] INSBASE = [];          //Insertion base set by BASE command (in WCS)
 
 public int INSUNITS = 6;   //Default drawing units for AutoCAD DesignCenter blocks:  0 = Unitless  1 = Inches  2 = Feet  3 = Miles  4 = Millimeters  5 = Centimeters  6 = Meters  7 = Kilometers  8 = Microinches  9 = Mils  10 = Yards  11 = Angstroms  12 = Nanometers  13 = Microns  14 = Decimeters  15 = Decameters  16 = Hectometers  17 = Gigameters  18 = Astronomical units  19 = Light years  20 = Parsecs  21 = US Survey Feet  22 = US Survey Inch  23 = US Survey Yard  24 = US Survey Mile
-public float INTERFERECOLOR = 256;  //Represents the ACI color index of the "interference objects" created during the INTERFERE command. Default value is 1
+public double INTERFERECOLOR = 256;  //Represents the ACI color index of the "interference objects" created during the INTERFERE command. Default value is 1
 public int INTERFEREOBJVS = 0;  //Hard-pointer ID to the visual style for interference objects. Default visual style is Conceptual.
 public int INTERFEREVPVS = 0;  //Hard-pointer ID to the visual style for the viewport during interference checking. Default visual style is 3d Wireframe.
 public int INTERSECTIONCOLOR = 257;   //Specifies the entity color of intersection polylines:  Values 1-255 designate an AutoCAD color index (ACI)  0 = Color BYBLOCK  256 = Color BYLAYER  257 = Color BYENTITY
 public int INTERSECTIONDISPLAY = 0;   //Specifies the display of intersection polylines:  0 = Turns off the display of intersection polylines  1 = Turns on the display of intersection polylines
 public int JOINSTYLE = 0;  //Lineweight joint setting for new objects:  0=None  1= Round  2 = Angle  3 = Flat
 public int LIMCHECK = 0;  //Nonzero if limits checking is on
-public float[]    LIMMAX ;          //XY drawing limits upper-right corner (in WCS)
+public double[]    LIMMAX =[];          //XY drawing limits upper-right corner (in WCS)
 
-public float[]    LIMMIN ;          //XY drawing limits lower-left corner (in WCS)
+public double[]    LIMMIN=[] ;          //XY drawing limits lower-left corner (in WCS)
 
-public float LTSCALE = 0.1;   //Global linetype scale
+public double LTSCALE = 0.1;   //Global linetype scale
 public int LUNITS = 2;  //Units format for coordinates and distances
 public int LUPREC = 0;  //Units precision for coordinates and distances
 public int LWDISPLAY = 0;  //Controls the display of lineweights on the Model or Layout tab:  0 = Lineweight is not displayed  1 = Lineweight is displayed
@@ -141,45 +141,45 @@ public int OBSCOLOR = 257;  //Specifies the color of obscured lines. An obscured
 public int OBSLTYPE = 0;  //Specifies the linetype of obscured lines. Obscured linetypes are independent of zoom level, unlike regular AutoCAD linetypes. Value 0 turns off display of obscured lines and is the default. Linetype values are defined as follows:  0 = Off  1 = Solid  2 = Dashed  3 = Dotted  4 = Short Dash  5 = Medium Dash  6 = Long Dash  7 = Double Short Dash  8 = Double Medium Dash  9 = Double Long Dash  10 = Medium Long Dash  11 = Sparse Dot
 public int ORTHOMODE = 0;   //Ortho mode on if nonzero
 public int PDMODE = 0;  //Point display mode
-public float PDSIZE = 0;  //Point display size
-public float PELEVATION = 0;   //Current paper space elevation
-public float[] PEXTMAX ;          //Maximum X, Y, and Z extents for paper space
+public double PDSIZE = 0;  //Point display size
+public double PELEVATION = 0;   //Current paper space elevation
+public double[] PEXTMAX =[];          //Maximum X, Y, and Z extents for paper space
 
-public float[] PEXTMIN ;          //Minimum X, Y, and Z extents for paper space
+public double[] PEXTMIN =[];          //Minimum X, Y, and Z extents for paper space
 
-public float[] PINSBASE ;          //Paper space insertion base point
+public double[] PINSBASE =[];          //Paper space insertion base point
 
 public int PLIMCHECK = 0;  //Limits checking in paper space when nonzero
-public float[] PLIMMAX ;          //Maximum X and Y limits in paper space
+public double[] PLIMMAX =[];          //Maximum X and Y limits in paper space
 
-public float[] PLIMMIN ;          //Minimum X and Y limits in paper space
+public double[] PLIMMIN =[];          //Minimum X and Y limits in paper space
 
 public int PLINEGEN = 0;   //Governs the generation of linetype patterns around the vertices of a 2D polyline:  1 = Linetype is generated in a continuous pattern around vertices of the polyline  0 = Each segment of the polyline starts and ends with a dash
-public float PLINEWID = 0;  //Default polyline width
+public double PLINEWID = 0;  //Default polyline width
 public string PROJECTNAME = "";   //Assigns a project name to the current drawing. Used when an external reference or image is not found on its original path. The project name points to a section in the registry that can contain one or more search paths for each project name defined. Project names and their search directories are created from the Files tab of the Options dialog box
 public int PROXYGRAPHICS = 0;   //Controls the saving of proxy object images
 public int PSLTSCALE = 1;  //Controls paper space linetype scaling:  1 = No special linetype scaling  0 = Viewport scaling governs linetype scaling
 public int PSTYLEMODE = 1;   //Indicates whether the current drawing is in a Color-Dependent or Named Plot Style mode:  0 = Uses named plot style tables in the current drawing  1 = Uses color-dependent plot style tables in the current drawing
-public float PSVPSCALE = 0;  //View scale factor for new viewports:  0 = Scaled to fit  >0 = Scale factor (a positive real value)
+public double PSVPSCALE = 0;  //View scale factor for new viewports:  0 = Scaled to fit  >0 = Scale factor (a positive real value)
 public string PUCSBASE = "";  //Name of the UCS that defines the origin and orientation of orthographic UCS settings (paper space only)
 public string PUCSNAME = "";  //Current paper space UCS name
-public float[] PUCSORG ;          //Current paper space UCS origin
-public float[] PUCSORGBACK ;          //Point which becomes the new UCS origin after changing paper space UCS to BACK when PUCSBASE is set to WORLD
-public float[] PUCSORGBOTTOM ;          //Point which becomes the new UCS origin after changing paper space UCS to BOTTOM when PUCSBASE is set to WORLD
-public float[] PUCSORGFRONT ;          //Point which becomes the new UCS origin after changing paper space UCS to FRONT when PUCSBASE is set to WORLD
-public float[] PUCSORGLEFT ;          //Point which becomes the new UCS origin after changing paper space UCS to LEFT when PUCSBASE is set to WORLD
-public float[] PUCSORGRIGHT ;          //Point which becomes the new UCS origin after changing paper space UCS to RIGHT when PUCSBASE is set to WORLD
-public float[] PUCSORGTOP ;          //Point which becomes the new UCS origin after changing paper space UCS to TOP when PUCSBASE is set to WORLD
+public double[] PUCSORG =[];          //Current paper space UCS origin
+public double[] PUCSORGBACK =[];          //Point which becomes the new UCS origin after changing paper space UCS to BACK when PUCSBASE is set to WORLD
+public double[] PUCSORGBOTTOM =[];          //Point which becomes the new UCS origin after changing paper space UCS to BOTTOM when PUCSBASE is set to WORLD
+public double[] PUCSORGFRONT =[];          //Point which becomes the new UCS origin after changing paper space UCS to FRONT when PUCSBASE is set to WORLD
+public double[] PUCSORGLEFT =[];          //Point which becomes the new UCS origin after changing paper space UCS to LEFT when PUCSBASE is set to WORLD
+public double[] PUCSORGRIGHT =[];          //Point which becomes the new UCS origin after changing paper space UCS to RIGHT when PUCSBASE is set to WORLD
+public double[] PUCSORGTOP =[];          //Point which becomes the new UCS origin after changing paper space UCS to TOP when PUCSBASE is set to WORLD
 public string PUCSORTHOREF = "";  //If paper space UCS is orthographic (PUCSORTHOVIEW not equal to 0), this is the name of the UCS that the orthographic UCS is relative to. If blank, UCS is relative to WORLD
 public int PUCSORTHOVIEW = 0;   //Orthographic view type of paper space UCS:  0 = UCS is not orthographic  1 = Top  2 = Bottom  3 = Front  4 = Back  5 = Left  6 = Right
-public float[] PUCSXDIR ;          //Current paper space UCS X axis
-public float[] PUCSYDIR ;          //Current paper space UCS Y axis
+public double[] PUCSXDIR =[];          //Current paper space UCS X axis
+public double[] PUCSYDIR =[];          //Current paper space UCS Y axis
 public int QTEXTMODE = 0;   //Quick Text mode on if nonzero
 public int REGENMODE = 0;    //REGENAUTO mode on if nonzero
 public int SHADEDGE = 3;  //Controls the shading of edges:  0 = Faces shaded, edges not highlighted  1 = Faces shaded, edges highlighted in black  2 = Faces not filled, edges in entity color  3 = Faces in entity color, edges in black
 public int SHADEDIF = 70;   //Percent ambient/diffuse light; range 1-100; default 70
-public float SHADOWPLANELOCATION = 0;  //Location of the ground shadow plane. This is a Z axis ordinate.
-public float SKETCHINC = 1;   //Sketch record increment
+public double SHADOWPLANELOCATION = 0;  //Location of the ground shadow plane. This is a Z axis ordinate.
+public double SKETCHINC = 1;   //Sketch record increment
 public int SKPOLY = 0;  //Determines the object type created by the SKETCH command:  0 = Generates lines  1 = Generates polylines  2 = Generates splines
 public int SORTENTS = 0;   //Controls the object sorting methods; accessible from the Options dialog box User Preferences tab. SORTENTS uses the following bitcodes:  0 = Disables SORTENTS  1 = Sorts for object selection  2 = Sorts for object snap  4 = Sorts for redraws; obsolete  8 = Sorts for MSLIDE command slide creation; obsolete  16 = Sorts for REGEN commands  32 = Sorts for plotting  64 = Sorts for PostScript output; obsolete
 public int SPLINESEGS = 8;  //Number of line segments per spline patch
@@ -189,31 +189,31 @@ public int SURFTAB2 = 6;  //Number of mesh tabulations in second direction
 public int SURFTYPE = 6;  //Surface type for PEDIT Smooth
 public int SURFU = 6;  //Surface density (for PEDIT Smooth) in M direction
 public int SURFV = 6;  //Surface density (for PEDIT Smooth) in N direction
-public float TDCREATE = 2453292;   //Local date/time of drawing creation (see Special Handling of Date/Time Variables)
-public float TDINDWG = 0.7775557;  //Cumulative editing time for this drawing (see Special Handling of Date/Time Variables)
-public float TDUCREATE = 2453292;   //Universal date/time the drawing was created (see Special Handling of Date/Time Variables)
-public float TDUPDATE = 2459858;  //Local date/time of last drawing update (see Special Handling of Date/Time Variables)
-public float TDUSRTIMER = 2458240;   //User-elapsed timer
-public float TDUUPDATE = 2459858;   //Universal date/time of the last update/save (see Special Handling of Date/Time Variables)
-public float TEXTSIZE = 10;   //Default text height
+public double TDCREATE = 2453292;   //Local date/time of drawing creation (see Special Handling of Date/Time Variables)
+public double TDINDWG = 0.7775557D;  //Cumulative editing time for this drawing (see Special Handling of Date/Time Variables)
+public double TDUCREATE = 2453292;   //Universal date/time the drawing was created (see Special Handling of Date/Time Variables)
+public double TDUPDATE = 2459858;  //Local date/time of last drawing update (see Special Handling of Date/Time Variables)
+public double TDUSRTIMER = 2458240;   //User-elapsed timer
+public double TDUUPDATE = 2459858;   //Universal date/time of the last update/save (see Special Handling of Date/Time Variables)
+public double TEXTSIZE = 10;   //Default text height
 public string TEXTSTYLE = "romans";  //Current text style name
-public float THICKNESS = 0;  //Current thickness set by ELEV command
+public double THICKNESS = 0;  //Current thickness set by ELEV command
 public int TILEMODE = 1;   //1 for previous release compatibility mode; 0 otherwise
-public float TRACEWID = 1;   //Default trace width
+public double TRACEWID = 1;   //Default trace width
 public int TREEDEPTH = 3020;   //Specifies the maximum depth of the spatial index
 public string UCSBASE = "";   //Name of the UCS that defines the origin and orientation of orthographic UCS settings
 public string UCSNAME = "";  //Name of current UCS
-public float[] UCSORG ;          //Origin of current UCS (in WCS)
-public float[] UCSORGBACK ;          //Point which becomes the new UCS origin after changing model space UCS to BACK when UCSBASE is set to WORLD
-public float[] UCSORGBOTTOM ;          //Point which becomes the new UCS origin after changing model space UCS to BOTTOM when UCSBASE is set to WORLD
-public float[] UCSORGFRONT ;          //Point which becomes the new UCS origin after changing model space UCS to FRONT when UCSBASE is set to WORLD
-public float[] UCSORGLEFT ;          //Point which becomes the new UCS origin after changing model space UCS to LEFT when UCSBASE is set to WORLD
-public float[] UCSORGRIGHT ;          //Point which becomes the new UCS origin after changing model space UCS to RIGHT when UCSBASE is set to WORLD
-public float[] UCSORGTOP ;          //Point which becomes the new UCS origin after changing model space UCS to TOP when UCSBASE is set to WORLD
+public double[] UCSORG =[];          //Origin of current UCS (in WCS)
+public double[] UCSORGBACK =[];          //Point which becomes the new UCS origin after changing model space UCS to BACK when UCSBASE is set to WORLD
+public double[] UCSORGBOTTOM =[];          //Point which becomes the new UCS origin after changing model space UCS to BOTTOM when UCSBASE is set to WORLD
+public double[] UCSORGFRONT =[];          //Point which becomes the new UCS origin after changing model space UCS to FRONT when UCSBASE is set to WORLD
+public double[] UCSORGLEFT =[];          //Point which becomes the new UCS origin after changing model space UCS to LEFT when UCSBASE is set to WORLD
+public double[] UCSORGRIGHT =[];          //Point which becomes the new UCS origin after changing model space UCS to RIGHT when UCSBASE is set to WORLD
+public double[] UCSORGTOP =[];          //Point which becomes the new UCS origin after changing model space UCS to TOP when UCSBASE is set to WORLD
 public string UCSORTHOREF = "";   //If model space UCS is orthographic (UCSORTHOVIEW not equal to 0), this is the name of the UCS that the orthographic UCS is relative to. If blank, UCS is relative to WORLD
 public int UCSORTHOVIEW = 0;  //Orthographic view type of model space UCS:  0 = UCS is not orthographic  1 = Top  2 = Bottom  3 = Front  4 = Back  5 = Left  6 = Right
-public float[] UCSXDIR ;          //Direction of the current UCS X axis (in WCS)
-public float[] UCSYDIR ;          //Direction of the current UCS Y axis (in WCS)
+public double[] UCSXDIR =[];          //Direction of the current UCS X axis (in WCS)
+public double[] UCSYDIR =[];          //Direction of the current UCS Y axis (in WCS)
 public int UNITMODE = 0;   //Low bit set = Display fractions, feet-and-inches, and surveyor//s angles in input format
  // Public USERI1 As New Integer[]   //Five integer variables intended for use by third-party developers
  // Public USERR1 As New Single[]   //Five real variables intended for use by third-party developers
