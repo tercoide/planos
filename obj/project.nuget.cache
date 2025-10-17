@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Qu+SPplx3e8=",
+  "dgSpecHash": "CaE2mZEsSaALBZn9b7cY0PUV2R52iftLTc0j1igv89gOvpv/e58gQvLphZnDfxEuMEnU26Dko8P5Y2/zm0a6dg==",
   "success": true,
   "projectFilePath": "/home/martin/planos/planos.csproj",
   "expectedPackageFiles": [
@@ -28,10 +28,7 @@
     "/home/martin/.nuget/packages/opentk.windowing.common/4.9.4/opentk.windowing.common.4.9.4.nupkg.sha512",
     "/home/martin/.nuget/packages/opentk.windowing.desktop/4.9.4/opentk.windowing.desktop.4.9.4.nupkg.sha512",
     "/home/martin/.nuget/packages/opentk.windowing.graphicslibraryframework/4.9.4/opentk.windowing.graphicslibraryframework.4.9.4.nupkg.sha512",
-    "/home/martin/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
-    "/home/martin/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.17/microsoft.aspnetcore.app.ref.8.0.17.nupkg.sha512",
-    "/home/martin/.nuget/packages/microsoft.netcore.app.host.linux-x64/8.0.17/microsoft.netcore.app.host.linux-x64.8.0.17.nupkg.sha512",
-    "/home/martin/.nuget/packages/microsoft.netcore.app.ref/8.0.17/microsoft.netcore.app.ref.8.0.17.nupkg.sha512"
+    "/home/martin/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }
