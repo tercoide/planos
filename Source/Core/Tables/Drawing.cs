@@ -22,6 +22,7 @@
 //===============================DOCUMENT==============================================
 // datos obtenidos de la lectura de los archivos DWG, DXF y de dibujar
 // ver http://entercad.ru/acadauto.en/
+namespace Gaucho;
 public class Drawing
 {
 
@@ -46,9 +47,9 @@ public class Drawing
     //public Block_Record As New Collection          //// bloques reutilizables en este grafico
     //public Blocks As New Collection                //// bloques reutilizables en este grafico
     public Dictionary<string, Block> Blocks = [];                //// bloques reutilizables en este grafico
-                                                                                              // public Dictionary<string, Insert> Inserts = new Dictionary<string, Insert>();               //// bloques insertados en este grafico, incluyen los de las Dimensiones
-                                                                                              // public Dictionary<string, Hatch> Hatchs = new Dictionary<string, Hatch>();                //// Datos de Hatch usados por HatchBuilder
-                                                                                              // public Dictionary<string, Dim> Dims = new Dictionary<string, Dim>();                   //// Bloques de dimensiones
+                                                                 // public Dictionary<string, Insert> Inserts = new Dictionary<string, Insert>();               //// bloques insertados en este grafico, incluyen los de las Dimensiones
+                                                                 // public Dictionary<string, Hatch> Hatchs = new Dictionary<string, Hatch>();                //// Datos de Hatch usados por HatchBuilder
+                                                                 // public Dictionary<string, Dim> Dims = new Dictionary<string, Dim>();                   //// Bloques de dimensiones
 
     // Entidades
     // public Dictionary As New Dictionary
@@ -108,7 +109,7 @@ public class Drawing
 
     // interaccion del mouse en pantalla
     // public LastPoint[] LastPoint = new LastPoint[];                 //// ultimo punto marcado o null si no existe
-    public double[] iEntity = [0,0,0];                  //// las coordenadas del punto encontrado y el tipo de punto
+    public double[] iEntity = [0, 0, 0];                  //// las coordenadas del punto encontrado y el tipo de punto
     public Entity? HoveredEntity;                 //// La entidad quee esta debajo del mouse
     public Entity? HoveredInsert;                  //// Si la entidad pertenece a un inserto, es este
     public List<Entity> HoveredEntities = [];          //// Las entidades que estan debajo del mouse
@@ -135,13 +136,13 @@ public class Drawing
     public int GlListEntitiesSelected;
     public int GlListGrid;
 
-public Drawing()
+    public Drawing()
     {
         // inicializo las tablas basicas
         Sheet = new Sheet();
 
-        return ;
-       
+        return;
+
     }
 
 
