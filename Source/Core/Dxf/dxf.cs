@@ -138,12 +138,12 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
     LoadedBytes = 0;
     LoadTotalBytes = Lof(fp);
 
-    cEntitiesUnread = Dictionary<string, Dictionary>;
-    nEntitiesUnread = 0;
-    nEntitiesRead = 0;
-    hContainers = Dictionary<string, Dictionary>; // Clave = Handle , Dato = Colection
+    // cEntitiesUnread = Dictionary<string, Dictionary>;
+    // nEntitiesUnread = 0;
+    // nEntitiesRead = 0;
+    hContainers = new Dictionary<string, Dictionary>(); // Clave = Handle , Dato = Colection
 
-        while (!fp.EndOfStream)
+        while ( (!fp.EndOfStream)
         {
             //Wait 0.0001
             ReadData;
@@ -154,16 +154,16 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
                 ReadData;
                 if (lpCode == "2" && lpValue == "HEADER" && !IgnoreHeader)
                 {
-                    // creo la llave, pero solo si es necesario
-                    if (!cToFill.Exist("HEADER"))
-                    {
-                        cLlaveActual = Dictionary<string, Dictionary>;
-                        cToFill.Add(cLlaveActual, "HEADER");
-                    }
-                    else
-                    {
-                        cLlaveActual = cToFill["HEADER"];
-                    }
+                    // // creo la llave, pero solo si es necesario
+                    // if (!cToFill.ContainsKey("HEADER"))
+                    // {
+                    //     cLlaveActual = Dictionary<string, Dictionary>;
+                    //     cToFill.Add("HEADER", cLlaveActual);
+                    // }
+                    // else
+                    // {
+                    //     cLlaveActual = cToFill["HEADER"];
+                    // }
 
                     Load1HeadersDirect(drw.Headers);
                     if (VerboseLevel > 2) gcd.debugInfo("Leidos Headers", false, false, true);
@@ -181,10 +181,10 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
 
                 if (lpCode == "2" && lpValue == "TABLES" && !IgnoreTables)
                 {
-                    if (!cToFill.Exist("TABLES"))
+                    if (!cToFill.ContainsKey("TABLES"))
                     {
-                        cLlaveActual = Dictionary<string, Dictionary>;
-                        cToFill.Add(cLlaveActual, "TABLES");
+                        var cLlaveActual = new Dictionary<string, Dictionary>();
+                        cToFill.Add("TABLES", cLlaveActual);
                     }
                     else
                     {
@@ -206,8 +206,8 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
                 if (lpCode == "2" && lpValue == "BLOCKS" && !IgnoreBlocks)
                 {
                     // creo la llave
-                    cLlaveActual = Dictionary<string, Dictionary>;
-                    cToFill.Add(cLlaveActual, "BLOCKS");
+                    cLlaveActual = new Dictionary<string, Dictionary>();
+                    cToFill.Add("BLOCKS", cLlaveActual);
                     Load4Blocks(cLlaveActual);
                     if (VerboseLevel > 2) gcd.debugInfo("Leidos Blocks", false, false, true);
 
@@ -216,8 +216,8 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
                 if (lpCode == "2" && lpValue == "ENTITIES")
                 {
                     // creo la llave
-                    cLlaveActual = Dictionary<string, Dictionary>;
-                    cToFill.Add(cLlaveActual, "ENTITIES");
+                    cLlaveActual = new Dictionary<string, Dictionary>();
+                    cToFill.Add("ENTITIES", cLlaveActual);
 
                     Load5Entities(cLlaveActual);
                     if (VerboseLevel > 2) gcd.debugInfo("Leidas Entidades", false, false, true);
@@ -227,10 +227,10 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
                 if (lpCode == "2" && lpValue == "OBJECTS")
                 {
 
-                    if (!cToFill.Exist("OBJECTS"))
+                    if (!cToFill.ContainsKey("OBJECTS"))
                     {
-                        cLlaveActual = Dictionary<string, Dictionary>;
-                        cToFill.Add(cLlaveActual, "OBJECTS");
+                        cLlaveActual = new Dictionary<string, Dictionary>();
+                        cToFill.Add("OBJECTS", cLlaveActual);
                     }
                     else
                     {
@@ -245,10 +245,10 @@ public bool LoadFile(string sFile, Drawing drw, bool IgnoreTables= false, bool I
                 if (lpCode == "2" && lpValue == "THUMBNAILIMAGE")
                 {
 
-                    if (!cToFill.Exist("THUMBNAILIMAGE"))
+                    if (!cToFill.ContainsKey("THUMBNAILIMAGE"))
                     {
-                        cLlaveActual = Dictionary<string, Dictionary>;
-                        cToFill.Add(cLlaveActual, "THUMBNAILIMAGE");
+                        cLlaveActual = new Dictionary<string, Dictionary>();
+                        cToFill.Add("THUMBNAILIMAGE", cLlaveActual);
                     }
                     else
                     {
@@ -365,33 +365,34 @@ private void Load1HeadersDirect(Headers Headers)
      // Yo usare dos colecciones
 
     string sVarName ;         
-    Variant[] cVariable ;         
-    Variant v ;         
+    string[] cVariable ;         
+    string v ;         
      float[] slx ;         
      Integer[] inx ;         
     int i ;         
 
     ReadData;
-    do {
+        do {
 
-        if ( lpCode == "0" && lpValue == "ENDSEC" ) Break;
+            if (lpCode == "0" && lpValue == "ENDSEC") Break;
 
-        if ( lpcode == "9" ) // nueva variable
-        {
-            cVariable =  Variant[];
-            sVarName = Mid(lpvalue, 2);
+            if (lpcode == "9") // nueva variable
+            {
+                cVariable = new string[] { };
+                sVarName = Mid(lpvalue, 2);
 
-            do { // este bucle es por si la variable es un array
-                ReadData;
-                if ( lpcode == "0" || lpCode == "9" ) Break;
-                cVariable.Add(lpvalue);
+                do { // este bucle es por si la variable es un array
+                    ReadData;
+                    if (lpcode == "0" || lpCode == "9") Break;
+                    cVariable.Add(lpvalue);
+                }
+            if (!SetValues(sVarName, cVariable)) gcd.debugInfo("Var " + sVarName + " not found.");
+                Inc i;
+
             }
-            if ( ! SetValues(sVarName, cVariable) ) gcd.debugInfo("Var " + sVarName + " not found.");
-            Inc i;
 
-        }
-
-    }
+        } while ( (!Eof(fp));  
+    
 
     gcd.debuginfo("DXF: Leidas " + i + " variables de ambiente");
 
@@ -401,31 +402,32 @@ private void Load2Classes(Drawing drwLoading)
     {
 
 
-    CadClass cClass ;         
+    CadClass cClass ;
 
-    do {
+        do {
 
-        if ( lpValue == "CLASSES" ) ReadData;
-        if ( lpValue == "ENDSEC" ) return;
+            if (lpValue == "CLASSES") ReadData;
+            if (lpValue == "ENDSEC") return;
 
-        cClass =  CadClass;
-        drwLoading.CadClasses.Add(cClass);
-
-        ReadData;
-
-        While (lpcode <> "0") And Not Eof(fp);
-            if ( lpcode == "0" ) cClass.recordtype = lpValue;
-            if ( lpcode == "1" ) cClass.recordname = lpValue;
-            if ( lpcode == "2" ) cClass.CPPName = lpValue;
-            if ( lpcode == "3" ) cClass.AppName = lpValue;
-            if ( lpcode == "90" ) cClass.ProxyCapp = CInt(lpValue);
-            if ( lpcode == "91" ) cClass.InstanceCount = CInt(lpValue);
-            if ( lpcode == "280" ) cClass.ProxyFlag = CInt(lpValue);
-            if ( lpcode == "281" ) cClass.EntityFlag = CInt(lpValue);
+            cClass = CadClass;
+            drwLoading.CadClasses.Add(cClass);
 
             ReadData;
 
-        Wend;
+            while ( ((lpcode<> "0") && !fp.EndOfStream());
+            {
+            if (lpcode == "0") cClass.recordtype = lpValue;
+            if (lpcode == "1") cClass.recordname = lpValue;
+            if (lpcode == "2") cClass.CPPName = lpValue;
+            if (lpcode == "3") cClass.AppName = lpValue;
+            if (lpcode == "90") cClass.ProxyCapp = CInt(lpValue);
+            if (lpcode == "91") cClass.InstanceCount = CInt(lpValue);
+            if (lpcode == "280") cClass.ProxyFlag = CInt(lpValue);
+            if (lpcode == "281") cClass.EntityFlag = CInt(lpValue);
+
+            ReadData;
+
+        };
 
     }
 
@@ -443,7 +445,7 @@ private void Load3Tables(Dictionary<string, Dictionary> cTables)
 
      // creamos una table inicial con los handles de las tables
     cTable = Dictionary<string, Dictionary>;
-    cTables.Add(cTable, "__AuxData__");
+    cTables.Add("__AuxData__", cTable);
 
     ReadData;
     do {
@@ -463,7 +465,8 @@ private void Load3Tables(Dictionary<string, Dictionary> cTables)
              // 100 Subclass marker(AcDbSymbolTable)
              // 70 Maximum number Of entries In table
             ReadData;
-            While lpcode <> "0";
+            while ( lpcode <> "0")
+            {
 
                 if ( lpcode == "5" ) sTableid = lpvalue;
 
@@ -478,14 +481,13 @@ private void Load3Tables(Dictionary<string, Dictionary> cTables)
                 if ( lpcode == "70" ) iTableEntries = CInt(lpvalue);
 
                 ReadData;
-            Wend;
+            }
 
-             // agrego datos a la tabla auxiliar del dibujo
-            cTables["__AuxData__"].Add(sTableid, sTableName);
+         
 
             cTable = Dictionary<string, Dictionary>;
 
-            cTables.Add(cTable, sTableName);
+            cTables.Add(sTableName, cTable);
 
              // verifico que la tabla no tenga entradas, lo que me altera la carga
             if ( lpvalue != "ENDTAB" )
@@ -528,28 +530,28 @@ private void Load31Table(Dictionary<string, Dictionary> cVars, int iEntries)
 
          //If lpCode = "0" Then Break
 
-        While lpcode != "0";
+        while ( lpcode != "0"){
             Key = lpcode;
-            if ( cTable.Exist(Key) )
+            if ( cTable.ContainsKey(Key) )
             {
                 do {
                     iCode += 1;
                     Key = lpcode + "_" + CStr(iCode);
 
-                    if ( ! cTable.Exist(Key) ) Break;
+                    if ( ! cTable.ContainsKey(Key) ) Break;
                 }
             }
-            cTable.Add(lpvalue, Key);
+            cTable.Add(Key, lpvalue);
 
             if ( lpcode == Me.codid ) sTableName = lpvalue;
             ReadData;
 
-        Wend;
+        }
          //If cTable.Count = 1 Then Stop
         if ( cTable.Count > 0 )
         {
             if ( sTableName == "" ) sTableName = CStr(i);
-            cVars.Add(cTable, sTableName);
+            cVars.Add(sTableName, cTable);
 
         }
 
@@ -557,15 +559,15 @@ private void Load31Table(Dictionary<string, Dictionary> cVars, int iEntries)
 
     }
 
-    if ( cTable.Exist("5") )
+    if ( cTable.ContainsKey("5") )
     {
         sid = cTable["5"];
     }
-    else if ( cTable.Exist("105") )
+    else if ( cTable.ContainsKey("105") )
     {
         sid = cTable["105"];
     }
-    else if ( cTable.Exist("2") )
+    else if ( cTable.ContainsKey("2") )
     {
         sid = cTable["2"];
     }
@@ -614,33 +616,34 @@ private void Load4Blocks(Dictionary<string, Dictionary> cBlocks)
 
             if ( lpcode == "" ) Break;
 
-            While lpcode <> "0";
+            while ( lpcode != "0") {
                 Key = lpcode;
-                if ( cTable.Exist(Key) )
+                if ( cTable.ContainsKey(Key) )
                 {
-                    do {
+                    do
+                    {
                         iCode += 1;
                         Key = lpcode + "_" + CStr(iCode);
 
-                        if ( ! cTable.Exist(Key) ) Break;
-                    }
+                    } while ( cTable.ContainsKey(Key));
+                    
                 }
 
                 if ( lpcode == Me.codid ) sTableName = lpvalue;
-                cTable.Add(lpvalue, Key);
+                cTable.Add(Key, lpvalue);
                 ReadData;
 
-            Wend; // fin del encabezado del Block, siguen sus entidades
+            } // fin del encabezado del Block, siguen sus entidades
              //Object(cTable, cTable["5"])
              // si estoy leyendo bloques, significa que estoy abriendo un plano
             cEntities = Dictionary<string, Dictionary>;
-            cTable.Add(cEntities, "entities");
+            cTable.Add("entities", cEntities);
 
             Load5Entities(cEntities);
 
             if ( sTableName == "" ) sTableName = CStr(i);
 
-            cBlocks.Add(cTable, sTableName);
+            cBlocks.Add(sTableName, cTable);
 
         }
     }
@@ -678,35 +681,36 @@ private void Load5Entities(Dictionary<string, Dictionary> cEntities)
 
             sEntidad = lpValue;
             Inc iEntity;
-            cEntity = Dictionary<string, Dictionary>;
+            cEntity = new Dictionary<string, string>();
 
-            cEntity.Add(sEntidad, "0");
+            cEntity.Add("0", sEntidad);
             iCode = 0;
 
             // Leo descentralizadamente las entidades
             ReadData;
 
-            While(lpcode<> "0") And Not Eof(fp);
+            while ((lpcode != "0") && !fp.EndOfStream) {
 
             Key = lpcode;
-            if (cEntity.Exist(Key))
+            if (cEntity.ContainsKey(Key))
             {
-                do {
+                do
+                {
                     iCode += 1;
                     Key = lpcode + "_" + CStr(iCode);
 
-                    if (!cEntity.Exist(Key)) Break;
-                }
+                    
+                } while (cEntity.ContainsKey(Key));
             }
 
-            if (sEntidad != "ENDSEC") cEntity.Add(lpvalue, Key);
+            if (sEntidad != "ENDSEC") cEntity.Add(Key, lpvalue);
             ReadData;
 
         }
 
          //Object(cEntity, cEntity[dxf.codHandle])
 
-        if ( cEntity.Exist(dxf.codid) )
+        if ( cEntity.ContainsKey(dxf.codid) )
         {
             sKey = cEntity[dxf.codid];
         }
@@ -717,7 +721,7 @@ private void Load5Entities(Dictionary<string, Dictionary> cEntities)
 
         }
 
-        if ( sEntidad != "ENDBLK" ) cEntities.Add(cEntity, sKey);
+        if ( sEntidad != "ENDBLK" ) cEntities.Add(sKey, cEntity);
 
         if ( sEntidad == "ENDBLK" || sEntidad == "ENDSEC" ) return;
 
@@ -756,31 +760,31 @@ private void Load6Objects(Dictionary<string, Dictionary> cObjects)
         Inc iObject;
         cObject = Dictionary<string, Dictionary>;
 
-        cObject.Add(sEntidad, "0");
+        cObject.Add("0", sEntidad);
         iCode = 0;
 
          // Leo descentralizadamente las entidades
         ReadData;
 
          //If sEntidad = "HATCH" Then Stop
-        While (lpcode <> "0") And Not Eof(fp);
+        while ( (lpcode != "0") && !fp.EndOfStream) {
 
             Key = lpcode;
-            if ( cObject.Exist(Key) )
+            if ( cObject.ContainsKey(Key) )
             {
                 do {
                     iCode += 1;
                     Key = lpcode + "_" + CStr(iCode);
 
-                    if ( ! cObject.Exist(Key) ) Break;
-                }
+                    
+                } while ( !cObject.ContainsKey(Key) );
             }
-            cObject.Add(lpvalue, Key);
+            cObject.Add(Key, lpvalue);
             ReadData;
 
-        Wend;
+        }
          //Object(cObject, cObject["5"])
-        if ( cObject.Exist("5") )
+        if ( cObject.ContainsKey("5") )
         {
             h = cObject["5"];
         }
@@ -788,7 +792,7 @@ private void Load6Objects(Dictionary<string, Dictionary> cObjects)
         {
             h = CStr(iObject);
         }
-        cObjects.Add(cObject, h);
+        cObjects.Add(h, cObject);
 
         if ( sEntidad == "ENDBLK" || sEntidad == "" ) return;
 
@@ -810,24 +814,24 @@ private void Load7Thumbnail(Dictionary<string, Dictionary> cThumbnail)
          // Leo descentralizadamente las entidades
         ReadData;
 
-        While (lpcode <> "0") And Not Eof(fp);
+        while ( (lpcode != "0") && !fp.EndOfStream) {
 
             Key = lpcode;
-            if ( cThumbnail.Exist(Key) )
+            if ( cThumbnail.ContainsKey(Key) )
             {
                 do {
                     iCode += 1;
                     Key = lpcode + "_" + CStr(iCode);
 
-                    if ( ! cThumbnail.Exist(Key) ) Break;
-                }
+                   
+                } while ( !cThumbnail.ContainsKey(Key) );    
             }
-            cThumbnail.Add(lpvalue, Key);
+            cThumbnail.Add(Key, lpvalue);
             ReadData;
 
-        Wend;
+        }
 
-    }
+    } while ( !fp.EndOfStream );
 
 }
 
@@ -839,7 +843,7 @@ public void ReconstructHandles(Drawing drw)
     DictList item ;         
     Block b ;         
      // Empiezo por los Bloques importantes
-    foreach ( b in drw.Blocks)
+    foreach (var b in drw.Blocks)
     {
         if ( b.name == "*Model_Space" )
         {
@@ -863,10 +867,10 @@ public void ReconstructHandles(Drawing drw)
 
     di.name = "ACAD_LAYOUT";
     di.id = Handle();
-    drw.Dictionary<string, Dictionary>.Definitions.Add(di, di.name);
+    drw.Dictionary<string, Dictionary>.Definitions.Add(di.name, di);
 
      // Ahora creo una entrada de diccionario para los Layout
-    foreach ( b in drw.Blocks)
+    foreach ( var b in drw.Blocks)
     {
         if ( b.Sheet )
         {
@@ -2015,13 +2019,13 @@ public void InsertCode(int iCode, Variant sData, Dictionary<string, Dictionary> 
     int iCodeAux ;         
 
     Key = Str(iCode);
-    if ( cAcumulator.Exist(Key) )
+    if ( cAcumulator.ContainsKey(Key) )
     {
         do {
             iCodeAux += 1;
             Key = Str(iCode) + "_" + CStr(iCodeAux);
 
-            if ( ! cAcumulator.exist(Key) ) Break;
+            if ( ! cAcumulator.ContainsKey(Key) ) Break;
         }
     }
     cAcumulator.Add(CStr(sData), Key);
@@ -2307,7 +2311,7 @@ private void SaveColection(Dictionary<string, Dictionary> cData)
  //
  //     If sHandle = "" Then Return
  //
- //     If drw.Handles.Exist(sHandle) Then
+ //     If drw.Handles.ContainsKey(sHandle) Then
  //         gcd.debugInfo("WARNING: Handle repedida " & sHandle)
  //     Else
  //
@@ -2324,7 +2328,7 @@ public void ReadViewports(Dictionary<string, Dictionary> cVptData, Drawing drw)
     Viewport v ;         
 
      // // primero eliminamos lo q haya
-    if ( ! cVptData["TABLES"].Exist("VPORT") ) return;
+    if ( ! cVptData["TABLES"].ContainsKey("VPORT") ) return;
     Drw.Viewports.Clear;
     foreach ( cViewp As Dictionary<string, Dictionary> in cVptData["TABLES"]["VPORT"])
     {
@@ -2374,7 +2378,7 @@ public void ReadLayers(Dictionary<string, Dictionary> cLaydata, Drawing drw)
         if ( hLay.Lit == 0 ) hLay.Lit = 1;
 
         if ( hLay.id == "" ) hLay.id = gcd.Id();
-        Drw.Layers.Add(hLay, hLay.Name);
+        Drw.Layers.Add(hLay.Name, hLay);
     }
 
      // es inaceptable no tener al menos un layrr
@@ -2386,7 +2390,7 @@ public void ReadLayers(Dictionary<string, Dictionary> cLaydata, Drawing drw)
         hLay.Colour = 0;
         hLay.LineType = drw.LineTypes[drw.LineTypes.First];
         hLay.id = gcd.Id();
-        Drw.Layers.Add(hLay, hLay.Name);
+        Drw.Layers.Add(hLay.Name, hLay);
     }
 
      // aprovecho para setear el layer actual
@@ -2415,7 +2419,7 @@ public void ReadStyles(Dictionary<string, Dictionary> cData, Drawing drw)
      // primero eliminamos lo q haya
     Drw.TextStyles.Clear;
      // Leo los styles de texto
-    if ( cData["TABLES"].Exist("STYLE") )
+    if ( cData["TABLES"].ContainsKey("STYLE") )
     {
         foreach ( c As Dictionary<string, Dictionary> in cData["TABLES"]["STYLE"])
         {
@@ -2444,7 +2448,7 @@ public void ReadStyles(Dictionary<string, Dictionary> cData, Drawing drw)
                 Continue;
             }
 
-            Drw.TextStyles.Add(hlty, n);
+            Drw.TextStyles.Add(n, hlty);
 
         }
 
@@ -2452,7 +2456,7 @@ public void ReadStyles(Dictionary<string, Dictionary> cData, Drawing drw)
     }
 
      // Leo lo styles de dimensiones
-    if ( cData["TABLES"].Exist("DIMSTYLE") )
+    if ( cData["TABLES"].ContainsKey("DIMSTYLE") )
     {
         foreach ( c As Dictionary<string, Dictionary> in cData["TABLES"]["DIMSTYLE"])
         {
@@ -2460,7 +2464,7 @@ public void ReadStyles(Dictionary<string, Dictionary> cData, Drawing drw)
 
             hdim.Name = c[dxf.codName];
 
-            if ( c.Exist("105") )
+            if ( c.ContainsKey("105") )
             {
                 hdim.id = c["105"];
             }
@@ -2497,7 +2501,7 @@ public void ReadStyles(Dictionary<string, Dictionary> cData, Drawing drw)
                 }
             }
 
-            if ( hdim.name != "" ) Drw.DimStyles.Add(hdim, hdim.name);
+            if ( hdim.name != "" ) Drw.DimStyles.Add(hdim.name, hdim);
 
         }
 
@@ -2529,7 +2533,7 @@ public void ReadLTypes(Dictionary<string, Dictionary> cData, Drawing drw)
         hlty =  LineType;
         hlty.Name = UCase(c[dxf.codName]);
         hlty.Description = c["3"];
-        if ( c.Exist("5") ) hlty.id = c["5"];
+        if ( c.ContainsKey("5") ) hlty.id = c["5"];
         if ( hLty.id == "" ) hLty.id = gcd.Id();
         Try hlty.nTrames = CInt(c["73"]);
         if ( hlty.nTrames > 0 ) hlty.Length = CFloat(dxf.ReadCodeFromCol(c, 40));
@@ -2607,11 +2611,11 @@ public void ImportBlocksFromDXF(Dictionary<string, Dictionary> colData, Drawing 
     Dictionary<string, Dictionary> cEntities ;         
      Block b ;         
 
-    if ( colData.Exist("BLOCKS") ) cBlocks = colData["BLOCKS"];
-    if ( colData.Exist("TABLES") )
+    if ( colData.ContainsKey("BLOCKS") ) cBlocks = colData["BLOCKS"];
+    if ( colData.ContainsKey("TABLES") )
     {
         cTables = colData["TABLES"];
-        if ( colData["TABLES"].Exist("BLOCK_RECORD") ) cBlockRecord = cTables["BLOCK_RECORD"];
+        if ( colData["TABLES"].ContainsKey("BLOCK_RECORD") ) cBlockRecord = cTables["BLOCK_RECORD"];
     }
     if ( ! cBlocks ) return;
      // For Each colBlk In colData["TABLES"]["BLOCK_RECORD"]
@@ -2645,7 +2649,7 @@ public void ImportBlocksFromDXF(Dictionary<string, Dictionary> colData, Drawing 
 
             if ( cBlockRecord )
             {
-                if ( cBlockRecord.Exist(colBlk["330"]) )
+                if ( cBlockRecord.ContainsKey(colBlk["330"]) )
                 {
                     Block.idContainer = cBlockRecord[colBlk["330"]]["5"];
                     Block.idAsociatedLayout = cBlockRecord[colBlk["330"]]["340"];
@@ -2669,7 +2673,7 @@ public void ImportBlocksFromDXF(Dictionary<string, Dictionary> colData, Drawing 
 
         }
     }
-    if ( (Drw.Blocks.Count == 0) || ! Drw.Blocks.Exist("*Model_Space") ) // agrego el Model
+    if ( (Drw.Blocks.Count == 0) || ! Drw.Blocks.ContainsKey("*Model_Space") ) // agrego el Model
     {
 
          // lo agrego a los bloques
@@ -2685,7 +2689,7 @@ public void ImportBlocksFromDXF(Dictionary<string, Dictionary> colData, Drawing 
     }
 
      // voy a hacer un chequeo final, porque algunos DXF vienen sin el bloque Model
-    if ( ! Drw.Sheets.Exist("Model") )
+    if ( ! Drw.Sheets.ContainsKey("Model") )
     {
          // creo la Sheet
         S =  Sheet;
@@ -2717,7 +2721,7 @@ public void ImportBlocksFromDXF(Dictionary<string, Dictionary> colData, Drawing 
     foreach ( colBlk in cBlocks)
     {
 
-        if ( colBlk.Exist("entities") )
+        if ( colBlk.ContainsKey("entities") )
         {
 
             DXFtoEntity(colBlk["entities"], drw, drw.Blocks[colBlk["2"]]);
@@ -2742,7 +2746,7 @@ public void SetViewports(Dictionary<string, Dictionary> cDxfData, Drawing drw)
 
     foreach ( b in drw.Blocks)
     {
-        if ( drw.Sheets.Exist(b.idAsociatedLayout) )
+        if ( drw.Sheets.ContainsKey(b.idAsociatedLayout) )
         {
             foreach ( e in b.entities)
             {
@@ -2797,7 +2801,7 @@ public void DXFtoEntity(Dictionary<string, Dictionary> cDxfEntities, Drawing drw
 
     foreach ( e in cDxfEntities) // Para cada Coleccion de datos de vrx
     {
-        if ( e.Exist(dxf.codEntity) ) // es una entidad?
+        if ( e.ContainsKey(dxf.codEntity) ) // es una entidad?
         {
              // entonces, creamos una nueva
              // poner en minuscula para anular la entidad
@@ -2822,8 +2826,8 @@ public void DXFtoEntity(Dictionary<string, Dictionary> cDxfEntities, Drawing drw
                 if ( entNueva.Gender == cadEndBlk.Gender ) Continue;
 
                  //stats
-                if ( ! ReadTimes.Exist(entNueva.Gender) ) ReadTimes.Add(fTime, entNueva.Gender);
-                if ( ! ReadEntities.Exist(entNueva.Gender) ) ReadEntities.Add(1, entNueva.Gender);
+                if ( ! ReadTimes.ContainsKey(entNueva.Gender) ) ReadTimes.Add(fTime, entNueva.Gender);
+                if ( ! ReadEntities.ContainsKey(entNueva.Gender) ) ReadEntities.Add(1, entNueva.Gender);
 
                  //Debug "Contenedor", hContainer
                  // -hBlock-Record
@@ -2839,7 +2843,7 @@ public void DXFtoEntity(Dictionary<string, Dictionary> cDxfEntities, Drawing drw
                 else if ( bContainer )
                 {
                     obx = bContainer.entities; //drw.Blocks[entNueva.IdContainer]
-                     // Else If hContainers.Exist(entNueva.idContainer) Then
+                     // Else If hContainers.ContainsKey(entNueva.idContainer) Then
                      //     obx = hContainers[entNueva.idContainer].entities
                 }
                 else
@@ -2943,7 +2947,7 @@ public void ReadObjectsFromDXF(Dictionary<string, Dictionary><string, Dictionary
 
     gcd.debugInfo("Importing DXF object data",false,false,true);
      //Handle_Layout = Dictionary<string, Dictionary>
-    if ( ! cData.Exist("OBJECTS") ) return;
+    if ( ! cData.ContainsKey("OBJECTS") ) return;
     foreach ( cObject in cData["OBJECTS"])
     {
 

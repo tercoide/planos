@@ -252,7 +252,7 @@ public static void MouseDown()
 
              // // A.1.2 Estoy sobre una entidad
              //
-             // If Not gcd.Drawing.Sheet.EntitiesSelected.Exist(gcd.Drawing.HoveredEntity.Id) Then
+             // If Not gcd.Drawing.Sheet.EntitiesSelected.ContainsKey(gcd.Drawing.HoveredEntity.Id) Then
              //     // A.1.2.1 No esta seleccionada -> seleccionar
              //     gcd.Drawing.Sheet.EntitiesSelected.add(gcd.Drawing.HoveredEntity, gcd.Drawing.HoveredEntity.Id)
              //     gcd.Drawing.Sheet.Grips.Clear
@@ -455,7 +455,7 @@ public static void MouseUp()
                 {
 
                      // A.1.2.1 No esta seleccionada -> seleccionar
-                    if ( ! gcd.Drawing.Sheet.EntitiesSelected.Exist(gcd.Drawing.HoveredEntity.Id) )
+                    if ( ! gcd.Drawing.Sheet.EntitiesSelected.ContainsKey(gcd.Drawing.HoveredEntity.Id) )
                     {
                          // excepto que estos removiendo
                         if ( tipo != "rem" )
@@ -846,12 +846,12 @@ public void KeyText(string EnteredText)
              //o = cadDimension // a test
 
              // Intercepto Alias
-            if ( Config.oAlias.Exist(Lower(EnteredText)) )
+            if ( Config.oAlias.ContainsKey(Lower(EnteredText)) )
             {
                 EnteredText = Upper(Config.oAlias[Lower(EnteredText)]);
             }
 
-            if ( gcd.CCC.Exist(EnteredText) )
+            if ( gcd.CCC.ContainsKey(EnteredText) )
             {
                 o = gcd.CCC[EnteredText];
             }
