@@ -1,4 +1,4 @@
-
+using Gaucho;
 public class Entity
 {
     public string Gender="";                 // Type of entity
@@ -8,7 +8,7 @@ public class Entity
     public int[] iParam = new int[0];              // Array of integers
     public int Colour;                    // CAD color code
     public int LineWidth = -3;            // This is it
-    //public Block pBlock;                   // Pointer to Block or Hatch (or null)
+    public Block? pBlock;                   // Pointer to Block or Hatch (or null)
     public LineType? LType;                 // 0=continuous, 1=dashed from flxDash
     public Layer? pLayer;
     //public TextStyle pStyle;                  //

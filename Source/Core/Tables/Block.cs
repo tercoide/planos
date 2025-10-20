@@ -1,10 +1,10 @@
-// Gambas class file
+using Gaucho;
 public class Block
 {
     public const string Gender = "BLOCK";
-    public string name = "";                       //// nombre del bloque
-    public string description = "";
-    public float x0 = 0;                          //// Insertion point X
+    public string Name = "";                       //// nombre del bloque
+    public string Description = "";
+    public float X0 = 0;                          //// Insertion point X
     public float y0 = 0;                          //// Insertion point Y
     public float z0 = 0;                          //// Insertion point Z
     public int LineWt = -3;
@@ -13,7 +13,7 @@ public class Block
     public int Explotability; // 1=true
     public int Scalability;   // 1=true
     public int Flags;
-    public string layer = "";
+    public string Layer = "";
     public Entity? Parent;                 //// la entidad a la que esta asociado este bloque o null
     public Sheet? Sheet;                   //// la hoja asociada
     public Dictionary<string, Entity> entities = []; //// las entidades que forman este bloque

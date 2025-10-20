@@ -2,7 +2,7 @@
 public class DimStyle
 {
     public const string Gender = "DIMSTYLE";
-    public string name="";
+    public string Name="";
     public int Flags;
     public string id="";
     public bool Avalilable;

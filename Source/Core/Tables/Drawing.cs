@@ -5,7 +5,7 @@
 // Copyright (C) Ing Martin P Cristia
 //
 // This program is free software; you can redistribute it and/or modify
-// it under the terms of the GNU General public License as published by
+// it under the terms of the GNU General public License as published by`
 // the Free Software Foundation; either version 2 of the License, or
 // (at your option) any later version.
 //
@@ -26,7 +26,7 @@ namespace Gaucho;
 public class Drawing
 {
 
-    // public Headers As New Headers
+    public Headers Headers = new Headers();
     // public CadClasses As New CadClass[]               //// de objetos classes, como no tienen handle no es una coleccion
 
     // Tables

@@ -1,6 +1,6 @@
 public class HatchPattern  
 {
-public string name = "";
+public string Name = "";
 public string description = "";
 public int type = 0;
 public List<Pattern> patterns = [];   

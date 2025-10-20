@@ -1,15 +1,5 @@
-using System.Drawing;
-using OpenTK.Graphics.OpenGL;
-using Gaucho;
-using System.Diagnostics.CodeAnalysis;
-using System.Net.Http.Headers;
-using Gtk;
-using OpenTK;
 
-
-namespace Gaucho
-{
-    public static class Gcd
+    public class Gcd
     {
         // Equivale a public static  entities As New Entity[] en Gambas
         // Todos los arrays de clases no nativas se arman como List<TipoDeClase>
@@ -191,7 +181,8 @@ namespace Gaucho
         public static Gdk.Cursor CursorSelectRem;
         public static Gdk.Cursor CursorSelectXchange;
 
-        public static double PrintingScale { get => printingScale; set => printingScale = value; }
+        public static double PrintingScale  = 1;        
+
 
         public static void SetDashes()
         {
@@ -1652,4 +1643,4 @@ namespace Gaucho
 
         }
     }
-}
+

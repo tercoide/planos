@@ -1,18 +1,18 @@
 // Gambas class file
-using System.Drawing;
+using Gaucho;
 
 public class Sheet
 {
     public const string Gender = "SHEET";
     public string Name = "";                       //// Nombre visible en la tabstrip
     public string id = "";                         //// the handle de este LAYOUT
-    public Block block = new Block();                       //// el bloque asociado a esta hoja
+    public Block Block = new Block();                       //// el bloque asociado a esta hoja
     public bool IsModel = false;                   //// si es Model, esta hoja no puede usarse para insertar Viewports de models
     // public model3d As New Model3d
     public double PaperSizeW = 420F;           //// mm
     public double PaperSizeH = 297F;           //// mm
-    public Color BackGroundColor = Color.Black;       ////
-    public Color WhiteAndBlack = Color.White;       ////
+    // public int BackGroundColor = Colors.Black;       ////
+    // public int WhiteAndBlack = Colors.White;       ////
 
     public double Scale = 1;                   //// a general scale for its parts
     public PrintStyle pPrintStyle = new PrintStyle();
