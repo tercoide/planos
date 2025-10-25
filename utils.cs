@@ -13,24 +13,24 @@ using Graphene.Internal;
 
 namespace Gaucho
 {
-    public enum  Colors
+    public static class  Colors
     {
-        Black = 0,
-        White = 1,
-        Red = 2,
-        Green = 3,
-        Blue = 4,
-        Yellow = 5,
-        Magenta = 6,
-        Cyan = 7,
-        Gray = 8,
-        DarkGray = 9,
-        LightRed = 10,
-        LightGreen = 11,
-        LightBlue = 12,
-        LightYellow = 13,
-        LightMagenta = 14,
-        LightCyan = 15
+        public const int Black = 0;
+        public const int White = 1;
+        public const int Red = 2;
+        public const int Green = 3;
+        public const int Blue = 4;
+        public const int Yellow = 5;
+        public const int Magenta = 6;
+        public const int Cyan = 7;
+        public const int Gray = 8;
+        public const int DarkGray = 9;
+        public const int LightRed = 10;
+        public const int LightGreen = 11;
+        public const int LightBlue = 12;
+        public const int LightYellow = 13;
+        public const int LightMagenta = 14;
+        public const int LightCyan = 15;
     }
 
 
@@ -389,7 +389,7 @@ namespace Gaucho
     /// </summary>
     public static string FileFromPath(string sPath)
     {
-        if (sPath == null) return null;
+        if (string.IsNullOrEmpty(sPath)) return sPath;
         int last = sPath.LastIndexOf('/');
         if (last == -1) return sPath;
         return sPath.Substring(last + 1);

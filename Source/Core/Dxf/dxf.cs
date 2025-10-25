@@ -650,7 +650,7 @@ private void Load4Blocks(Dictionary<string, Dictionary<string, string>> cBlocks)
     ReadData();
     do {
 
-        mBlock =  Block;
+        mBlock = new Block;
 
         if ( lpCode == "0" && lpValue == "ENDSEC" ) break;
 
@@ -894,8 +894,9 @@ public void ReconstructHandles(Drawing drw)
     DictList item ;         
     Block b ;         
      // Empiezo por los Bloques importantes
-    foreach (var b in drw.Blocks)
-    {
+    foreach (var b2 in drw.Blocks)
+            {
+        b=b2.Value;
         if ( b.Name == "*Model_Space" )
         {
             b.idContainer = Handle(2);

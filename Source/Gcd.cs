@@ -169,7 +169,7 @@ public static class Gcd
 
         public static bool DrawingReady = false;
                // public static  New Design Design ;         
-        public static Drawing? Drawing;
+        public static Drawing Drawing = new Drawing();
 
         public static List<Entity> entities = new();
 
@@ -407,9 +407,9 @@ public static class Gcd
             picPrintOff = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "printOff.png"));
 
             // this is what we are doing now
-           clsJob = cadSelection;
-           clsJobPrevious = cadSelection;
-           clsJobPreZoom = cadSelection;
+        //    clsJob = cadSelection;
+        //    clsJobPrevious = cadSelection;
+        //    clsJobPreZoom = cadSelection;
            clsJobPreviousParam = 0;
 
             debugInfo("Gcd initialized OK", false, false, true);
@@ -723,11 +723,11 @@ public static class Gcd
                 }
                 else if (Drawing.Sheet.pPrintStyle.ColorStyle == 1)
                 {
-                    return Color.Desaturate(iColor);
+                    return Colors.Desaturate(iColor);
                 }
                 else
                 {
-                    return Drawing.Sheet.WhiteAndBlack;
+                    return Config.WhiteAndBlack;
                 }
 
             }
@@ -861,7 +861,7 @@ public static class Gcd
 
             steps = 2; // Calling the converter
 
-            Utils.Shell("ODAFileConverter; //" + Config.dirDwgIn + "// //" + Config.dirDxfIn + "// //ACAD2018// //DXF// 0 0", WaitTo: str);
+            Utils.Shell("ODAFileConverter; //" + Config.dirDwgIn + "// //" + Config.dirDxfIn + "// //ACAD2018// //DXF// 0 0");
 
             steps = 3;
             // vacio el directorio de entrada
@@ -1094,7 +1094,7 @@ public static class Gcd
         {
 
             //Return Metros((screenx -Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX +Drawing.Sheet.PanBaseX)))
-            if (!Gcd.Drawing.Sheet.GlSheet) return 0;
+            if (Drawing.Sheet.GlSheet == null) return 0;
             return Metros((ScreenX -Drawing.Sheet.GlSheet.GetWidth() / 2 - (Gcd.Drawing.Sheet.PanX))) +Drawing.Sheet.PanBaseRealX;
 
         }
@@ -1103,7 +1103,7 @@ public static class Gcd
         {
 
             //Return Metros((-ScreenY +Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY +Drawing.Sheet.PanBaseY)))
-            if (Isnull(Gcd.Drawing.Sheet.GlSheet)) return 0;
+            if (Drawing.Sheet.GlSheet == null) return 0;
             return Metros((-ScreenY + Drawing.Sheet.GlSheet.GetHeight() / 2 - (Gcd.Drawing.Sheet.PanY))) + Drawing.Sheet.PanBaseRealY;
 
         }
@@ -1165,11 +1165,11 @@ public static class Gcd
 
         }
 
-        public static void redraw()
+        public static void Redraw()
         {
 
 
-            fmain.redraw;
+            fmain.redraw();
 
         }
 
@@ -1191,11 +1191,11 @@ public static class Gcd
            StepsDone = 0;
             //ReEscalar(drawing.Sheet)
             //PanToOrigin()
-            clsEntities.BuildGeometry;
+            clsEntities.BuildGeometry();
            Drawing.Sheet.ScaleZoomLast =Drawing.Sheet.ScaleZoom;
-            clsEntities.glGenDrawList;
+            clsEntities.GlGenDrawList();
             //clsEntities.glGenDrawList2
-            clsEntities.glGenDrawListLAyers;
+            clsEntities.GlGenDrawListLayers();
             //debugInfo("Entities GL list generated",false,false,true, true)
             //clsEntities.glGenDrawListSel
             // if (Gcd.Drawing.Has3dEntities)
@@ -1205,7 +1205,7 @@ public static class Gcd
             //    Drawing.Sheets["Model3D"].scene.setscene();
             // }
            debugInfo("Layers compiled", false, false, true, true);
-            redraw;
+            Redraw();
 
         }
 
@@ -1216,7 +1216,7 @@ public static class Gcd
 
             double Xcentro;
             double Ycentro;
-            if (!s) s =Drawing.Sheet;
+            if (s == null) s = Drawing.Sheet;
 
             Xcentro = Xreal(s.GlSheet.GetWidth() / 2);
             Ycentro = Yreal(s.GlSheet.GetHeight() / 2);
@@ -1239,10 +1239,10 @@ public static class Gcd
             // muevo el grafico desde la posicion actual al 0,0
             double Xcentro;
             double Ycentro;
-            if (!s) s =Drawing.Sheet;
+            if (s == null) s = Drawing.Sheet;
 
-            Xcentro = Metros((int)-(Gcd.Drawing.Sheet.PanX));
-            Ycentro = Metros((int)-(Gcd.Drawing.Sheet.PanY));
+            Xcentro = Metros((int)-(s.PanX));
+            Ycentro = Metros((int)-(s.PanY));
 
             // FIXME: despues de qe todo funcione bien, volvemos con esto
             //s.PanBaseRealX += Xcentro
@@ -1266,8 +1266,8 @@ public static class Gcd
             //clsEntities.CollectVisibleEntities
             //clsEntities.glGenDrawList
             //clsEntities.glGenDrawListSel
-            clsEntities.glGenDrawListLAyers;
-            redraw;
+            clsEntities.GlGenDrawListLayers();
+            Redraw();
 
         }
 
@@ -1307,13 +1307,13 @@ public static class Gcd
 
 
             double[] limits = [];
-            double SZx;
+            double szx;
             // ahora calculo donde estaria el centro de este dibujo
 
             double cx;
             double cy;
-            int px;          // coordenadas del punto medio
-            int py;
+            double px;          // coordenadas del punto medio
+            double py;
 
             limits = clsEntities.ComputeLimits(s.Entities);
 
@@ -1322,9 +1322,9 @@ public static class Gcd
 
             if (cx == 0) cx = 0.00001;
             if (cy == 0) cy = 0.00001;
-            s.ScaleZoom = s.GlSheet.h / cy * 0.9;
+            s.ScaleZoom = s.GlSheet.GetHeight() / cy * 0.9;
 
-            szx = s.GlSheet.w / cx * 0.9;
+            szx = s.GlSheet.GetWidth() / cx * 0.9;
 
             if (szx < s.ScaleZoom) s.ScaleZoom = szx;
 
@@ -1358,13 +1358,13 @@ public static class Gcd
             //filebase = sDwgFile
             steps = 0; // elimino el archivo temporal que hubiese creado
 
-            if (File.Exists(System.IO.Path.Combine(Config.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(main.dirDwgIn, filebase));
+            if (File.Exists(System.IO.Path.Combine(Config.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(Config.dirDwgIn, filebase));
 
             steps = 1; // hago una copia previa a la conversion
             File.Copy(sDwgFile, System.IO.Path.Combine(Config.dirDwgIn, filebase));
 
             steps = 2; // Calling the converter
-            Utils.Shell("dwgread -O DXF -o \"" + System.IO.Path.Combine(Config.dirDxfOut, Utils.FileWithoutExtension(filebase) + ".dxf") + "\" \"" + System.IO.Path.Combine(main.dirDwgIn, filebase) + "\"", out str);
+            Utils.Shell("dwgread -O DXF -o \"" + System.IO.Path.Combine(Config.dirDxfOut, Utils.FileWithoutExtension(filebase) + ".dxf") + "\" \"" + System.IO.Path.Combine(Config.dirDwgIn, filebase) + "\"");
 
             steps = 3;
             // vacio el directorio de entrada
@@ -1496,7 +1496,7 @@ public static class Gcd
             string s;
             string s2;
             Pattern p;
-            HatchPattern hp;
+            HatchPattern? hp = null;
             string[] sp;
             int i;
 
@@ -1517,9 +1517,9 @@ public static class Gcd
             {
 
                 // si tenia un patron anterior, lo guardo
-                if (hp)
+                if (!(hp == null) && hp.Name != "")
                 {
-                    HatchPatterns.Add(hp, hp.Name);
+                    HatchPatterns.Add( hp.Name,hp);
                 }
                 s =Utils.Mid(s, 2);
                 hp = new HatchPattern();
@@ -1606,7 +1606,7 @@ public static class Gcd
             }
             else
             {
-                txt = ": " + txt + gb.CrLf;
+                txt = ": " + txt + "/n";
             }
 
             if (LogToFile)
@@ -1616,17 +1616,17 @@ public static class Gcd
             }
 
     if (MismaLineaAnterior)
-            {
-                fdebug.txtDebug.Undo;
+    {
+        fdebug.txtDebug.Undo;
 
-            } // no voy a loguear lineas repetidas
-            else
-            {
-                //hlog(txt)
-                Chronos = Timer;
-            }
+    } // no voy a loguear lineas repetidas
+    else
+    {
+        //hlog(txt)
+        Chronos = DateTime.Now.Ticks;
+    }
 
-            fdebug.txtDebug.Insert(txt);
+    fdebug.txtDebug.Insert(txt);
             fDebug.txtDebug.EnsureVisible;
 
             // txt = ": "
@@ -1645,7 +1645,7 @@ public static class Gcd
                 // Wait 0;
             }
 
-            Utils.doevents;
+            Utils.DoEvents();
 
         }
 

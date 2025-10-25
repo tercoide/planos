@@ -707,7 +707,7 @@ namespace Gaucho
 
 
             // colores
-            void Menu(fMai)
+            void Menu(fMain)
             {
 
                 Menu mItem;
