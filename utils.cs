@@ -13,27 +13,24 @@ using Graphene.Internal;
 
 namespace Gaucho
 {
-    public struct Colors
+    public enum  Colors
     {
-        int Black = 0;
-        int White = 1;
-        int Red = 2;
-        int Green = 3;
-        int Blue = 4;
-        int Yellow = 5;
-        int Magenta = 6;
-        int Cyan = 7;
-        int Gray = 8;
-        int DarkGray = 9;
-        int LightRed = 10;
-        int LightGreen = 11;
-        int LightBlue = 12;
-        int LightYellow = 13;
-        int LightMagenta = 14;
-        int LightCyan = 15;
-        public Colors()
-        {
-        }
+        Black = 0,
+        White = 1,
+        Red = 2,
+        Green = 3,
+        Blue = 4,
+        Yellow = 5,
+        Magenta = 6,
+        Cyan = 7,
+        Gray = 8,
+        DarkGray = 9,
+        LightRed = 10,
+        LightGreen = 11,
+        LightBlue = 12,
+        LightYellow = 13,
+        LightMagenta = 14,
+        LightCyan = 15
     }
 
 
@@ -385,7 +382,94 @@ namespace Gaucho
             return str.Replace(oldChar, newChar);
         }
     
+ /// <summary>
+    /// Returns the file name part after the last '/' in the path.
+    /// If no '/' is found, returns the original string.
+    /// Mirrors the behavior of the provided VB FileFromPath.
+    /// </summary>
+    public static string FileFromPath(string sPath)
+    {
+        if (sPath == null) return null;
+        int last = sPath.LastIndexOf('/');
+        if (last == -1) return sPath;
+        return sPath.Substring(last + 1);
+    }
 
+    /// <summary>
+    /// Returns the path portion including the trailing '/' up to the last '/'.
+    /// If no '/' is found, returns an empty string.
+    /// Mirrors the behavior of the provided VB PathFromFile.
+    /// </summary>
+    public static string PathFromFile(string sPath)
+    {
+        if (sPath == null) return null;
+        int last = sPath.LastIndexOf('/');
+        if (last == -1) return string.Empty;
+        // include the trailing slash, matching VB's Left(..., p2 - 1) behavior
+        return sPath.Substring(0, last + 1);
+    }
+
+    /// <summary>
+    /// Returns the file name without its extension (the part before the last '.').
+    /// If there is no '.' in the file name, returns the file name unchanged.
+    /// Mirrors the behavior of the provided VB FileWithoutExtension.
+    /// </summary>
+    public static string FileWithoutExtension(string sPath)
+    {
+        if (sPath == null) return null;
+        string fileName = FileFromPath(sPath);
+        int idx = fileName.LastIndexOf('.');
+        if (idx == -1) return fileName;
+        // if '.' is the first character, this returns an empty string (matches VB behavior)
+        return fileName.Substring(0, idx);
+    }
+
+    /// <summary>
+    /// VB.NET-like DoEvents function - Processes pending UI events and messages
+    /// This allows the UI to remain responsive during long-running operations
+    /// </summary>
+    public static void DoEvents()
+    {
+        try
+        {
+            // For GTK4, we use GLib.MainContext to process pending events
+            var context = GLib.MainContext.Default();
+            while (context.Pending())
+            {
+                context.Iteration(false);
+            }
+        }
+        catch (Exception ex)
+        {
+            // Log the error but don't let it break the application
+            Console.WriteLine($"DoEvents error: {ex.Message}");
+        }
+    }
+
+    /// <summary>
+    /// VB.NET-like DoEvents function with timeout - Processes pending UI events for a specified duration
+    /// </summary>
+    /// <param name="maxProcessingTimeMs">Maximum time to spend processing events in milliseconds</param>
+    public static void DoEvents(int maxProcessingTimeMs)
+    {
+        try
+        {
+            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+            var context = GLib.MainContext.Default();
+            
+            while (context.Pending() && stopwatch.ElapsedMilliseconds < maxProcessingTimeMs)
+            {
+                context.Iteration(false);
+            }
+            
+            stopwatch.Stop();
+        }
+        catch (Exception ex)
+        {
+            // Log the error but don't let it break the application
+            Console.WriteLine($"DoEvents error: {ex.Message}");
+        }
+    }
 }
 }
 

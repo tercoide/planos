@@ -48,7 +48,7 @@ public class Sheet
     public Entity SkipSearch = new();                         //// entidad que no se tendran en cuenta en las busquedas
                                                     // public EntitiesSelected As New Collection
 
-    //public gtk.GLArea GLArea = new gtk.GLArea();
+    public Gtk.GLArea? GlSheet = new ();
     public int GlListAllEntities = 0;
     public int GlListEntitiesSelected = 0;
     public int GlList3D = 0;

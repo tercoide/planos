@@ -2,6 +2,7 @@
 using Gaucho;
 using Gtk;
 
+
 public static class Gcd
     {
         // Equivale a public static  entities As New Entity[] en Gambas
@@ -70,10 +71,10 @@ public static class Gcd
         const int drwOpenGLClass = 4;
 
         public static bool LoadingFinished = false;
-        public static string[] FontList;          // esto deberia estar en otro lado
-        public static string[] TextureList;          // esto deberia estar en otro lado
-        public static string FileName;          // current work filename
-        public static string[] LineTypes;
+        public static string[] FontList= new string[0];          // esto deberia estar en otro lado
+        public static string[] TextureList= new string[0];          // esto deberia estar en otro lado
+        public static string FileName="";          // current work filename
+        public static string[] LineTypes= new string[0];
 
         // dibujos
         public static Image picVisibleOn;
@@ -133,14 +134,14 @@ public static class Gcd
         public const int dimVertical = 8;
 
         // PrintStyles
-        public static Dictionary<string, object> PrintStyles;
+        public static Dictionary<string, object> PrintStyles=new Dictionary<string, object>();
 
         // patterns
-        public static Dictionary<string, object> HatchPatterns;
+        public static Dictionary<string, object> HatchPatterns=new Dictionary<string, object>();
 
         // fonts replacements
 
-        public static Dictionary<string, object> FontReplacements;
+        public static Dictionary<string, object> FontReplacements = new Dictionary<string, object>();
 
         // Entity Flags
         const int flgDWG_Changed = 1;
@@ -164,12 +165,11 @@ public static class Gcd
 
         public static bool DrawHoveredEntity = false;
 
-        public static string dirResources;          // para compatibilidad con GambasCAD
+        public static string dirResources="";          // para compatibilidad con GambasCAD
 
         public static bool DrawingReady = false;
-        public static Entity currenyEntity;
-        // public static  New Design Design ;         
-        public static Drawing Drawing;
+               // public static  New Design Design ;         
+        public static Drawing? Drawing;
 
         public static List<Entity> entities = new();
 
@@ -178,11 +178,11 @@ public static class Gcd
         public static Dictionary<string, Entity> EntitiesSelected = new();
         public static int[] gColor = [];          // Colors list
 
-        public static Gdk.Cursor CursorCross;
-        public static Gdk.Cursor CursorSelect;
-        public static Gdk.Cursor CursorSelectAdd;
-        public static Gdk.Cursor CursorSelectRem;
-        public static Gdk.Cursor CursorSelectXchange;
+        public static Gdk.Cursor? CursorCross;
+        public static Gdk.Cursor? CursorSelect;
+        public static Gdk.Cursor? CursorSelectAdd;
+        public static Gdk.Cursor? CursorSelectRem;
+        public static Gdk.Cursor? CursorSelectXchange;
 
         public static double PrintingScale  = 1;        
 
@@ -345,7 +345,7 @@ public static class Gcd
 
         }
 
-        public static double Metros(int pixeles)
+        public static double Metros(double pixeles)
         { // converts pixels to meters
 
             return pixeles /Drawing.Sheet.ScaleZoom;
@@ -364,12 +364,12 @@ public static class Gcd
 
             switch ( Config.WindowBackColor)
             {
-                case Color.Black:
+                case Colors.Black:
                     //Case &1B2224
-                     Config.WhiteAndBlack = RGB(Color.White);
+                     Config.WhiteAndBlack = RGB(Colors.White);
                     break;
                 default:
-                     Config.WhiteAndBlack = RGB(Color.Black);
+                     Config.WhiteAndBlack = RGB(Colors.Black);
 
             }
 
@@ -397,14 +397,14 @@ public static class Gcd
             //texturelist = glx.LoadTextures(Gcd.sTextures)
 
             // otros recursos
-            picVisibleOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_on.png"));
-            picVisibleOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_off.png"));
-            picFrozenOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_on.png"));
-            picFrozenOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_off.png"));
-            picLockedOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_on.png"));
-            picLockedOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_off.png"));
-            picPrintOn = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "printOn.png"));
-            picPrintOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "printOff.png"));
+            picVisibleOn = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_on.png"));
+            picVisibleOff = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "visible_off.png"));
+            picFrozenOn = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_on.png"));
+            picFrozenOff = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "frozen_off.png"));
+            picLockedOn = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_on.png"));
+            picLockedOff = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "locked_off.png"));
+            picPrintOn = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "printOn.png"));
+            picPrintOff = Image.NewFromFile(System.IO.Path.Combine(Gcd.dirResources, "png", "printOff.png"));
 
             // this is what we are doing now
            clsJob = cadSelection;
@@ -448,16 +448,16 @@ public static class Gcd
 
         }
 
-        public static Layer GetLayer(string LayerName)
+        public static Layer? GetLayer(string LayerName)
         {
 
 
 
 
-            foreach (var Lay inDrawing.Layers)
+            foreach (var Lay in Drawing.Layers)
             {
 
-                if (Lay.Name == LayerName) return Lay;
+                if (Lay.Value.Name == LayerName) return Lay.Value;
             }
             return null;
 
@@ -658,7 +658,7 @@ public static class Gcd
             else if (iValue == -2)
             {
                 if (Gcd.Drawing.CurrBlockLineWt < 0) return  Config.DefLineWt;
-                returnDrawing.CurrBlockLineWt / 100;
+                return Drawing.CurrBlockLineWt / 100;
             }
 
             return  Config.DefLineWt;
@@ -755,7 +755,7 @@ public static class Gcd
             }
 
             //s = "{" & Utils.Trim(s) & "}"
-            s = s.Utils.Trim();
+            s = Utils.Trim(s);
             return s;
 
         }
@@ -900,30 +900,31 @@ public static class Gcd
                     return "";
 
             }
+            return "";
 
         }
     }
 
-        public static string ODA_DXFtoDWG(string sDxfFile)
-        {
+    public static string ODA_DXFtoDWG(string sDxfFile)
+    {
 
 
-            string str;
-            string filebase;
-        int steps=0;
+        string str="";
+        string filebase;
+        int steps = 0;
         try
         {
 
             filebase = Utils.FileFromPath(sDxfFile); // deberia estar en main.dirDxfIn
 
             steps = 0; // elimino el archivo temporal que hubiese creado
-            if (File.Exists(System.IO.Path.Combine( Config.dirDxfOut, filebase))) File.Delete(System.IO.Path.Combine( Config.dirDxfOut, filebase));
+            if (File.Exists(System.IO.Path.Combine(Config.dirDxfOut, filebase))) File.Delete(System.IO.Path.Combine(Config.dirDxfOut, filebase));
 
             steps = 1; // hago una copia previa a la conversion
-            if (sDxfFile != (System.IO.Path.Combine( Config.dirDxfOut, filebase))) File.Copy(sDxfFile, System.IO.Path.Combine( Config.dirDxfOut, filebase));
+            if (sDxfFile != (System.IO.Path.Combine(Config.dirDxfOut, filebase))) File.Copy(sDxfFile, System.IO.Path.Combine(Config.dirDxfOut, filebase));
 
             steps = 2; // Calling the converter
-            Utils.Shell("ODAFileConverter; //" + Config.dirDxfOut + "// //" + Config.dirDwgOut + "// //ACAD2010// //DWG// 0 0", WaitTo: str);
+            Utils.Shell("ODAFileConverter; //" + Config.dirDxfOut + "// //" + Config.dirDwgOut + "// //ACAD2010// //DWG// 0 0");
 
 
             debugInfo(str);
@@ -932,7 +933,7 @@ public static class Gcd
             // vacio el directorio de entrada
             //Kill main.dirDxfOut &/ filebase //FIXME: descomentar esto despues del debug
 
-            return System.IO.Path.Combine( Config.dirDwgOut, Utils.FileWithoutExtension(filebase) + ".dwg");
+            return System.IO.Path.Combine(Config.dirDwgOut, Utils.FileWithoutExtension(filebase) + ".dwg");
         }
         catch
         {
@@ -959,106 +960,108 @@ public static class Gcd
             return "";
         }
 
-        }
+    }
+        
+        // TODO: revisar y arreglar
 
-        //  Lee entidades e intenta dibujarlas centrado en el contenedor: DrawingArea, Image, Image
-        //  iColor: CAD color o -1 para usar como vienen en el DXF
-        //  fLineWidth: -1=como vienen, 0=automatico, >0 = fijo en ese valor
-        public static bool FitEntitiesToImage(Dictionary<string, Entity> cEntities, Object imgPreview, int iColor = 0, double fLineWIdth = 1, int iBackGround = -1)
-        {
-
-
-            double scaleX;
-            double scale;
-            double scaleY;
+        // //  Lee entidades e intenta dibujarlas centrado en el contenedor: DrawingArea, Image, Image
+        // //  iColor: CAD color o -1 para usar como vienen en el DXF
+        // //  fLineWidth: -1=como vienen, 0=automatico, >0 = fijo en ese valor
+        // public static bool FitEntitiesToImage(Dictionary<string, Entity> cEntities, Object imgPreview, int iColor = 0, double fLineWIdth = 1, int iBackGround = -1)
+        // {
 
 
-            double[] flxLimits;
-
-        //depre clsEntities.BuildPoi(cEntities)
-        if (cEntities.Count > 0)
-        {
-            flxLimits = clsEntities.ComputeLimits(cEntities); // computo el tamaño de la entidad, y luego determino la escala
-
-            Paint.Begin(imgPreview);
-            if (iBackGround >= 0) Paint.Background = iBackGround;
-
-            Paint.Reset; // vuelvo escalas y traslados a cero
-            Paint.Translate(Paint.W / 2, Paint.H / 2); // centro el dibujo
-            if ((flxLimits[2] - flxLimits[0]) > 1e-10)
-                scaleX = Paint.w / (flxLimits[2] - flxLimits[0]);
-            else
-                scaleX = 1e10;
-            if ((flxLimits[3] - flxLimits[1]) > 1e-10)
-                scaleY = Paint.H / (flxLimits[3] - flxLimits[1]);
-            else
-                scaleY = 1e10;
-            if (scaleX < scaleY)
-                Scale = scaleX;
-            else
-                Scale = scaleY;
-            Paint.Scale(scale * 0.85, -scale * 0.85);
-
-            PrintingScale = scale * 0.85;
-
-            // centro el dibujo
-            Paint.Translate(-(flxLimits[2] + flxLimits[0]) / 2, -(flxLimits[3] + flxLimits[1]) / 2);
-
-            foreach (var entIdad in cEntities)
-            {
-                if (entIdad.pLayer == null) entIdad.pLayer = Drawing.CurrLayer;
-                if (iColor < 0)
-                {
-                    Paint.Brush = Paint.Color(Gcd.gColor[entIdad.colour]);
-                }
-                else
-                {
-                    Paint.Brush = Paint.Color(iColor);
-                }
-                if (fLineWIdth == 0)
-                {
-                    if (entIdad.LineWIdth == 0) entIdad.LineWIdth = 1;
-
-                    Paint.LineWIdth = GetLineWt(entIdad.LineWIdth) / scale;
-                }
-
-                CCC[entIdad.gender].draw2(entIdad);
-            }
-            Paint.End;
-
-        }
-            return true;
-
-        }
-
-        // Carga un DXF e intenta dibujarlo centrado en el contenedor: DrawingArea, Image, Image
-        // iColor: CAD color o -1 para usar como vienen en el DXF
-        // fLineWidth: -1=como vienen, 0=automatico, >0 = fijo en ese valor
-        public static bool FitDxfToImage(string sDXFfile, Object imgPreview, int iColor = 0, double fLineWIdth = 1)
-        {
+        //     double scaleX;
+        //     double scale;
+        //     double scaleY;
 
 
-            Drawing LastDrw;
-            Drawing drwTemp;
+        //     double[] flxLimits;
 
-            if (!Exist(sDxfFile)) return false;
-            LastDrw =drawing;
+        // //depre clsEntities.BuildPoi(cEntities)
+        // if (cEntities.Count > 0)
+        // {
+        //     flxLimits = clsEntities.ComputeLimits(cEntities); // computo el tamaño de la entidad, y luego determino la escala
 
-            drwTemp =NewDrawing(sDxfFile);
-           Drawing = drwTemp;
-            Dxf.LoadFile(sDxfFile, drwTemp);
-           Drawing = LastDrw;
+        //     Paint.Begin(imgPreview);
+        //     if (iBackGround >= 0) Paint.Background = iBackGround;
 
-        FitEntitiesToImage(drwTemp.Model.Entities, imgPreview, iColor, fLineWIdth);
-            return true;
+        //     Paint.Reset; // vuelvo escalas y traslados a cero
+        //     Paint.Translate(Paint.W / 2, Paint.H / 2); // centro el dibujo
+        //     if ((flxLimits[2] - flxLimits[0]) > 1e-10)
+        //         scaleX = Paint.w / (flxLimits[2] - flxLimits[0]);
+        //     else
+        //         scaleX = 1e10;
+        //     if ((flxLimits[3] - flxLimits[1]) > 1e-10)
+        //         scaleY = Paint.H / (flxLimits[3] - flxLimits[1]);
+        //     else
+        //         scaleY = 1e10;
+        //     if (scaleX < scaleY)
+        //         Scale = scaleX;
+        //     else
+        //         Scale = scaleY;
+        //     Paint.Scale(scale * 0.85, -scale * 0.85);
 
-        }
+        //     PrintingScale = scale * 0.85;
+
+        //     // centro el dibujo
+        //     Paint.Translate(-(flxLimits[2] + flxLimits[0]) / 2, -(flxLimits[3] + flxLimits[1]) / 2);
+
+        //     foreach (var entIdad in cEntities)
+        //     {
+        //         if (entIdad.pLayer == null) entIdad.pLayer = Drawing.CurrLayer;
+        //         if (iColor < 0)
+        //         {
+        //             Paint.Brush = Paint.Color(Gcd.gColor[entIdad.colour]);
+        //         }
+        //         else
+        //         {
+        //             Paint.Brush = Paint.Color(iColor);
+        //         }
+        //         if (fLineWIdth == 0)
+        //         {
+        //             if (entIdad.LineWIdth == 0) entIdad.LineWIdth = 1;
+
+        //             Paint.LineWIdth = GetLineWt(entIdad.LineWIdth) / scale;
+        //         }
+
+        //         CCC[entIdad.gender].draw2(entIdad);
+        //     }
+        //     Paint.End;
+
+        // }
+        //     return true;
+
+        // }
+
+        // // Carga un DXF e intenta dibujarlo centrado en el contenedor: DrawingArea, Image, Image
+        // // iColor: CAD color o -1 para usar como vienen en el DXF
+        // // fLineWidth: -1=como vienen, 0=automatico, >0 = fijo en ese valor
+        // public static bool FitDxfToImage(string sDXFfile, Object imgPreview, int iColor = 0, double fLineWIdth = 1)
+        // {
+
+
+        //     Drawing LastDrw;
+        //     Drawing drwTemp;
+
+        //     if (!Exist(sDxfFile)) return false;
+        //     LastDrw =drawing;
+
+        //     drwTemp =NewDrawing(sDxfFile);
+        //    Drawing = drwTemp;
+        //     Dxf.LoadFile(sDxfFile, drwTemp);
+        //    Drawing = LastDrw;
+
+        // FitEntitiesToImage(drwTemp.Model.Entities, imgPreview, iColor, fLineWIdth);
+        //     return true;
+
+        // }
 
         public static bool IsPoint(string sVal)
         {
 
 
-            string v;
+            
             string[] slx;
 
             double f;
@@ -1091,8 +1094,8 @@ public static class Gcd
         {
 
             //Return Metros((screenx -Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX +Drawing.Sheet.PanBaseX)))
-            if (Isnull(Gcd.Drawing.Sheet.GlSheet)) return 0;
-            return Metros((ScreenX -Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX))) +Drawing.Sheet.PanBaseRealX;
+            if (!Gcd.Drawing.Sheet.GlSheet) return 0;
+            return Metros((ScreenX -Drawing.Sheet.GlSheet.GetWidth() / 2 - (Gcd.Drawing.Sheet.PanX))) +Drawing.Sheet.PanBaseRealX;
 
         }
 
@@ -1101,14 +1104,14 @@ public static class Gcd
 
             //Return Metros((-ScreenY +Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY +Drawing.Sheet.PanBaseY)))
             if (Isnull(Gcd.Drawing.Sheet.GlSheet)) return 0;
-            return Metros((-ScreenY +Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY))) +Drawing.Sheet.PanBaseRealY;
+            return Metros((-ScreenY + Drawing.Sheet.GlSheet.GetHeight() / 2 - (Gcd.Drawing.Sheet.PanY))) + Drawing.Sheet.PanBaseRealY;
 
         }
 
         public static double XPix(double X)
         {
 
-            return Pixels(X -Drawing.Sheet.PanBaseRealX) +Drawing.Sheet.GlSheet.w / 2 +Drawing.Sheet.PanX; //+Drawing.Sheet.PanBaseX
+            return Pixels(X -Drawing.Sheet.PanBaseRealX) +Drawing.Sheet.GlSheet.GetWidth() / 2 +Drawing.Sheet.PanX; //+Drawing.Sheet.PanBaseX
 
         }
 
@@ -1116,7 +1119,7 @@ public static class Gcd
         {
 
             //Return Metros((-ScreenY + glarea1.h / 2 -Drawing.PanY))
-            return -(Pixels(Y -Drawing.Sheet.PanBaseRealY) -Drawing.Sheet.GlSheet.h / 2 +Drawing.Sheet.PanY); // +Drawing.Sheet.PanBaseY)
+            return -(Pixels(Y -Drawing.Sheet.PanBaseRealY) -Drawing.Sheet.GlSheet.GetHeight() / 2 +Drawing.Sheet.PanY); // +Drawing.Sheet.PanBaseY)
 
         }
 
@@ -1134,7 +1137,7 @@ public static class Gcd
             int n;
             double r;
 
-            if (!Gcd.Drawing.GridActive) return xyzReal;
+            if (!Drawing.GridActive) return xyzReal;
 
             r = xyzReal /Drawing.GridCurentSpacing;
             n = (int) r;
@@ -1150,7 +1153,7 @@ public static class Gcd
         {
 
 
-            return Drawing.Sheet.GlSheet.W;
+            return Drawing.Sheet.GlSheet.GetWidth();
 
         }
 
@@ -1158,7 +1161,7 @@ public static class Gcd
         {
 
 
-            return Drawing.Sheet.GlSheet.h;
+            return Drawing.Sheet.GlSheet.GetHeight();
 
         }
 
@@ -1195,12 +1198,12 @@ public static class Gcd
             clsEntities.glGenDrawListLAyers;
             //debugInfo("Entities GL list generated",false,false,true, true)
             //clsEntities.glGenDrawListSel
-            if (Gcd.Drawing.Has3dEntities)
-            {
-               Drawing.Sheets["Model3D"].scene.models.Add(Gcd.Drawing.Sheets["Model3D"].Model3D, "model");
-               Drawing.Sheets["Model3D"].scene.placemodel(Gcd.Drawing.Sheets["Model3D"].Model3D);
-               Drawing.Sheets["Model3D"].scene.setscene();
-            }
+            // if (Gcd.Drawing.Has3dEntities)
+            // {
+            //    Drawing.Sheets["Model3D"].scene.models.Add(Gcd.Drawing.Sheets["Model3D"].Model3D, "model");
+            //    Drawing.Sheets["Model3D"].scene.placemodel(Gcd.Drawing.Sheets["Model3D"].Model3D);
+            //    Drawing.Sheets["Model3D"].scene.setscene();
+            // }
            debugInfo("Layers compiled", false, false, true, true);
             redraw;
 
@@ -1215,8 +1218,8 @@ public static class Gcd
             double Ycentro;
             if (!s) s =Drawing.Sheet;
 
-            Xcentro = Xreal(s.GlSheet.w / 2);
-            Ycentro = Yreal(s.GlSheet.h / 2);
+            Xcentro = Xreal(s.GlSheet.GetWidth() / 2);
+            Ycentro = Yreal(s.GlSheet.GetHeight() / 2);
 
             // drw.Model.PanBaseRealX = -Xcentro
             // drw.Model.PanBaseRealY = -Ycentro
@@ -1656,13 +1659,13 @@ public static class Gcd
             // Bloques
             foreach (var b in d.Blocks)
             {
-                b.id = NewId();
+                b.Value.id = NewId();
             }
 
-            foreach (var v in d.Viewports)
-            {
-                v.Id = NewId();
-            }
+            // foreach (var v in d.Viewports)
+            // {
+            //     v.Id = NewId();
+            // }
 
         }
     }
