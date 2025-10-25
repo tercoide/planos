@@ -174,7 +174,7 @@ public bool LoadFile(string sfile, Drawing drw, bool ignoretables= false, bool i
                     // if (!cToFill.ContainsKey("HEADER"))
                     // {
                     //     cLlaveActual = Dictionary<string, Dictionary>;
-                    //     cToFill.Add("HEADER", cLlaveActual);
+                    //     cToFill.Append("HEADER", cLlaveActual);
                     // }
                     // else
                     // {
@@ -328,7 +328,7 @@ private void DiscardBlocks(Drawing drw)
     {
 
 
-    Block b ;         
+            
 
     foreach ( var kvp in drw.Blocks)
     {
@@ -345,8 +345,8 @@ private void ReadData()
     {
 
 
-    lpCode = fp.ReadLine();
-    lpValue = fp.ReadLine();
+    lpCode = fp?.ReadLine() ?? "";
+    lpValue = fp?.ReadLine() ?? "";
 
     LoadedBytes += lpCode != null ? lpCode.Length : 0;
     LoadedBytes += lpValue != null ? lpValue.Length : 0;
@@ -405,7 +405,7 @@ private void Load1HeadersDirect(Headers Headers)
                 do { // este bucle es por si la variable es un array
                     ReadData();
                     if (lpCode == "0" || lpCode == "9") break;
-                    cVariable.Add(lpValue);
+                    cVariable.Append(lpValue);
                 } while  (!(lpCode == "0" || lpCode == "9"));
 
                 // TODO: reparar
@@ -418,14 +418,14 @@ private void Load1HeadersDirect(Headers Headers)
         } while (!fp.EndOfStream);
     
 
-    Gcd.debuginfo("DXF: Leidas " + i + " variables de ambiente");
+    Gcd.debugInfo("DXF: Leidas " + i + " variables de ambiente");
 
 }
 
 private void Load2Classes(Drawing drwLoading)
     {
 
-
+        // No uso estas clases, pero las leo para no perder informacion
     
 
         while  (!fp.EndOfStream)
@@ -434,21 +434,21 @@ private void Load2Classes(Drawing drwLoading)
             if (lpValue == "CLASSES") ReadData();
             if (lpValue == "ENDSEC") return;
 
-            var cClass = new CadClass();
-            drwLoading.CadClasses.Add(cClass);
+            // var cClass = new CadClass();
+            // drwLoading.CadClasses.Append(cClass);
 
             ReadData();
 
                 while ((lpCode != "0") && !fp.EndOfStream)
                 {
-                    if (lpCode == "0") cClass.recordtype = lpValue;
-                    if (lpCode == "1") cClass.recordName = lpValue;
-                    if (lpCode == "2") cClass.CPPName = lpValue;
-                    if (lpCode == "3") cClass.AppName = lpValue;
-                    if (lpCode == "90") cClass.ProxyCapp = int.Parse(lpValue);
-                    if (lpCode == "91") cClass.InstanceCount = int.Parse(lpValue);
-                    if (lpCode == "280") cClass.ProxyFlag = int.Parse(lpValue);
-                    if (lpCode == "281") cClass.EntityFlag = int.Parse(lpValue);
+                    // if (lpCode == "0") cClass.recordtype = lpValue;
+                    // if (lpCode == "1") cClass.recordName = lpValue;
+                    // if (lpCode == "2") cClass.CPPName = lpValue;
+                    // if (lpCode == "3") cClass.AppName = lpValue;
+                    // if (lpCode == "90") cClass.ProxyCapp = int.Parse(lpValue);
+                    // if (lpCode == "91") cClass.InstanceCount = int.Parse(lpValue);
+                    // if (lpCode == "280") cClass.ProxyFlag = int.Parse(lpValue);
+                    // if (lpCode == "281") cClass.EntityFlag = int.Parse(lpValue);
 
                     ReadData();
                 }
@@ -467,12 +467,11 @@ private void Load3Tables()
     string sTableid ;          // in hex
     string sTableContainer ;          // in hex , 0 = nobody
     int iTableEntries ;         
-    Dictionary<string, Dictionary> cTable ;
+    // Dictionary<string, Dictionary> cTable ;
 
         // creamos una table inicial con los handles de las tables
-        cTable = Dictionary<string, Dictionary>;
-    
-   
+        // cTable = Dictionary<string, Dictionary>;
+
 
     ReadData();
     while  (!fp.EndOfStream)
@@ -493,20 +492,20 @@ private void Load3Tables()
              // 100 Subclass marker(AcDbSymbolTable)
              // 70 Maximum number Of entries In table
             ReadData();
-            while ( lpcode != "0")
+            while ( lpCode != "0")
             {
 
-                if ( lpcode == "5" ) sTableid = lpvalue;
+                if ( lpCode == "5" ) sTableid = lpValue;
 
-                if ( lpcode == "2" ) sTableName = lpvalue;
-                if ( lpcode == "330" ) sTableContainer = lpvalue;
+                if ( lpCode == "2" ) sTableName = lpValue;
+                if ( lpCode == "330" ) sTableContainer = lpValue;
 
                  //If sTableName = "VIEW" Then Stop
 
                  // WARNING: este dato no es valido para todas las versiones de DXF
                  // en algunos archivos hay mas tablas que lo que indica este numero
                  // No hay que darle importancia a este numero!!!
-                if ( lpcode == "70" ) iTableEntries = int.Parse(lpvalue);
+                if ( lpCode == "70" ) iTableEntries = int.Parse(lpValue);
 
                 ReadData();
             }
@@ -515,10 +514,10 @@ private void Load3Tables()
 
             // cTable = Dictionary<string, Dictionary>;
 
-            // cTables.Add(sTableName, cTable);
+            // cTables.Append(sTableName, cTable);
 
              // verifico que la tabla no tenga entradas, lo que me altera la carga
-            if ( lpvalue != "ENDTAB" )
+            if ( lpValue != "ENDTAB" )
             {
                  //Object(cTable, sTableHandle)
                 Load31Table();
@@ -539,7 +538,7 @@ private void Load31Table()
     string sTableName ;
     string sid ;
     Dictionary<string, string> cTable = new Dictionary<string, string>();
-    int i ;
+    int i =0;
 
     int iCode ;         
     string Key ;         
@@ -547,8 +546,8 @@ private void Load31Table()
      // Tengo q leer iEntries
      //For i = 1 To iEntries
     do {
-        Inc i;
-        cTable = Dictionary<string, string>;
+        i++;
+        cTable = new Dictionary<string, string>();
         sTableName = "";
         iCode = 0;
 
@@ -558,32 +557,33 @@ private void Load31Table()
 
          //If lpCode = "0" Then break
 
-        while ( lpcode != "0"){
-            Key = lpcode;
+        while ( lpCode != "0"){
+            Key = lpCode;
             if ( cTable.ContainsKey(Key) )
                     {
                         do {
                             iCode += 1;
-                            Key = lpcode + "_" + iCode.ToString();
+                            Key = lpCode + "_" + iCode.ToString();
 
                             if ( ! cTable.ContainsKey(Key) ) break;
                         } while ( true );
                     }
-            cTable.Add(Key, lpvalue);
+            cTable.Add(Key, lpValue);
 
-            if ( lpcode == Me.codid ) sTableName = lpvalue;
+            if ( lpCode == codid ) sTableName = lpValue;
             ReadData();
 
         }
          //If cTable.Count = 1 Then Stop
         if ( cTable.Count > 0 )
         {
-            if ( sTableName == "" ) sTableName = i.ToString();
-            cVars.Add(sTableName, cTable);
+                    if (sTableName == "") sTableName = i.ToString();
+            // no acumulo mas tablas en colecciones
+            // cVars.Append(sTableName, cTable);
 
         }
 
-        if ( lpcode == "0" && lpValue == "ENDTAB" ) break;
+        if ( lpCode == "0" && lpValue == "ENDTAB" ) break;
 
     } while  (!fp.EndOfStream);
 
@@ -601,7 +601,7 @@ private void Load31Table()
         }
         else
         {
-            sid = Gcd.id();
+            sid = Gcd.NewId();
 
         }
 
@@ -637,8 +637,7 @@ private void Load4Blocks(Dictionary<string, Dictionary<string, string>> cBlocks)
 
 
     Block mBlock ;         
-    Variant unread ;         
-    int i ;         
+           
 
     string sTableName ;         
 
@@ -655,30 +654,30 @@ private void Load4Blocks(Dictionary<string, Dictionary<string, string>> cBlocks)
 
         if ( lpCode == "0" && lpValue == "ENDSEC" ) break;
 
-        if ( (lpcode == "0") && (lpvalue == "BLOCK") )
+        if ( (lpCode == "0") && (lpValue == "BLOCK") )
         {
             Inc i;
             cTable = Dictionary<string, Dictionary>;
 
             ReadData();
 
-            if ( lpcode == "" ) break;
+            if ( lpCode == "" ) break;
 
-            while ( lpcode != "0") {
-                Key = lpcode;
+            while ( lpCode != "0") {
+                Key = lpCode;
                 if ( cTable.ContainsKey(Key) )
                 {
                     do
                     {
                         iCode += 1;
-                        Key = lpcode + "_" + iCode.ToString();
+                        Key = lpCode + "_" + iCode.ToString();
 
                     } while ( cTable.ContainsKey(Key));
                     
                 }
 
-                if ( lpcode == Me.codid ) sTableName = lpvalue;
-                cTable.Add(Key, lpvalue);
+                if ( lpCode == codid ) sTableName = lpValue;
+                cTable.Add(Key, lpValue);
                 ReadData();
 
             } // fin del encabezado del Block, siguen sus entidades
@@ -711,19 +710,19 @@ private void Load5Entities(Dictionary<string, Dictionary<string, string>> cEntit
     string[] sClave ;         
     string[] sValue ;         
     string sEntidad ;         
-    string sKey ;         
-    Object clsidr ;         
-    Entity eNueva ;         
-    bool Reads ;         
+    string sKey ="";         
+    // Object clsidr ;         
+    // Entity eNueva ;         
+    // bool Reads ;         
 
     Dictionary<string, string> cEntity ;         
-    int iEntity ;         
+    int iEntity =0;         
 
     int iCode ;         
-    string Key ;
+    string Key ="";
 
         while ( true ) {
-            //Debug lpcode, lpvalue
+            //Debug lpCode, lpValue
             sClave = new string[] { };
 
             sValue = new string[] { };
@@ -732,7 +731,7 @@ private void Load5Entities(Dictionary<string, Dictionary<string, string>> cEntit
             if (lpValue == "ENDSEC") return;
 
             sEntidad = lpValue;
-            Inc iEntity;
+            iEntity++;
             cEntity = new Dictionary<string, string>();
 
             cEntity.Add("0", sEntidad);
@@ -741,21 +740,21 @@ private void Load5Entities(Dictionary<string, Dictionary<string, string>> cEntit
             // Leo descentralizadamente las entidades
             ReadData();
 
-            while ((lpcode != "0") && !fp.EndOfStream) {
+            while ((lpCode != "0") && !fp.EndOfStream) {
 
-            Key = lpcode;
+            Key = lpCode;
             if (cEntity.ContainsKey(Key))
             {
                 do
                 {
                     iCode += 1;
-                    Key = lpcode + "_" + iCode.ToString();
+                    Key = lpCode + "_" + iCode.ToString();
 
                     
                 } while (cEntity.ContainsKey(Key));
             }
 
-            if (sEntidad != "ENDSEC") cEntity.Add(Key, lpvalue);
+            if (sEntidad != "ENDSEC") cEntity.Add(Key, lpValue);
             ReadData();
 
         }
@@ -769,7 +768,7 @@ private void Load5Entities(Dictionary<string, Dictionary<string, string>> cEntit
         if ( sKey == "" )
         {
 
-            sKey = Gcd.Id();
+            sKey = Gcd.NewId();
 
         }
 
@@ -800,7 +799,7 @@ private void Load6Objects(Dictionary<string, Dictionary<string, string>> cObject
     string Key ;         
 
     do {
-     //Debug lpcode, lpvalue
+     //Debug lpCode, lpValue
     // sClave = new string[] { };
 
     // sValue = new string[] { };
@@ -819,19 +818,19 @@ private void Load6Objects(Dictionary<string, Dictionary<string, string>> cObject
         ReadData();
 
          //If sEntidad = "HATCH" Then Stop
-        while ( (lpcode != "0") && !fp.EndOfStream) {
+        while ( (lpCode != "0") && !fp.EndOfStream) {
 
-            Key = lpcode;
+            Key = lpCode;
             if ( cObject.ContainsKey(Key) )
             {
                 do {
                     iCode += 1;
-                    Key = lpcode + "_" + iCode.ToString();
+                    Key = lpCode + "_" + iCode.ToString();
 
                     
                 } while ( !cObject.ContainsKey(Key) );
             }
-            cObject.Add(Key, lpvalue);
+            cObject.Add(Key, lpValue);
             ReadData();
 
         }
@@ -866,19 +865,19 @@ private void Load7Thumbnail(Dictionary<string, string> cThumbnail)
          // Leo descentralizadamente las entidades
         ReadData();
 
-        while ( (lpcode != "0") && !fp.EndOfStream) {
+        while ( (lpCode != "0") && !fp.EndOfStream) {
 
-            Key = lpcode;
+            Key = lpCode;
             if ( cThumbnail.ContainsKey(Key) )
             {
                 do {
                     iCode += 1;
-                    Key = lpcode + "_" + iCode.ToString();
+                    Key = lpCode + "_" + iCode.ToString();
 
                    
                 } while ( !cThumbnail.ContainsKey(Key) );    
             }
-            cThumbnail.Add(Key, lpvalue);
+            cThumbnail.Add(Key, lpValue);
             ReadData();
 
         }
@@ -2256,7 +2255,7 @@ public string ReadCodeFromCol(Dictionary<string, Dictionary<string, string>> cDx
     {
 
 
-    string s ;         
+          
     string sKey ;         
     int i ;         
     int p ;         
@@ -2265,7 +2264,7 @@ public string ReadCodeFromCol(Dictionary<string, Dictionary<string, string>> cDx
 
     foreach (var s in cDxfEntityData)
     {
-        Inc i;
+                i++;
 
         if ( ReadNext )
         {
@@ -2346,7 +2345,7 @@ if (arg is string s)
 
 }
 
-public void SaveCodeInv(string sValue, string sCode)
+public void SaveCodeInv(string sValue, int sCode)
     {
 
 
@@ -2356,18 +2355,16 @@ public void SaveCodeInv(string sValue, string sCode)
 
 private void SaveColection(Dictionary<string, string> cData)
     {
-
-
-    string sValues ;         
+     
     string lpclave ;         
     int i ;         
 
-    foreach (var sValues in cData)
+    foreach (var s in cData)
     {
-        lpclave = cData.Key;
+        lpclave = s.Keyey;
         I = InStr(lpclave, "_");
         if ( i > 0 ) lpclave = Left(lpclave, i - 1);
-        SaveCode(lpclave, sValues);
+        SaveCode(lpclave, s.Value;
     }
 
 }
@@ -2387,7 +2384,7 @@ private void SaveColection(Dictionary<string, string> cData)
  // End
 
  // Reads layers Dictionary<string, Dictionary> and puts data in oLayers
-public void ReadViewports(Dictionary<string, string> cVptData, Drawing drw)
+public void ReadViewports(Dictionary<string, string> cVptData)
     {
 
 
@@ -2423,26 +2420,26 @@ public void ReadViewports(Dictionary<string, string> cVptData, Drawing drw)
 }
 
  // Reads layers Dictionary<string, Dictionary> and puts data in oLayers
-public void ReadLayers(Dictionary<string,  string> cLay, Drawing drw)
+public void ReadLayers(Dictionary<string,  string> cLay)
     {
 
-
+    Drawing drw = Gcd.Drawing ;
     Layer hLay ;         
 
      // // primero eliminamos lo q haya
-    drw.Layers.Clear;
-   
-    hLay =  Layer;
+    drw.Layers.Clear();
+
+    hLay =  new Layer();
     hLay.Name = cLay[codName];
     hLay.id = cLay[codid];
-    hLay.Visible = CInt(cLay[codColor]) >= 0;
-    hLay.Colour = Abs(CInt(cLay[codColor]));
-    hLay.LineType = drw.LineTypes[cLay[Me.codLType]];
+    hLay.Visible = Utils.CInt(cLay[codColor]) >= 0;
+    hLay.Colour = Utils.Abs(        Utils.CInt(cLay[codColor])  );
+    hLay.LineType = drw.LineTypes[cLay[codLType]];
 
-    try { hLay.Lit = cLay["370"]; } catch { hLay.Lit = 1; }  // algunos dxf no traen esta info
+    try { hLay.LineWt = Utils.CInt(cLay["370"]); } catch { hLay.LineWt = 1; }  // algunos dxf no traen esta info
     
 
-        if ( hLay.id == "" ) hLay.id = Gcd.Id();
+        if ( hLay.id == "" ) hLay.id = Gcd.NewId();
         drw.Layers.Add(hLay.Name, hLay);
     
     // TODO: poner lo que sigue en otro lado
@@ -2450,12 +2447,12 @@ public void ReadLayers(Dictionary<string,  string> cLay, Drawing drw)
      // es inaceptable no tener al menos un layrr
     if ( drw.Layers.Count == 0 )
     {
-        hLay =  Layer;
+        hLay =  new Layer();
         hLay.Name = "0";
         hLay.Visible = true;
         hLay.Colour = 0;
-        hLay.LineType = drw.LineTypes[drw.LineTypes.First];
-        hLay.id = Gcd.Id();
+        hLay.LineType = drw.LineTypes.First().Value;
+        hLay.id = Gcd.NewId();
         drw.Layers.Add(hLay.Name, hLay);
     }
 
@@ -2466,16 +2463,16 @@ public void ReadLayers(Dictionary<string,  string> cLay, Drawing drw)
     }
     catch
     {
-        drw.CurrLayer = drw.Layers[drw.Layers.First];
+        drw.CurrLayer = drw.Layers.First().Value;
     }
 
 }
 
  // Reads Styles and DimStyles Dictionary<string, Dictionary> and puts data in arrStyles
-public void ReadStyles(Dictionary<string, string> c, Drawing drw)
+public void ReadStyles(Dictionary<string, string> c)
     {
 
-
+Drawing drw = Gcd.Drawing ;
     TextStyle hlty ;         
     int t ;         
     int i ;         
@@ -2487,17 +2484,17 @@ public void ReadStyles(Dictionary<string, string> c, Drawing drw)
     string n ;         
 
      // primero eliminamos lo q haya
-    drw.TextStyles.Clear;
+    drw.TextStyles.Clear();
      // Leo los styles de texto
-    if ( c["0"] = "STYLE" )
+    if ( c["0"] == "STYLE" )
     {
-        
-        hlty =  TextStyle;
 
-        hlty.Name = Lower(c[codName]);
+        hlty =  new TextStyle();
+
+        hlty.Name = (c[codName].ToLower());
         hlty.Id = c[codid];
-        if ( hLty.id == "" ) hLty.id = Gcd.Id();
-        hlty.sFont_3 = Lower(c["3"]);
+        if ( hlty.Id == "" ) hlty.Id = Gcd.NewId();
+        hlty.sFont_3 = (c["3"].ToLower());
 
         hlty.FixedH_40 = float.Parse(c["40"]);
 
@@ -2506,7 +2503,7 @@ public void ReadStyles(Dictionary<string, string> c, Drawing drw)
 
         if ( hlty.Name != "" )
         {
-            n = Lower(hlty.Name);
+            n = hlty.Name.ToLower();
         }
         else if ( hlty.sFont_3 != "" )
         {
@@ -2538,7 +2535,7 @@ public void ReadStyles(Dictionary<string, string> c, Drawing drw)
         }
         else
         {
-            hdim.id = Gcd.Id();
+            hdim.id = Gcd.NewId();
         } // depre
 
             try { hdim.DIMSCALE = float.Parse(c["40"]); } catch { hdim.DIMSCALE = 1; } 
@@ -2573,16 +2570,16 @@ public void ReadStyles(Dictionary<string, string> c, Drawing drw)
 
         
 
-        drw.CurrDimStyle = drw.DimStyles[drw.DimStyles.First];
+        drw.CurrDimStyle = drw.DimStyles.First().Value;
     }
 
 }
 
  // Reads LineTypes Dictionary<string, Dictionary> and puts data in arrLTypes
-public void ReadLTypes(Dictionary<string, string> c, Drawing drw)
+public void ReadLTypes(Dictionary<string, string> c)
     {
 
-
+Drawing drw = Gcd.Drawing ;
     LineType hlty ;         
     int t ;         
     int i ;         
@@ -2595,38 +2592,38 @@ public void ReadLTypes(Dictionary<string, string> c, Drawing drw)
     bool IsShape ;         
 
      // primero eliminamos lo q haya
-    drw.LineTypes.Clear;
-    
-        hlty =  LineType;
+    drw.LineTypes.Clear();
+
+        hlty = new LineType();
         hlty.Name = c[codName].ToUpper();
         hlty.Description = c["3"];
         if ( c.ContainsKey("5") ) hlty.id = c["5"];
-        if ( hLty.id == "" ) hLty.id = Gcd.Id();
-            try { hlty.nTrames = CInt(c["73"]); } catch { hlty.nTrames = 0; }    
+        if ( hlty.id == "" ) hlty   .id = Gcd.NewId();
+            try { hlty.nTrames = Utils.CInt(c["73"]); } catch { hlty.nTrames = 0; }    
         if ( hlty.nTrames > 0 ) hlty.Length = float.Parse(ReadCodeFromCol(c, 40));
         i = 0;
-        for ( t = 1; t <= hlty.nTrames; t + 1)
+        for ( t = 1; t <= hlty.nTrames; t++)
         {
 
             r = ReadCodeFromCol(c, 49, true);
-            hlty.TrameLength.Add(float.Parse(r));
-            ri = CInt(ReadCodeFromCol(c, 74, true, 0, 0));
-            hlty.TrameType.Add(ri);
+            hlty.TrameLength.Append(float.Parse(r));
+            ri = Utils.CInt(ReadCodeFromCol(c, 74, true, 0, 0));
+            hlty.TrameType.Append(ri);
                 switch (ri)
                 {
                     case 0:
                     // nada
                     default:
-                        if ((ri && 1) == 1) { AbsoluteRotation = true; } else { AbsoluteRotation = false; }
-                        if ((ri && 2) == 2) { IsText = true; } else { IsText = false; }
-                        if ((ri && 4) == 4) { IsShape = true; } else {IsShape = false; }
-                    hlty.TrameData.Add(ReadCodeFromCol(c, 75, true));
-                    hlty.TrameStyle.Add(ReadCodeFromCol(c, 340, true));
-                    hlty.TrameScale.Add(ReadCodeFromCol(c, 46, true));
-                    hlty.TrameRotation.Add(ReadCodeFromCol(c, 50, true));
-                    hlty.TrameOffX.Add(ReadCodeFromCol(c, 44, true));
-                    hlty.TrameStyle.Add(ReadCodeFromCol(c, 45, true));
-                    hlty.TrameData.Add(ReadCodeFromCol(c, 9, true));
+                        if ((ri & 1) == 1) { AbsoluteRotation = true; } else { AbsoluteRotation = false; }
+                        if ((ri & 2) == 2) { IsText = true; } else { IsText = false; }
+                        if ((ri & 4) == 4) { IsShape = true; } else {IsShape = false; }
+                    hlty.TrameData.Append(ReadCodeFromCol(c, 75, true));
+                    hlty.TrameStyle.Append(ReadCodeFromCol(c, 340, true));
+                    hlty.TrameScale.Append(ReadCodeFromCol(c, 46, true));
+                    hlty.TrameRotation.Append(ReadCodeFromCol(c, 50, true));
+                    hlty.TrameOffX.Append(ReadCodeFromCol(c, 44, true));
+                    hlty.TrameStyle.Append(ReadCodeFromCol(c, 45, true));
+                    hlty.TrameData.Append(ReadCodeFromCol(c, 9, true));
 
             }
 
@@ -2640,7 +2637,7 @@ public void ReadLTypes(Dictionary<string, string> c, Drawing drw)
         hlty =  LineType;
         hlty.Name = "CONTINUOUS";
         hlty.Description = "";
-        hlty.id = Gcd.id();
+        hlty.id = Gcd.NewId();
         hlty.nTrames = 0;
         drw.LineTypes.Add(hlty, hlty.Name);
 
@@ -2748,9 +2745,9 @@ public void ImportBlocksFromDXF(Dictionary<string, Dictionary<string, string>> c
 
         b.Name = "*Model_Space";
         b.entities = Dictionary<string, Dictionary>;
-        b.idContainer = Gcd.Id();
-        b.id = Gcd.Id();
-        b.idAsociatedLayout = Gcd.Id();
+        b.idContainer = Gcd.NewId();
+        b.id = Gcd.NewId();
+        b.idAsociatedLayout = Gcd.NewId();
         b.IsAuxiliar = true;
         b.IsReciclable = false;
         drw.Blocks.Add(b, b.Name);
@@ -2991,8 +2988,8 @@ public void DigestColeccion(Dictionary<string, string> c,  ref string[] sClaves,
         lpclave = c.Key;
         I = InStr(lpclave, "_");
         if ( i > 0 ) lpclave = Left(lpclave, i - 1);
-        sClaves.Add(lpclave); // el codigo es el tipo de variable
-        sValues.Add(lpValue);
+        sClaves.Append(lpclave); // el codigo es el tipo de variable
+        sValues.Append(lpValue);
 
     }
 
@@ -3198,8 +3195,8 @@ private string Handle( int iStart  = -1)
 //     foreach ( var in myClass.Symbols)
 //     {
 //         if ( InStr(var, "_") > 0 ) Continue;
-//         stx.Add("9");
-//         stx.Add("$" + var);
+//         stx.Append("9");
+//         stx.Append("$" + var);
 
 //          // Verifying that it is a property or a variable.
 //         if ( (MyClass[var].kind == Class.Variable) || (MyClass[var].kind == Class.Property) )
@@ -3211,14 +3208,14 @@ private string Handle( int iStart  = -1)
 //                 if ( tipo == 10 ) // es un array
 //                 {
 //                     slx = Object.GetProperty(Me, var);
-//                     stx.Add("10");
-//                     if ( slx.Count >= 1 ) stx.Add(slx[0]) else stx.Add(0);
-//                     stx.Add("20");
-//                     if ( slx.Count >= 2 ) stx.Add(slx[1]) else stx.Add(0);
+//                     stx.Append("10");
+//                     if ( slx.Count >= 1 ) stx.Append(slx[0]) else stx.Append(0);
+//                     stx.Append("20");
+//                     if ( slx.Count >= 2 ) stx.Append(slx[1]) else stx.Append(0);
 //                     if ( slx.Count == 3 )
 //                     {
-//                         stx.Add("30");
-//                         if ( slx.Count >= 3 ) stx.Add(slx[2]) else stx.Add(0);
+//                         stx.Append("30");
+//                         if ( slx.Count >= 3 ) stx.Append(slx[2]) else stx.Append(0);
 //                     }
 //                 }
 //                 else if ( tipo == 70 )
@@ -3226,8 +3223,8 @@ private string Handle( int iStart  = -1)
 //                     inx = Object.GetProperty(Me, var);
 //                     foreach (var iVal in inx)
 //                     {
-//                         stx.Add("70");
-//                         stx.Add(i);
+//                         stx.Append("70");
+//                         stx.Append(i);
 //                     }
 
 //                 }
@@ -3236,16 +3233,16 @@ private string Handle( int iStart  = -1)
 //                     slx = Object.GetProperty(Me, var);
 //                     foreach ( var sl in slx)
 //                     {
-//                         stx.Add("40");
-//                         stx.Add(sl);
+//                         stx.Append("40");
+//                         stx.Append(sl);
 //                     }
 
 //                 }
 //             }
 //             else
 //             {
-//                 stx.Add(CStr(tipo));
-//                 stx.Add(Object.GetProperty(Me, var));
+//                 stx.Append(CStr(tipo));
+//                 stx.Append(Object.GetProperty(Me, var));
 //             }
 //         }
 

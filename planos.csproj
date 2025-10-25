@@ -15,7 +15,7 @@
   <ItemGroup>
     <Compile Remove="main.cs" />
     <Compile Remove="Source/Core/Dxf/dxf2.cs" />
-     <Compile Remove="Source/Gcd.cs" />
+    <Compile Remove="Source/Core/Tools/cadTools.cs" />
       <Compile Remove="Source/Core/Tools/cadSelection.cs" />
        <Compile Remove="Source/Core/Tools/cadZoomW.cs" />
   </ItemGroup>

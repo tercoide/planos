@@ -22,7 +22,7 @@
 //===============================DOCUMENT==============================================
 // datos obtenidos de la lectura de los archivos DWG, DXF y de dibujar
 // ver http://entercad.ru/acadauto.en/
-namespace Gaucho;
+// namespace Gaucho;
 public class Drawing
 {
 

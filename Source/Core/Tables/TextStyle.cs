@@ -4,6 +4,8 @@ public class TextStyle
     public string Id = "";
     public bool Available = false;
 
+    public string Name = "";
+
     // style
     public float FixedH_40 = 0;
     public float fLastHeightUsed_42 = 0;

@@ -54,15 +54,15 @@ namespace Gaucho
         //NEW: Estas variables provienen del formulario main. En dicho formulario se estableceran pero sean guardadas siempre en esta clase y no se alterraran manualmente (de momento)
         //TINCHO 2023.05.22 > Config.class implementation
         public static string dirResources = Environment.CurrentDirectory;
-        public static string dirDwgIn;
-        public static string dirDxfIn;
-        public static string dirDwgOut;
-        public static string dirDxfOut;
-        public static string dirTemplates;
-        public static string dirBlocks;          //= gcd.dirResources &/ "library"
-        public static string dirPrintStyles;
-        public static string dirPatterns;
-        public static string Home;
+        public static string dirDwgIn="";
+        public static string dirDxfIn="";
+        public static string dirDwgOut="";
+        public static string dirDxfOut="";
+        public static string dirTemplates="";
+        public static string dirBlocks="";          //= gcd.dirResources &/ "library"
+        public static string dirPrintStyles="";
+        public static string dirPatterns="";
+        public static string Home=Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
 
         //TODO: Estas faltan definir como seran editadas
         // ==============Variables de configuracion a guardar, agregar las necesarias=======================

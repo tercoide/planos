@@ -1,5 +1,8 @@
 
-    public class Gcd
+using Gaucho;
+using Gtk;
+
+public static class Gcd
     {
         // Equivale a public static  entities As New Entity[] en Gambas
         // Todos los arrays de clases no nativas se arman como List<TipoDeClase>
@@ -221,7 +224,7 @@
 
 
 
-        //     foreach (TextStyle st in Gcd.Drawing.oStyles.Values)
+        //     foreach (TextStyle st inDrawing.oStyles.Values)
         //     {
 
         //         if (st.Name == sName) return st;
@@ -238,7 +241,7 @@
 
 
 
-            foreach (TextStyle st in Gcd.Drawing.TextStyles.Values)
+            foreach (TextStyle st in Drawing.TextStyles.Values)
             {
 
                 if (st.Id == sId) return st;
@@ -255,11 +258,11 @@
 
 
 
-            if (Gcd.Drawing.Sheet.Entities.ContainsKey(sId)) return Gcd.Drawing.Sheet.Entities[sId];
+            if (Gcd.Drawing.Sheet.Entities.ContainsKey(sId)) return Drawing.Sheet.Entities[sId];
 
             if (SearchInBlocks)
             {
-                foreach (Block oBlock in Gcd.Drawing.Blocks.Values)
+                foreach (Block oBlock in Drawing.Blocks.Values)
                 {
                     if (oBlock.entities.ContainsKey(sId)) return oBlock.entities[sId];
 
@@ -275,7 +278,7 @@
 
 
 
-            foreach (var LT in Gcd.Drawing.LineTypes.Values)
+            foreach (var LT in Drawing.LineTypes.Values)
             {
 
                 if (LT.Name.ToLower() == sName.ToLower()) return LT;
@@ -292,7 +295,7 @@
 
         //     int i;
 
-        //     for (i = 0; i <= Gcd.Drawing.arrLTYpes.Length - 1; i++)
+        //     for (i = 0; i <=Drawing.arrLTYpes.Length - 1; i++)
         //     {
 
         //         if (Gcd.Drawing.arrLTYpes[i].Name.ToLower() == sName.ToLower()) return i;
@@ -345,13 +348,13 @@
         public static double Metros(int pixeles)
         { // converts pixels to meters
 
-            return pixeles / Gcd.Drawing.Sheet.ScaleZoom;
+            return pixeles /Drawing.Sheet.ScaleZoom;
 
         }
 
         public static double Pixels(double distancia)
         {
-            return distancia * Gcd.Drawing.Sheet.ScaleZoom;
+            return distancia *Drawing.Sheet.ScaleZoom;
         }
 
 
@@ -359,14 +362,14 @@
         {
 
 
-            switch (Config.WindowBackColor)
+            switch ( Config.WindowBackColor)
             {
                 case Color.Black:
                     //Case &1B2224
-                    Config.WhiteAndBlack = RGB(Color.White);
+                     Config.WhiteAndBlack = RGB(Color.White);
                     break;
                 default:
-                    Config.WhiteAndBlack = RGB(Color.Black);
+                     Config.WhiteAndBlack = RGB(Color.Black);
 
             }
 
@@ -377,7 +380,7 @@
 
             //FileName = User.Home &/ "autosaveV5.xml"
 
-            debuginfo("Reading fonts from " + System.IO.Path.Combine(Gcd.dirResources, "fonts", "lff"), false, false, true);
+            debugInfo("Reading fonts from " + System.IO.Path.Combine(Gcd.dirResources, "fonts", "lff"), false, false, true);
             FontList = glx.LoadFonts(System.IO.Path.Combine(Gcd.dirResources, "fonts", "lff"));
             //FontList = glx.LoadFonts(Gcd.sFonts)
             glx.SelectFont("romans");
@@ -404,12 +407,12 @@
             picPrintOff = Image.File(System.IO.Path.Combine(Gcd.dirResources, "png", "printOff.png"));
 
             // this is what we are doing now
-            Gcd.clsJob = cadSelection;
-            Gcd.clsJobPrevious = cadSelection;
-            Gcd.clsJobPreZoom = cadSelection;
-            Gcd.clsJobPreviousParam = 0;
+           clsJob = cadSelection;
+           clsJobPrevious = cadSelection;
+           clsJobPreZoom = cadSelection;
+           clsJobPreviousParam = 0;
 
-            debuginfo("Gcd initialized OK", false, false, true);
+            debugInfo("Gcd initialized OK", false, false, true);
 
             // test
             // Dim flxTest As New double[]
@@ -439,7 +442,7 @@
             if ((sFiles.Length == 0)) return;
             foreach (string sBlocksFiles in sFiles)
             {
-                FBlocks.AddBlock(System.IO.Path.Combine(Gcd.dirResources, "common", sBlocksFiles), Utils.FileWithoutExtension(sBlocksFiles), Gcd.Drawing.Blocks);
+                FBlocks.AddBlock(System.IO.Path.Combine(Gcd.dirResources, "common", sBlocksFiles), Utils.FileWithoutExtension(sBlocksFiles),Drawing.Blocks);
 
             }
 
@@ -451,7 +454,7 @@
 
 
 
-            foreach (var Lay in Gcd.Drawing.Layers)
+            foreach (var Lay inDrawing.Layers)
             {
 
                 if (Lay.Name == LayerName) return Lay;
@@ -466,7 +469,7 @@
         //     Dim hLay As Layer
         //     Dim e As Entity
         //
-        //     Gcd.debugInfo("Filling layers",false,false,true)
+        //    debugInfo("Filling layers",false,false,true)
         //
         //     // primero eliminamos lo q haya
         //     For Each hLay In drw.Layers
@@ -477,7 +480,7 @@
         //             If e.pLayer Then e.pLayer.Entities.Add(e)
         //         Next
         //     End If
-        //     Gcd.debugInfo("Llenados los Layers",false,false,true)
+        //    debugInfo("Llenados los Layers",false,false,true)
         //
         // End
 
@@ -487,7 +490,7 @@
         //     Dim e As Entity
         //     Dim s As Sheet
         //
-        //     Gcd.debugInfo("Filling Sheets",false,false,true)
+        //    debugInfo("Filling Sheets",false,false,true)
         //
         //     If drw.Entities Then
         //         For Each e In drw.Entities
@@ -499,7 +502,7 @@
         //             Endif
         //         Next
         //     End If
-        //     Gcd.debugInfo("Llenadas las Sheets",false,false,true)
+        //    debugInfo("Llenadas las Sheets",false,false,true)
         //
         // End
 
@@ -508,7 +511,7 @@
         //
         //     Dim e As Entity
         //
-        //     Gcd.debugInfo("Filling Inserts",false,false,true)
+        //    debugInfo("Filling Inserts",false,false,true)
         //
         //     If drw.Entities Then
         //         For Each e In drw.Entities
@@ -517,7 +520,7 @@
         //             Endif
         //         Next
         //     End If
-        //     Gcd.debugInfo("Llenados los Inserts",false,false,true)
+        //    debugInfo("Llenados los Inserts",false,false,true)
         //
         // End
 
@@ -536,7 +539,7 @@
         //         hlty.Name = c[dxf.codName]
         //         hlty.Description = c["3"]
         //         hlty.handle = c[dxf.codHandle]
-        //         If hLty.handle = "" Then hLty.handle = Gcd.NewHandle()
+        //         If hLty.handle = "" Then hLty.handle =NewHandle()
         //         hlty.nTrames = CInt(c["73"])
         //         If hlty.nTrames > 0 Then hlty.Length = c["40"]
         //         i = 0
@@ -549,7 +552,7 @@
         //                 Endif
         //                 If c.ContainsKey(sNextKey) Then
         //                     Inc i
-        //                     hlty.TrameLength.Add(Abs(Cdouble(c[sNextKey])) * 2.5) // TODO: verificar este valor arbitrario
+        //                     hlty.TrameLength.Add(Abs(Utils.CDbl(c[sNextKey])) * 2.5) // TODO: verificar este valor arbitrario
         //                     If hlty.TrameLength.Last = 0 Then hlty.TrameLength.Last = 1
         //
         //                     Break
@@ -578,7 +581,7 @@
         //     // primero eliminamos lo q haya
         //     Drawing.oStyles.Clear
         //     // Leo los TextStyle de texto
-        //     For Each c As Collection In Gcd.Drawing.cModel["TABLES"]["STYLE"]
+        //     For Each c As Collection InDrawing.cModel["TABLES"]["STYLE"]
         //         hlty = New TextStyle
         //
         //         hlty.Name = c[dxf.codName]
@@ -586,10 +589,10 @@
         //         hlty.IsDimStyle = false
         //         hlty.sFont_3 = c["3"]
         //
-        //         hlty.FixedH_40 = Cdouble(c["40"])
+        //         hlty.FixedH_40 = Utils.CDbl(c["40"])
         //
         //         // Esto no puede usarse asi, LastHeightUsed_2 es solo un dato de historial
-        //         // If hlty.FixedH_40 = 0 Then hlty.FixedH_40 = Cdouble(c["42"])
+        //         // If hlty.FixedH_40 = 0 Then hlty.FixedH_40 = Utils.CDbl(c["42"])
         //
         //         If hlty.handle = "" Then sH2 = hlty.name Else sH2 = hlty.handle
         //         Drawing.oStyles.Add(hlty, sh2)
@@ -600,7 +603,7 @@
         //     Endif
         //
         //     // Leo lo TextStyle de dimensiones
-        //     For Each c As Collection In Gcd.Drawing.cModel["TABLES"]["DIMSTYLE"]
+        //     For Each c As Collection InDrawing.cModel["TABLES"]["DIMSTYLE"]
         //         hlty = New TextStyle
         //
         //         hlty.Name = c[dxf.codName]
@@ -612,10 +615,10 @@
         //
         //         hlty.IsDimStyle = true
         //
-        //         Try hlty.fArrowSize_41 = Cdouble(c["41"])
+        //         Try hlty.fArrowSize_41 = Utils.CDbl(c["41"])
         //         If hlty.fArrowSize_41 = 0 Then hlty.fArrowSize_41 = 1
         //
-        //         Try hlty.fTxtHeight_140 = Cdouble(c["140"])
+        //         Try hlty.fTxtHeight_140 = Utils.CDbl(c["140"])
         //         If hlty.fTxtHeight_140 = 0 Then hlty.fTxtHeight_140 = 1
         //
         //         Try hlty.iRefStyleHandle_340 = c["340"]
@@ -642,23 +645,23 @@
             // -3    LINEWEIGHT_DEFAULT
 
             if (iValue > 1) return iValue / 100;
-            if (l == null) l = Gcd.Drawing.CurrLayer;
+            if (l == null) l =Drawing.CurrLayer;
             if (iValue == -1)
             {
-                if (l.LineWt < 0) return Config.DefLineWt;
+                if (l.LineWt < 0) return  Config.DefLineWt;
                 return l.LineWt / 100;
             }
             else if (iValue == -3)
             {
-                return Config.DefLineWt;
+                return  Config.DefLineWt;
             }
             else if (iValue == -2)
             {
-                if (Gcd.Drawing.CurrBlockLineWt < 0) return Config.DefLineWt;
-                return Gcd.Drawing.CurrBlockLineWt / 100;
+                if (Gcd.Drawing.CurrBlockLineWt < 0) return  Config.DefLineWt;
+                returnDrawing.CurrBlockLineWt / 100;
             }
 
-            return Config.DefLineWt;
+            return  Config.DefLineWt;
 
         }
 
@@ -711,7 +714,7 @@
             else
             {
 
-                if (iColor == Config.WhiteAndBlack) iColor = Color.Invert(icolor);
+                if (iColor ==  Config.WhiteAndBlack) iColor = Color.Invert(icolor);
 
                 if (Drawing.Sheet.pPrintStyle.ColorStyle == 2)
                 {
@@ -737,21 +740,22 @@
         {
 
 
-            string s;
+            string s = "";
 
-            if (s == "")
+            if (string.IsNullOrEmpty(s))
             {
 
-                s = CStr(Date) + CStr(Time) + Str(Gcd.Drawings.Count);
+                // Build a compact timestamp plus the drawings count to form a unique-ish id
+                s = DateTime.Now.ToString("yyyyMMddHHmmss") + Gcd.Drawings.Count.ToString();
 
-                s = Replace(s, "/", "");
-                s = Replace(s, " ", "-");
-                s = Replace(s, ":", "");
-                s = Replace(s, ".", "-");
+                s = s.Replace("/", "");
+                s = s.Replace(" ", "-");
+                s = s.Replace(":", "");
+                s = s.Replace(".", "-");
             }
 
-            //s = "{" & Trim(s) & "}"
-            s = string.Trim(s);
+            //s = "{" & Utils.Trim(s) & "}"
+            s = s.Utils.Trim();
             return s;
 
         }
@@ -776,125 +780,129 @@
         // End
 
         // Returns the next available handle
-        public static string NewId(Drawing d)
+        public static string NewId(Drawing d = null)
         {
 
 
             string hHex;
 
-            if (!d) d = Drawing;
+            if (d == null) d = Drawing;
             d.HandSeed++; // esta es la ultima handle utilizada, le sumo 1
-            hHex = Hex(D.HandSeed);
+            hHex = (d.HandSeed.ToString("X")).ToUpper(); // la convierto a Hex
             d.Headers.HANDSEED = hHex;
 
             return hHex; // devuelvo la Hex del numero
 
         }
 
-        // public static int iHeader(string VarName)
-        //     {
+    // public static int iHeader(string VarName)
+    //     {
 
 
-        //     return Val("&H" + Drawing.cHeader[VarName][Drawing.cHeader[VarName].First]);
+    //     return Val("&H" + Drawing.cHeader[VarName][Drawing.cHeader[VarName].First]);
 
-        // }
+    // }
 
-        // public static  Variant GetHeaderValue(string VarName, Variant DefValuer)
-        //     {
+    // public static  string GetHeaderValue(string VarName, string DefValuer)
+    //     {
 
 
-        //     if ( Drawing.cHeader.ContainsKey(VarName) )
-        //     {
-        //         if ( Drawing.cHeader[VarName].count == 1 )
-        //         {
-        //             if ( Drawing.cHeader[VarName][Drawing.cHeader[VarName].First].key == "70" )
-        //             {
-        //                 return CInt(Drawing.cHeader[VarName][Drawing.cHeader[VarName].First]);
-        //             }
-        //             else if ( Drawing.cHeader[VarName][Drawing.cHeader[VarName].First].key == "40" )
-        //             {
-        //                 return Cdouble(Drawing.cHeader[VarName][Drawing.cHeader[VarName].First]);
-        //             }
-        //             else
-        //             {
-        //                 return Drawing.cHeader[VarName][Drawing.cHeader[VarName].First];
-        //             }
+    //     if ( Drawing.cHeader.ContainsKey(VarName) )
+    //     {
+    //         if ( Drawing.cHeader[VarName].count == 1 )
+    //         {
+    //             if ( Drawing.cHeader[VarName][Drawing.cHeader[VarName].First].key == "70" )
+    //             {
+    //                 return CInt(Drawing.cHeader[VarName][Drawing.cHeader[VarName].First]);
+    //             }
+    //             else if ( Drawing.cHeader[VarName][Drawing.cHeader[VarName].First].key == "40" )
+    //             {
+    //                 return Utils.CDbl(Drawing.cHeader[VarName][Drawing.cHeader[VarName].First]);
+    //             }
+    //             else
+    //             {
+    //                 return Drawing.cHeader[VarName][Drawing.cHeader[VarName].First];
+    //             }
 
-        //         } // tiene mas de un elemento, Y LOS SUPONGO TODOS VARIANT
-        //         else
-        //         {
-        //             New Variant[] vRet ;         
-        //             foreach ( vVar As Variant in Drawing.cHeader[VarName])
-        //             {
-        //                 vRet.Add(vVar);
-        //             }
-        //             return vRet;
+    //         } // tiene mas de un elemento, Y LOS SUPONGO TODOS string
+    //         else
+    //         {
+    //             New string[] vRet ;         
+    //             foreach ( vVar As string in Drawing.cHeader[VarName])
+    //             {
+    //                 vRet.Add(vVar);
+    //             }
+    //             return vRet;
 
-        //         }
-        //     }
+    //         }
+    //     }
 
-        // }
+    // }
 
-        public static string ODA_DWGtoDXF(string sDwgFile)
+    public static string ODA_DWGtoDXF(string sDwgFile)
+    {
+
+
+        string str;
+        string filebase;
+        int steps=0;
+
+        try
         {
 
-
-            string str;
-            string filebase;
-            int Steps;
-
-            filebase = utils.FileFromPath(sDwgFile);
+            filebase = Utils.FileFromPath(sDwgFile);
 
             steps = 0; // elimino el archivo temporal que hubiese creado
 
-            if (File.Exists(System.IO.Path.Combine(config.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(config.dirDwgIn, filebase));
+            if (File.Exists(System.IO.Path.Combine(Config.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(Config.dirDwgIn, filebase));
 
-            Steps = 1; // hago una copia previa a la conversion
-            Copy(sDwgFile, System.IO.Path.Combine(config.dirDwgIn, filebase));
+            steps = 1; // hago una copia previa a la conversion
+            File.Copy(sDwgFile, System.IO.Path.Combine(Config.dirDwgIn, filebase));
 
-            Steps = 2; // Calling the converter
+            steps = 2; // Calling the converter
 
-            utils.Shell("ODAFileConverter; //" & config.dirDwgIn & "// //" & config.dirDxfIn & "// //ACAD2018// //DXF// 0 0", WaitTo: str);
+            Utils.Shell("ODAFileConverter; //" + Config.dirDwgIn + "// //" + Config.dirDxfIn + "// //ACAD2018// //DXF// 0 0", WaitTo: str);
 
             steps = 3;
             // vacio el directorio de entrada
-            Kill(System.IO.Path.Combine(config.dirDwgIn, filebase));
+            File.Delete(System.IO.Path.Combine(Config.dirDwgIn, filebase));
 
-            if (File.Exists(System.IO.Path.Combine(config.dirDxfIn, utils.FileWithoutExtension(filebase) + ".dxf")))
+            if (File.Exists(System.IO.Path.Combine(Config.dirDxfIn, Utils.FileWithoutExtension(filebase) + ".dxf")))
             {
-                Gcd.debuginfo("Conversion to DXF correct", false, false, true);
-                return System.IO.Path.Combine(config.dirDxfIn, utils.FileWithoutExtension(filebase) + ".dxf");
+                debugInfo("Conversion to DXF correct", false, false, true);
+                return System.IO.Path.Combine(Config.dirDxfIn, Utils.FileWithoutExtension(filebase) + ".dxf");
             }
             else
             {
 
                 return "";
             }
-
-            Catch;
-
-            switch (Steps)
+        }
+        catch
+        {
+            switch (steps)
             {
                 case 0:
                     // esto puede fallar por acceso denegado
-                    Gcd.debuginfo("Acces denied to temp file", false, false, true);
-                    return null;
+                    debugInfo("Acces denied to temp file", false, false, true);
+                    return "";
                 case 1:
                     // esto puede fallar por file corrupt
-                    Gcd.debuginfo("File corrupt", false, false, true);
-                    return null;
+                    debugInfo("File corrupt", false, false, true);
+                    return "";
                 case 2:
                     // esto puede fallar por diversas cuestiones
-                    Gcd.debuginfo("Conversion failed", false, false, true);
-                    return null;
+                    debugInfo("Conversion failed", false, false, true);
+                    return "";
                 case 3:
                     // esto puede fallar por diversas cuestiones
-                    Gcd.debuginfo("Could't empty temp dir", false, false, true);
-                    return null;
+                    debugInfo("Could't empty temp dir", false, false, true);
+                    return "";
 
             }
 
         }
+    }
 
         public static string ODA_DXFtoDWG(string sDxfFile)
         {
@@ -902,50 +910,54 @@
 
             string str;
             string filebase;
-            int Steps;
+        int steps=0;
+        try
+        {
 
-            filebase = utils.FileFromPath(sDxfFile); // deberia estar en main.dirDxfIn
+            filebase = Utils.FileFromPath(sDxfFile); // deberia estar en main.dirDxfIn
 
             steps = 0; // elimino el archivo temporal que hubiese creado
-            if (File.Exists(System.IO.Path.Combine(config.dirDxfOut, filebase))) File.Delete(System.IO.Path.Combine(config.dirDxfOut, filebase));
+            if (File.Exists(System.IO.Path.Combine( Config.dirDxfOut, filebase))) File.Delete(System.IO.Path.Combine( Config.dirDxfOut, filebase));
 
-            Steps = 1; // hago una copia previa a la conversion
-            if (sDxfFile != (System.IO.Path.Combine(config.dirDxfOut, filebase))) File.Copy(sDxfFile, System.IO.Path.Combine(config.dirDxfOut, filebase));
+            steps = 1; // hago una copia previa a la conversion
+            if (sDxfFile != (System.IO.Path.Combine( Config.dirDxfOut, filebase))) File.Copy(sDxfFile, System.IO.Path.Combine( Config.dirDxfOut, filebase));
 
-            Steps = 2; // Calling the converter
-            utils.Shell("ODAFileConverter; //" & config.dirDxfOut & "// //" & config.dirDwgOut & "// //ACAD2010// //DWG// 0 0", WaitTo: str);
+            steps = 2; // Calling the converter
+            Utils.Shell("ODAFileConverter; //" + Config.dirDxfOut + "// //" + Config.dirDwgOut + "// //ACAD2010// //DWG// 0 0", WaitTo: str);
 
 
-            Gcd.debuginfo(str);
+            debugInfo(str);
 
             steps = 3;
             // vacio el directorio de entrada
             //Kill main.dirDxfOut &/ filebase //FIXME: descomentar esto despues del debug
 
-            return System.IO.Path.Combine(config.dirDwgOut, utils.FileWithoutExtension(filebase) + ".dwg");
-
-            Catch;
-
-            switch (Steps)
+            return System.IO.Path.Combine( Config.dirDwgOut, Utils.FileWithoutExtension(filebase) + ".dwg");
+        }
+        catch
+        {
+            switch (steps)
             {
                 case 0:
                     // esto puede fallar por acceso denegado
-                    Gcd.debuginfo("Acces denied to temp file");
-                    return null;
+                    debugInfo("Acces denied to temp file");
+                    return "";
                 case 1:
                     // esto puede fallar por file corrupt
-                    Gcd.debuginfo("File corrupt");
-                    return null;
+                    debugInfo("File corrupt");
+                    return "";
                 case 2:
                     // esto puede fallar por diversas cuestiones
-                    Gcd.debuginfo("Conversion failed");
-                    return null;
+                    debugInfo("Conversion failed");
+                    return "";
                 case 3:
                     // esto puede fallar por diversas cuestiones
-                    Gcd.debuginfo("Could't empty temp dir");
-                    return null;
+                    debugInfo("Could't empty temp dir");
+                    return "";
 
             }
+            return "";
+        }
 
         }
 
@@ -963,58 +975,59 @@
 
             double[] flxLimits;
 
-            //depre clsEntities.BuildPoi(cEntities)
-            if (cEntities.Count > 0)
+        //depre clsEntities.BuildPoi(cEntities)
+        if (cEntities.Count > 0)
+        {
+            flxLimits = clsEntities.ComputeLimits(cEntities); // computo el tamaño de la entidad, y luego determino la escala
+
+            Paint.Begin(imgPreview);
+            if (iBackGround >= 0) Paint.Background = iBackGround;
+
+            Paint.Reset; // vuelvo escalas y traslados a cero
+            Paint.Translate(Paint.W / 2, Paint.H / 2); // centro el dibujo
+            if ((flxLimits[2] - flxLimits[0]) > 1e-10)
+                scaleX = Paint.w / (flxLimits[2] - flxLimits[0]);
+            else
+                scaleX = 1e10;
+            if ((flxLimits[3] - flxLimits[1]) > 1e-10)
+                scaleY = Paint.H / (flxLimits[3] - flxLimits[1]);
+            else
+                scaleY = 1e10;
+            if (scaleX < scaleY)
+                Scale = scaleX;
+            else
+                Scale = scaleY;
+            Paint.Scale(scale * 0.85, -scale * 0.85);
+
+            PrintingScale = scale * 0.85;
+
+            // centro el dibujo
+            Paint.Translate(-(flxLimits[2] + flxLimits[0]) / 2, -(flxLimits[3] + flxLimits[1]) / 2);
+
+            foreach (var entIdad in cEntities)
             {
-                flxLimits = clsEntities.ComputeLimits(cEntities); // computo el tamaño de la entidad, y luego determino la escala
-
-                Paint.Begin(imgPreview);
-                if (iBackGround >= 0) Paint.Background = iBackGround;
-
-                Paint.Reset; // vuelvo escalas y traslados a cero
-                Paint.Translate(Paint.W / 2, Paint.H / 2); // centro el dibujo
-                if ((flxLimits[2] - flxLimits[0]) > 1e-10)
-                    scaleX = Paint.w / (flxLimits[2] - flxLimits[0]);
-                else
-                    scaleX = 1e10;
-                if ((flxLimits[3] - flxLimits[1]) > 1e-10)
-                    scaleY = Paint.H / (flxLimits[3] - flxLimits[1]);
-                else
-                    scaleY = 1e10;
-                if (scaleX < scaleY)
-                    Scale = scaleX;
-                else
-                    Scale = scaleY;
-                Paint.Scale(scale * 0.85, -scale * 0.85);
-
-                PrintingScale = scale * 0.85;
-
-                // centro el dibujo
-                Paint.Translate(-(flxLimits[2] + flxLimits[0]) / 2, -(flxLimits[3] + flxLimits[1]) / 2);
-
-                foreach (var entIdad in cEntities)
+                if (entIdad.pLayer == null) entIdad.pLayer = Drawing.CurrLayer;
+                if (iColor < 0)
                 {
-                    if (entIdad.pLayer == null) entIdad.pLayer = Gcd.Drawing.CurrLayer;
-                    if (iColor < 0)
-                    {
-                        Paint.Brush = Paint.Color(Gcd.gColor[entIdad.colour]);
-                    }
-                    else
-                    {
-                        Paint.Brush = Paint.Color(iColor);
-                    }
-                    if (fLineWIdth == 0)
-                    {
-                        if (entIdad.LineWIdth == 0) entIdad.LineWIdth = 1;
-
-                        Paint.LineWIdth = GetLineWt(entIdad.LineWIdth) / scale;
-                    }
-
-                    Gcd.CCC[entIdad.gender].draw2(entIdad);
+                    Paint.Brush = Paint.Color(Gcd.gColor[entIdad.colour]);
                 }
-                Paint.End;
+                else
+                {
+                    Paint.Brush = Paint.Color(iColor);
+                }
+                if (fLineWIdth == 0)
+                {
+                    if (entIdad.LineWIdth == 0) entIdad.LineWIdth = 1;
 
+                    Paint.LineWIdth = GetLineWt(entIdad.LineWIdth) / scale;
+                }
+
+                CCC[entIdad.gender].draw2(entIdad);
             }
+            Paint.End;
+
+        }
+            return true;
 
         }
 
@@ -1029,14 +1042,15 @@
             Drawing drwTemp;
 
             if (!Exist(sDxfFile)) return false;
-            LastDrw = Gcd.drawing;
+            LastDrw =drawing;
 
-            drwTemp = Gcd.NewDrawing(sDxfFile);
-            Gcd.Drawing = drwTemp;
+            drwTemp =NewDrawing(sDxfFile);
+           Drawing = drwTemp;
             Dxf.LoadFile(sDxfFile, drwTemp);
-            Gcd.Drawing = LastDrw;
+           Drawing = LastDrw;
 
-            FitEntitiesToImage(drwTemp.Model.Entities, imgPreview, iColor, fLineWIdth);
+        FitEntitiesToImage(drwTemp.Model.Entities, imgPreview, iColor, fLineWIdth);
+            return true;
 
         }
 
@@ -1044,28 +1058,28 @@
         {
 
 
-            Variant v;
+            string v;
             string[] slx;
 
             double f;
 
-            sVal = Trim(sVal);
+            sVal = Utils.Trim(sVal);
             if (sVal.StartsWith("@")) sVal = sVal.Substring(1);
 
-            slx = Split(sval, ",");
+            slx = Utils.Split(sVal, ",");
 
             foreach (var s in slx)
             {
                 try
                 {
-                    f = string.toDouble(s);
+                    f = Utils.CDbl(s);
                 }
                 catch
                 {
                     return false;
                 }
             }
-            if (slx.Count == 2 || slx.Count == 3)
+            if (slx.Length == 2 || slx.Length == 3)
                 return true;
             else
                 return false;
@@ -1076,33 +1090,33 @@
         public static double Xreal(int ScreenX)
         {
 
-            //Return Metros((screenx - Gcd.Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX + Gcd.Drawing.Sheet.PanBaseX)))
+            //Return Metros((screenx -Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX +Drawing.Sheet.PanBaseX)))
             if (Isnull(Gcd.Drawing.Sheet.GlSheet)) return 0;
-            return Metros((ScreenX - Gcd.Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX))) + Gcd.Drawing.Sheet.PanBaseRealX;
+            return Metros((ScreenX -Drawing.Sheet.GlSheet.w / 2 - (Gcd.Drawing.Sheet.PanX))) +Drawing.Sheet.PanBaseRealX;
 
         }
 
         public static double Yreal(int ScreenY)
         {
 
-            //Return Metros((-ScreenY + Gcd.Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY + Gcd.Drawing.Sheet.PanBaseY)))
+            //Return Metros((-ScreenY +Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY +Drawing.Sheet.PanBaseY)))
             if (Isnull(Gcd.Drawing.Sheet.GlSheet)) return 0;
-            return Metros((-ScreenY + Gcd.Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY))) + Gcd.Drawing.Sheet.PanBaseRealY;
+            return Metros((-ScreenY +Drawing.Sheet.GlSheet.h / 2 - (Gcd.Drawing.Sheet.PanY))) +Drawing.Sheet.PanBaseRealY;
 
         }
 
         public static double XPix(double X)
         {
 
-            return Pixels(X - Gcd.Drawing.Sheet.PanBaseRealX) + Gcd.Drawing.Sheet.GlSheet.w / 2 + Gcd.Drawing.Sheet.PanX; //+ Gcd.Drawing.Sheet.PanBaseX
+            return Pixels(X -Drawing.Sheet.PanBaseRealX) +Drawing.Sheet.GlSheet.w / 2 +Drawing.Sheet.PanX; //+Drawing.Sheet.PanBaseX
 
         }
 
         public static double YPix(double Y)
         {
 
-            //Return Metros((-ScreenY + glarea1.h / 2 - Gcd.Drawing.PanY))
-            return -(Pixels(Y - Gcd.Drawing.Sheet.PanBaseRealY) - Gcd.Drawing.Sheet.GlSheet.h / 2 + Gcd.Drawing.Sheet.PanY); // + Gcd.Drawing.Sheet.PanBaseY)
+            //Return Metros((-ScreenY + glarea1.h / 2 -Drawing.PanY))
+            return -(Pixels(Y -Drawing.Sheet.PanBaseRealY) -Drawing.Sheet.GlSheet.h / 2 +Drawing.Sheet.PanY); // +Drawing.Sheet.PanBaseY)
 
         }
 
@@ -1120,15 +1134,15 @@
             int n;
             double r;
 
-            if (!Gcd.Drawing.GrIdActive) return xyzReal;
+            if (!Gcd.Drawing.GridActive) return xyzReal;
 
-            r = xyzReal / Gcd.Drawing.GridCurentSpacing;
-            n = Int(r);
-            r = r - Int(r);
+            r = xyzReal /Drawing.GridCurentSpacing;
+            n = (int) r;
+            r = r - (int) r;
 
             if (r > 0.5) n += 1;
 
-            return n * Gcd.Drawing.GridCurentSpacing;
+            return n *Drawing.GridCurentSpacing;
 
         }
 
@@ -1136,7 +1150,7 @@
         {
 
 
-            return Gcd.Drawing.Sheet.GlSheet.W;
+            return Drawing.Sheet.GlSheet.W;
 
         }
 
@@ -1144,7 +1158,7 @@
         {
 
 
-            return Gcd.Drawing.Sheet.GlSheet.h;
+            return Drawing.Sheet.GlSheet.h;
 
         }
 
@@ -1170,24 +1184,24 @@
 
 
             // La parte de los VBO
-            Gcd.debugInfo("Generating GL graphics", false, false, true);
-            Gcd.StepsDone = 0;
+           debugInfo("Generating GL graphics", false, false, true);
+           StepsDone = 0;
             //ReEscalar(drawing.Sheet)
             //PanToOrigin()
             clsEntities.BuildGeometry;
-            Gcd.Drawing.Sheet.ScaleZoomLast = Gcd.Drawing.Sheet.ScaleZoom;
+           Drawing.Sheet.ScaleZoomLast =Drawing.Sheet.ScaleZoom;
             clsEntities.glGenDrawList;
             //clsEntities.glGenDrawList2
             clsEntities.glGenDrawListLAyers;
-            // Gcd.debugInfo("Entities GL list generated",false,false,true, true)
+            //debugInfo("Entities GL list generated",false,false,true, true)
             //clsEntities.glGenDrawListSel
             if (Gcd.Drawing.Has3dEntities)
             {
-                Gcd.Drawing.Sheets["Model3D"].scene.models.Add(Gcd.Drawing.Sheets["Model3D"].Model3D, "model");
-                Gcd.Drawing.Sheets["Model3D"].scene.placemodel(Gcd.Drawing.Sheets["Model3D"].Model3D);
-                Gcd.Drawing.Sheets["Model3D"].scene.setscene();
+               Drawing.Sheets["Model3D"].scene.models.Add(Gcd.Drawing.Sheets["Model3D"].Model3D, "model");
+               Drawing.Sheets["Model3D"].scene.placemodel(Gcd.Drawing.Sheets["Model3D"].Model3D);
+               Drawing.Sheets["Model3D"].scene.setscene();
             }
-            Gcd.debugInfo("Layers compiled", false, false, true, true);
+           debugInfo("Layers compiled", false, false, true, true);
             redraw;
 
         }
@@ -1199,7 +1213,7 @@
 
             double Xcentro;
             double Ycentro;
-            if (!s) s = Gcd.Drawing.Sheet;
+            if (!s) s =Drawing.Sheet;
 
             Xcentro = Xreal(s.GlSheet.w / 2);
             Ycentro = Yreal(s.GlSheet.h / 2);
@@ -1222,7 +1236,7 @@
             // muevo el grafico desde la posicion actual al 0,0
             double Xcentro;
             double Ycentro;
-            if (!s) s = Gcd.Drawing.Sheet;
+            if (!s) s =Drawing.Sheet;
 
             Xcentro = Metros((int)-(Gcd.Drawing.Sheet.PanX));
             Ycentro = Metros((int)-(Gcd.Drawing.Sheet.PanY));
@@ -1242,7 +1256,7 @@
 
 
             // La parte de los VBO
-            Gcd.debugInfo("Generating GL graphics", false, false, true, true);
+           debugInfo("Generating GL graphics", false, false, true, true);
 
             //clsEntities.glGenBuffers()
             //clsEntities.FillLayersWithEntities(Drawing)
@@ -1326,55 +1340,62 @@
 
         }
 
-        public static string LibreDWGtoDXF(string sDwgFile)
+    public static string LibreDWGtoDXF(string sDwgFile)
+    {
+
+
+        string str = "";
+        string filebase;
+        int steps = 0;
+
+        try
         {
 
-
-            string str;
-            string filebase;
-            int Steps;
-
-            filebase = utils.FileFromPath(sDwgFile);
+            filebase = Utils.FileFromPath(sDwgFile);
             //filebase = sDwgFile
             steps = 0; // elimino el archivo temporal que hubiese creado
 
-            if (File.Exists(System.IO.Path.Combine(main.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(main.dirDwgIn, filebase));
+            if (File.Exists(System.IO.Path.Combine(Config.dirDwgIn, filebase))) File.Delete(System.IO.Path.Combine(main.dirDwgIn, filebase));
 
-            Steps = 1; // hago una copia previa a la conversion
-            File.Copy(sDwgFile, System.IO.Path.Combine(main.dirDwgIn, filebase));
+            steps = 1; // hago una copia previa a la conversion
+            File.Copy(sDwgFile, System.IO.Path.Combine(Config.dirDwgIn, filebase));
 
-            Steps = 2; // Calling the converter
-            Shell("dwgread -O DXF -o \"" + System.IO.Path.Combine(main.dirDxfOut, utils.FileWithoutExtension(filebase) + ".dxf") + "\" \"" + System.IO.Path.Combine(main.dirDwgIn, filebase) + "\"", out str);
-            Debug str;
+            steps = 2; // Calling the converter
+            Utils.Shell("dwgread -O DXF -o \"" + System.IO.Path.Combine(Config.dirDxfOut, Utils.FileWithoutExtension(filebase) + ".dxf") + "\" \"" + System.IO.Path.Combine(main.dirDwgIn, filebase) + "\"", out str);
+
             steps = 3;
             // vacio el directorio de entrada
 
-            return System.IO.Path.Combine(main.dirDxfOut, utils.FileWithoutExtension(filebase) + ".dxf");
+            return System.IO.Path.Combine(Config.dirDxfOut, Utils.FileWithoutExtension(filebase) + ".dxf");
+        }
+        catch
+        {
 
-            Catch;
-
-            switch (Steps)
+            switch (steps)
             {
                 case 0:
                     // esto puede fallar por acceso denegado
                     Console.WriteLine(("Acces denied to temp file") + "\n");
-                    return null;
+                    return "";
                 case 1:
                     // esto puede fallar por file corrupt
                     Console.WriteLine(("File corrupt") + "\n");
-                    return null;
+                    return "";
                 case 2:
                     // esto puede fallar por diversas cuestiones
                     Console.WriteLine(("Conversion failed") + "\n");
-                    return null;
+                    return "";
                 case 3:
                     // esto puede fallar por diversas cuestiones
                     Console.WriteLine(("Could't empty temp dir") + "\n");
-                    return null;
+                    return "";
+
 
             }
+            return "";
 
         }
+    }
 
         // Prepara un dibujo y lo devuelve listo para usarse
         public static Drawing NewDrawing(string sName)
@@ -1386,21 +1407,21 @@
             d = new();
 
             d.Headers = new Headers();
-            d.FileName = sname;
+            d.FileName = sName;
             Sheet s = new();
             s.Name = "Model";
             s.IsModel = true;
             //s.Entities = d.Entities
             // s.Handle = "2" // Le asigno el 2 porque el 1 es el block_record
-            d.Sheets.Add(s, "Model");
+            d.Sheets.Add("Model", s);
             d.Sheet = s;
             d.Model = s;
             //D.Entities = d.Sheet.Entities
 
             // lo agrego a los bloques
             Block b = new();
-            b.name = "*Model_Space";
-            b.entities = Dictionary;
+            b.Name = "*Model_Space";
+            b.entities = new Dictionary<string, Entity>()   ;
             d.Sheet.Entities = b.entities;
             b.IsAuxiliar = true;
             b.IsReciclable = false;
@@ -1409,28 +1430,28 @@
             s.Block = b;
             b.Sheet = s;
 
-            d.Blocks.Add(b, b.name);
+            d.Blocks.Add( b.Name,b);
 
             Layer L = new();
             L.Name = "0";
             L.id = "20";
-            d.Layers.Add(L, L.name); //Agrego un layer
+            d.Layers.Add(L.Name,L); //Agrego un layer
             d.CurrLayer = L;
 
             LineType LT = new();
             LT.Name = "CONTINUOUS";
             LT.id = "21";
-            d.LineTypes.Add(LT, LT.Name); // Agrego un LineType
+            d.LineTypes.Add(LT.Name,LT); // Agrego un LineType
             L.LineType = LT;
             d.CurrLineType = LT;
 
             DimStyle DS = new();
             DS.id = "22"; //Gcd.NewHandle(d)
-            DS.name = "standard";
+            DS.Name = "standard";
 
 
             d.CurrDimStyle = DS;
-            d.DimStyles.Add(DS, DS.name); // Agrego un DimStyle
+            d.DimStyles.Add( DS.Name,DS); // Agrego un DimStyle
 
             // d.Tables.Add(d.Blocks, "1")
             // d.Tables.Add(d.Layers, "10")
@@ -1443,11 +1464,11 @@
 
             TextStyle ts = new();
             ts.FontName = "romans";
-            ts.name = "standard";
+            ts.Name = "standard";
             ts.sFont_3 = "romans";
-            ts.FixedH_40 = 0.10;
-            ts.Id = 23;
-            d.TextStyles.Add(ts, ts.name);
+            ts.FixedH_40 = 0.10F;
+            ts.Id = "23";
+            d.TextStyles.Add(ts.Name,ts);
             d.CurrTextStyle = ts;
 
             d.id = UniqueId();
@@ -1468,7 +1489,7 @@
             // ;;
             // ;; en
 
-            File f;
+            StreamReader f;
             string s;
             string s2;
             Pattern p;
@@ -1476,60 +1497,62 @@
             string[] sp;
             int i;
 
-            f = File.Open(sfile, FileMode.Open, FileAccess.Read);
+            f = new StreamReader(sFile);
 
-            do {
-                f.ReadLine(s);
+        do
+        {
+            s = f.ReadLine();
 
-                s = Replace(s, "\r", "");
+            s = Utils.Replace(s, "\r", "");
 
-                s2 = Left(s, 1);
-                if (s2 == ";") // es un comentario, se ignora
+            s2 = Utils.Left(s, 1);
+            if (s2 == ";") // es un comentario, se ignora
+            {
+
+            } // es un nuevo patron
+            else if (s2 == "*")
+            {
+
+                // si tenia un patron anterior, lo guardo
+                if (hp)
                 {
-
-                } // es un nuevo patron
-                else if (s2 == "*")
-                {
-
-                    // si tenia un patron anterior, lo guardo
-                    if (hp)
-                    {
-                        Gcd.HatchPatterns.Add(hp, hp.name);
-                    }
-                    s = Mid(s, 2);
-                    hp = new HatchPattern();
-                    sp = Split(s, ",");
-                    hp.name = sp[0];
-                    hp.description = sp[1];
-
+                    HatchPatterns.Add(hp, hp.Name);
                 }
-                else if (s != "")
+                s =Utils.Mid(s, 2);
+                hp = new HatchPattern();
+                sp = Utils.Split(s, ",");
+                hp.Name = sp[0];
+                hp.description = sp[1];
+
+            }
+            else if (s != "")
+            {
+                p = new Pattern();
+                s = Utils.Replace(s, " ", "");
+                sp = Utils.Split(s, ",");
+                p.AngleDeg = Utils.CDbl(sp[0]);
+                p.BaseX = Utils.CDbl(sp[1]);
+                p.BaseY = Utils.CDbl(sp[2]);
+                p.OffsetX = Utils.CDbl(sp[3]);
+                p.OffsetY = Utils.CDbl(sp[4]);
+                for (i = 5; i <= sp.Length - 1;i++ )
                 {
-                    p = new Pattern();
-                    s = Replace(s, " ", "");
-                    sp = Split(s, ",");
-                    p.AngleDeg = Cdouble(sp[0]);
-                    p.BaseX = Cdouble(sp[1]);
-                    p.BaseY = Cdouble(sp[2]);
-                    p.OffsetX = Cdouble(sp[3]);
-                    p.OffsetY = Cdouble(sp[4]);
-                    for (i = 5; i <= sp.Length - 1; i + 1)
+                    if (Utils.Left(sp[i], 1) == "-")
                     {
-                        if (Left(sp[i], 1) == "-")
-                        {
-                            sp[i] = "-0" + Mid(sp[i], 2);
-                        }
-                        else
-                        {
-                            sp[i] = "0" + sp[i];
-                        }
-                        p.DashLength.Add(Cdouble(sp[i]));
+                        sp[i] = "-0" +Utils.Mid(sp[i], 2);
                     }
-                    hp.patterns.Add(p);
-
+                    else
+                    {
+                        sp[i] = "0" + sp[i];
+                    }
+                    p.DashLength.Append(Utils.CDbl(sp[i]));
                 }
+                hp.patterns.Add(p);
 
-            } while (!f.EOF);
+            }
+
+        } while (!f.EndOfStream);
+            return true;
 
         }
 
@@ -1610,7 +1633,7 @@
             //txtDebug.Insert(": ")
             //lastPos = txtDebug.Length
             // en caso que el ususario tenga cerrada esta ventana, le muestro la linea en
-            //lblAyudaRapida.text = Left$(txt, -2)
+            //lblAyudaRapida.text = Utils.Left$(txt, -2)
 
             //itsTime = false
             if (forzar)
