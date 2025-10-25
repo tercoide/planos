@@ -446,30 +446,93 @@ namespace Gaucho
         }
     }
 
-    /// <summary>
-    /// VB.NET-like DoEvents function with timeout - Processes pending UI events for a specified duration
-    /// </summary>
-    /// <param name="maxProcessingTimeMs">Maximum time to spend processing events in milliseconds</param>
-    public static void DoEvents(int maxProcessingTimeMs)
-    {
-        try
+        /// <summary>
+        /// VB.NET-like DoEvents function with timeout - Processes pending UI events for a specified duration
+        /// </summary>
+        /// <param name="maxProcessingTimeMs">Maximum time to spend processing events in milliseconds</param>
+        public static void DoEvents(int maxProcessingTimeMs)
         {
-            var stopwatch = System.Diagnostics.Stopwatch.StartNew();
-            var context = GLib.MainContext.Default();
-            
-            while (context.Pending() && stopwatch.ElapsedMilliseconds < maxProcessingTimeMs)
+            try
             {
-                context.Iteration(false);
+                var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+                var context = GLib.MainContext.Default();
+
+                while (context.Pending() && stopwatch.ElapsedMilliseconds < maxProcessingTimeMs)
+                {
+                    context.Iteration(false);
+                }
+
+                stopwatch.Stop();
             }
-            
-            stopwatch.Stop();
+            catch (Exception ex)
+            {
+                // Log the error but don't let it break the application
+                Console.WriteLine($"DoEvents error: {ex.Message}");
+            }
         }
-        catch (Exception ex)
+
+        /// <summary>
+        /// VB.NET-like InStr function - Returns the position of the first occurrence of a substring within a string
+        /// </summary>
+        /// <param name="sourceString">The string to search in</param>
+        /// <param name="searchString">The string to search for</param>
+        /// <param name="startPosition">Optional starting position (1-based index like VB.NET, default: 1)</param>
+        /// <param name="compareMethod">Optional comparison method (default: case-sensitive)</param>
+        /// <returns>The 1-based position of the first occurrence, or 0 if not found</returns>
+        public static int InStr(string sourceString, string searchString, int startPosition = 1, StringComparison compareMethod = StringComparison.Ordinal)
         {
-            // Log the error but don't let it break the application
-            Console.WriteLine($"DoEvents error: {ex.Message}");
+            if (string.IsNullOrEmpty(sourceString) || string.IsNullOrEmpty(searchString))
+                return 0;
+                
+            if (startPosition < 1 || startPosition > sourceString.Length)
+                return 0;
+                
+            // Convert 1-based position to 0-based for C#
+            int zeroBasedStart = startPosition - 1;
+            
+            int result = sourceString.IndexOf(searchString, zeroBasedStart, compareMethod);
+            
+            // Convert back to 1-based indexing (VB.NET style), return 0 if not found
+            return result == -1 ? 0 : result + 1;
         }
-    }
+
+        /// <summary>
+        /// VB.NET-like InStr function overload - Simplified version with just source and search strings
+        /// </summary>
+        /// <param name="sourceString">The string to search in</param>
+        /// <param name="searchString">The string to search for</param>
+        /// <returns>The 1-based position of the first occurrence, or 0 if not found</returns>
+        public static int InStr(string sourceString, string searchString)
+        {
+            return InStr(sourceString, searchString, 1, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// VB.NET-like InStr function overload - With starting position only
+        /// </summary>
+        /// <param name="startPosition">The starting position (1-based index)</param>
+        /// <param name="sourceString">The string to search in</param>
+        /// <param name="searchString">The string to search for</param>
+        /// <returns>The 1-based position of the first occurrence, or 0 if not found</returns>
+        public static int InStr(int startPosition, string sourceString, string searchString)
+        {
+            return InStr(sourceString, searchString, startPosition, StringComparison.Ordinal);
+        }
+
+        /// <summary>
+        /// VB.NET-like InStr function overload - Case-insensitive version
+        /// </summary>
+        /// <param name="sourceString">The string to search in</param>
+        /// <param name="searchString">The string to search for</param>
+        /// <param name="ignoreCase">If true, performs case-insensitive comparison</param>
+        /// <returns>The 1-based position of the first occurrence, or 0 if not found</returns>
+        public static int InStr(string sourceString, string searchString, bool ignoreCase)
+        {
+            var compareMethod = ignoreCase ? StringComparison.OrdinalIgnoreCase : StringComparison.Ordinal;
+            return InStr(sourceString, searchString, 1, compareMethod);
+        }
+
+    
 }
 }
 

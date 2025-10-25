@@ -36,11 +36,11 @@ public class Drawing
     public Dictionary<string, DimStyle> DimStyles = [];
     // public MLineStyles As New Collection
     public Dictionary<string, TextStyle> TextStyles = [];
-    // public Views As New Collection
-    // public Viewports As New Collection
-    // public UCSs As New Collection
-    public Dictionary<string, LineType> LineTypes = [];
-    public Dictionary<string, Layer> Layers = [];
+    public Dictionary<string, View> Views = new Dictionary<string, View>();
+    public Dictionary<string, Viewport> Viewports = new Dictionary<string, Viewport>();
+    public Dictionary<string, UCS> UCSs = new Dictionary<string, UCS>();
+    public Dictionary<string, LineType> LineTypes = new Dictionary<string, LineType>();
+    public Dictionary<string, Layer> Layers = new Dictionary<string, Layer>();
     //// de objetos Layer
 
     // Blocks of entities
@@ -52,7 +52,7 @@ public class Drawing
                                                                  // public Dictionary<string, Dim> Dims = new Dictionary<string, Dim>();                   //// Bloques de dimensiones
 
     // Entidades
-    // public Dictionary As New Dictionary
+    public Dictionary<string, DictEntry> Dictionaries = new();
     //Objetos
     // public Objects As New Collection
 

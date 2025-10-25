@@ -30,11 +30,13 @@ namespace Gaucho
         public void Draw() { }
 
         public void Draw2()
-        
+
         {
-            Console.WriteLine("Imprimo desde la interface IEntity" );
+            Console.WriteLine("Imprimo desde la interface IEntity");
             return;
         }
+        
+        public void SaveDxfData(Entity e ) { }
     }
     
     

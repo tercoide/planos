@@ -1542,7 +1542,7 @@ public static class Gcd
                 {
                     if (Utils.Left(sp[i], 1) == "-")
                     {
-                        sp[i] = "-0" +Utils.Mid(sp[i], 2);
+                        sp[i] = "-0" + Utils.Mid(sp[i], 2);
                     }
                     else
                     {
