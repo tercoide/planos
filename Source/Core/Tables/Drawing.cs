@@ -33,9 +33,9 @@ public class Drawing
     // public Tables As New Collection // aqui estaran las siguientes tablas
 
     // public AppIDs As New Collection
-    public Dictionary<string, DimStyle> DimStyles = [];
-    // public MLineStyles As New Collection
-    public Dictionary<string, TextStyle> TextStyles = [];
+    public Dictionary<string, DimStyle> DimStyles = new Dictionary<string, DimStyle>();
+    public Dictionary<string, MLineStyle> MLineStyles = new Dictionary<string, MLineStyle>();
+    public Dictionary<string, TextStyle> TextStyles = new Dictionary<string, TextStyle>();
     public Dictionary<string, View> Views = new Dictionary<string, View>();
     public Dictionary<string, Viewport> Viewports = new Dictionary<string, Viewport>();
     public Dictionary<string, UCS> UCSs = new Dictionary<string, UCS>();
