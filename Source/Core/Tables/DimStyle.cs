@@ -81,7 +81,7 @@ public class DimStyle
     public float DIMFIT;         //// Ajuste de dimensión
     public float DIMUPT;        //// Actualización de dimensión
     public float DIMATFIT;     //// Ajuste automático de dimensión
-    public float DIMTXSTY;     //// Estilo de texto de dimensión
+    public string DIMTXSTY="";     //// Estilo de texto de dimensión
     public float DIMLDRBLK;    //// Nombre del bloque de flecha para las directrices
 
     public float DIMLWD;       //// Grosor de línea de dimensión

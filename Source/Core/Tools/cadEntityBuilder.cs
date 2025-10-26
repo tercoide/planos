@@ -160,7 +160,7 @@
             try
             {
                 var helper = Gcd.CCC[elem.Gender].ParamHelper ?? string.Empty;
-                ParamHelperList = string.IsNullOrEmpty(helper) ? new string[0] : helper.Split(';');
+                ParamHelperList = string.IsnullOrEmpty(helper) ? new string[0] : helper.Split(';');
             }
             catch
             {
@@ -170,7 +170,7 @@
             try
             {
                 var pdef = Gcd.CCC[elem.Gender].ParamDefault ?? string.Empty;
-                ParamDefault = string.IsNullOrEmpty(pdef) ? new string[0] : pdef.Split(';');
+                ParamDefault = string.IsnullOrEmpty(pdef) ? new string[0] : pdef.Split(';');
             }
             catch
             {
@@ -220,7 +220,7 @@
         // Entry from command-line/text input
         public static void KeyText(string EnteredText)
         {
-            if (string.IsNullOrWhiteSpace(EnteredText)) return;
+            if (string.IsnullOrWhiteSpace(EnteredText)) return;
 
             double Xt = 0, yt = 0;
             string sText = null;
@@ -339,7 +339,7 @@
             else if (NextParamType == "T")
             {
                 ErrTxt = ", expected text, not a point";
-                if (string.IsNullOrEmpty(EnteredText))
+                if (string.IsnullOrEmpty(EnteredText))
                     sText = ParamDefault.Length > Gcd.StepsDone ? ParamDefault[Gcd.StepsDone] : string.Empty;
                 else sText = EnteredText;
 
@@ -353,7 +353,7 @@
             else if ("FARL".IndexOf(NextParamType) >= 0) // "F", "A", "L", "R"
             {
                 ErrTxt = "enter a valid numeric value";
-                if (string.IsNullOrEmpty(EnteredText) || EnteredText == "U")
+                if (string.IsnullOrEmpty(EnteredText) || EnteredText == "U")
                 {
                     try
                     {
@@ -625,7 +625,7 @@
             if (elem == null) return false;
 
             // assign id if missing
-            if (string.IsNullOrEmpty(elem.Id)) elem.Id = Gcd.NewId();
+            if (string.IsnullOrEmpty(elem.Id)) elem.Id = Gcd.NewId();
 
             try
             {

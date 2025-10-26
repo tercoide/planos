@@ -742,7 +742,7 @@ public static class Gcd
 
             string s = "";
 
-            if (string.IsNullOrEmpty(s))
+            if (string.IsnullOrEmpty(s))
             {
 
                 // Build a compact timestamp plus the drawings count to form a unique-ish id

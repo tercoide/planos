@@ -120,7 +120,7 @@
         // Called when user submits text (Enter)
         public static void KeyText(string EnteredText)
         {
-            if (string.IsNullOrWhiteSpace(EnteredText)) return;
+            if (string.IsnullOrWhiteSpace(EnteredText)) return;
 
             EnteredText = EnteredText.Trim();
             var upper = EnteredText.ToUpperInvariant();

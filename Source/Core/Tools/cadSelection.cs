@@ -135,7 +135,7 @@ public static bool Start(Variant ElemToBuild, int _Mode= 2)
     gcd.Drawing.iEntity.Clear;
     this.PoiChecking = True;
     gcd.DrawHoveredEntity = True;
-    GripPoint = Null;
+    GripPoint = null;
 
 }
 
@@ -230,7 +230,7 @@ public static void MouseDown()
                 }
             else
                 {
-                GripPoint = Null;
+                GripPoint = null;
             }
         if ( GripPoint )
         {
@@ -285,7 +285,7 @@ public static void MouseDown()
      //
      //             // si el click esta fuera del viewport, lo desestimo
      //             If Me.SelStartXr < gcd.Drawing.Sheet.Viewport.X0 Or Me.SelStartXr > gcd.Drawing.Sheet.Viewport.X1 Or Me.SelStartYr < gcd.Drawing.Sheet.Viewport.Y0 Or Me.SelStartYr > gcd.Drawing.Sheet.Viewport.Y1 Then
-     //                 gcd.Drawing.Sheet.Viewport = Null // Desactivo el viewport
+     //                 gcd.Drawing.Sheet.Viewport = null // Desactivo el viewport
      //             Else
      //
      //                 gcd.Drawing.GLAreaInUse.Mouse = Mouse.SizeAll
@@ -331,7 +331,7 @@ public static void MouseUp()
     Dictionary<string, Entity> cSel =[] ;         
 
     gcd.Drawing.iEntity.Clear;
-    gcd.Drawing.Sheet.SkipSearch = Null;
+    gcd.Drawing.Sheet.SkipSearch = null;
     gcd.Drawing.LastPoint.Clear;
      // If gcd.Drawing.Sheet.Viewport Then
      //     //
@@ -354,7 +354,7 @@ public static void MouseUp()
         if ( gcd.clsJobCallBack && Me.ReturnOnFirstSelection && Me.SelectType == Me.SelectTypePoint )
         {
             gcd.clsJob = gcd.clsJobCallBack;
-            gcd.clsJobCallBack = Null;
+            gcd.clsJobCallBack = null;
             gcd.clsJob.run;
             return;
         }
@@ -402,7 +402,7 @@ public static void MouseUp()
             if ( gcd.clsJobCallBack && Me.ReturnOnFirstSelection )
             {
                 gcd.clsJob = gcd.clsJobCallBack;
-                gcd.clsJobCallBack = Null;
+                gcd.clsJobCallBack = null;
                 gcd.clsJob.run;
                 return;
             }
@@ -473,7 +473,7 @@ public static void MouseUp()
                     if ( gcd.clsJobCallBack && Me.ReturnOnFirstSelection )
                     {
                         gcd.clsJob = gcd.clsJobCallBack;
-                        gcd.clsJobCallBack = Null;
+                        gcd.clsJobCallBack = null;
                         gcd.clsJob.run;
                         return;
                     }
@@ -557,9 +557,9 @@ public static void MouseUp()
             clsEntities.glGenDrawList(Me.EntityForEdit);
             clsEntities.glGenDrawListSel();
             clsEntities.glGenDrawListLAyers(Me.EntityForEdit.pLayer);
-            this.EntityForEdit = Null;
-            this.OriginalEntityForEdit = Null;
-            GripPoint = Null;
+            this.EntityForEdit = null;
+            this.OriginalEntityForEdit = null;
+            GripPoint = null;
              //GripCopying = False
 
         }
@@ -599,7 +599,7 @@ public static void MouseUp()
             if ( gcd.clsJobCallBack && Me.ReturnOnFirstSelection )
             {
                 gcd.clsJob = gcd.clsJobCallBack;
-                gcd.clsJobCallBack = Null;
+                gcd.clsJobCallBack = null;
                 gcd.clsJob.run;
                 return;
             }
@@ -1034,7 +1034,7 @@ public  Grip FindGrip(double x, double y)
          //
     }
     DrawingAids.txtFrom = "";
-    return Null;
+    return null;
 
 }
 
