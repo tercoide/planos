@@ -283,7 +283,7 @@ public bool LoadFile(string sfile, Drawing drw, bool ignoretables= false, bool i
         if (cToFill.ContainsKey("BLOCKS")) ImportBlocksFromDXF(cToFill["BLOCKS"], drw);
         
          //depre clsEntities.BuildPoi()
-        if (cToFill.ContainsKey("ENTITIES")) DXFtoEntity(cToFill["ENTITIES"], drw, null);
+        if (cToFill.ContainsKey("ENTITIES")) DXFtoEntity(drw, cToFill["ENTITIES"], drw.Sheet.Entities);
         
         Gcd.debugInfo("Drawing generated",false,false,true, true);
          //clsEntities.DeExtrude(drw)
@@ -696,7 +696,7 @@ private void Load4Blocks(Dictionary<string, Dictionary<string, string>> cBlocks,
                         mBlock.z0 = float.Parse(lpValue);
                         break;
                     case "330":
-                        mBlock.OwnerHandle = lpValue;
+                        mBlock.idContainer = lpValue;
                         break;
                 }
                 
@@ -714,7 +714,12 @@ private void Load4Blocks(Dictionary<string, Dictionary<string, string>> cBlocks,
 
             Load5Entities(cEntities,drw);
 
-            if ( sTableName == "" ) sTableName = i.ToString();
+                if (sTableName == "") sTableName = i.ToString();
+
+                drw.Blocks.Add(mBlock.Name, mBlock);
+            DXFtoEntity(drw, cEntities, mBlock.entities);
+
+             // DEPRE agrego la tabla a la coleccion
 
             cBlocks.Add(sTableName, cTable);
 
@@ -2658,25 +2663,25 @@ public void ReadLTypes(Dictionary<string, Dictionary<string, string>> cLtypes, D
     public void ImportBlocksFromDXF(Dictionary<string, Dictionary<string, string>> cBlocks, Drawing drw) //, obxEntities As Entity[]) As Integer
     {
 
-    
-       
+
+
         Dictionary<string, Dictionary<string, string>> colBlk;
-  
+
         int i = 0;
-        
+
 
         Dictionary<string, Dictionary<string, string>> cTables;
         Dictionary<string, Dictionary<string, string>> cBlockRecord;
-   
-   
 
-        if (colData.ContainsKey("BLOCKS")) cBlocks = colData["BLOCKS"];
-        if (colData.ContainsKey("TABLES"))
-        {
-            cTables = colData["TABLES"];
-            if (colData["TABLES"].ContainsKey("BLOCK_RECORD")) cBlockRecord = cTables["BLOCK_RECORD"];
-        }
-        if (!cBlocks) return;
+
+
+        // if (colData.ContainsKey("BLOCKS")) cBlocks = colData["BLOCKS"];
+        // if (colData.ContainsKey("TABLES"))
+        // {
+        //     cTables = colData["TABLES"];
+        //     if (colData["TABLES"].ContainsKey("BLOCK_RECORD")) cBlockRecord = cTables["BLOCK_RECORD"];
+        // }
+        // if (!cBlocks) return;
         // For Each colBlk In colData["TABLES"]["BLOCK_RECORD"]
         //     Dim Block As  Block
         //     Block.entities = Dictionary<string, Dictionary>
@@ -2733,23 +2738,26 @@ public void ReadLTypes(Dictionary<string, Dictionary<string, string>> cLtypes, D
 
         //     }
         // }
-       
 
-        foreach (var colBlk2 in cBlocks)
-        {
-            colBlk = colBlk2.Value;
 
-            if (colBlk.ContainsKey("entities"))
-            {
+        // foreach (var colBlk2 in cBlocks)
+        // {
+        //     colBlk = colBlk2.Value;
 
-                DXFtoEntity(colBlk["entities"], drw, drw.Blocks[colBlk["2"]]);
+        //     if (colBlk.ContainsKey("entities"))
+        //     {
 
-            }
-            i++;
+        //         DXFtoEntity(colBlk["entities"], drw, drw.Blocks[colBlk["2"]]);
 
-        }
+        //     }
+        //     i++;
+
+        // }
 
     }
+    
+
+    
 
 public static void SecondPass(Drawing drw)
     {
@@ -2841,7 +2849,7 @@ public static void SecondPass(Drawing drw)
                 e = e2.Value;
                 if (e.Gender == "VIEWPORT")
                 {
-                    s.Viewports.Add(e.pBlock, e.id);
+                    // s.Viewports.Add(e.pBlock, e.id); TODO ver q onda
                     //cadViewport.SetViewport(e, s)
                 }
             }
@@ -2852,99 +2860,107 @@ public static void SecondPass(Drawing drw)
     }
 
  // Importa las cosas de manera descentralizada
-public void DXFtoEntity(Dictionary<string, Dictionary<string, string>> cDxfEntities, Drawing drw, Block? bContainer)
+public static void DXFtoEntity(Drawing drw, Dictionary<string, Dictionary<string, string>> cDxfEntities, Dictionary <string,Entity> entis )
     {
 
 
-    Dictionary<string, Dictionary<string, string>> e ;         
-    Dictionary<string, Dictionary<string, string>> obx ;         
-    Dictionary<string, Dictionary<string, string>> cLastParent ;         
+    Dictionary<string, string> e ;         
+    Dictionary<string, Entity> obx =new Dictionary<string, Entity>() ;         
+     
     Entity entNueva ;         
     bool flgIsPolyline ;         
     bool IsDummy ;         
-    bool EntitiesToModel ;         
-    Block pBlockPolyline ;         
-    Block b ;         
-    string sid ;         
-    string sName ;         
-    string sIdLayout ;         
+        
 
     double fTime ;         
-    Date t ;         
-    string hContainer ;         
+            
+  
 
-    foreach (var e in cDxfEntities) // Para cada Coleccion de datos de vrx
-    {
+    foreach (var e2 in cDxfEntities) // Para cada Coleccion de datos de vrx
+        {
+        e = e2.Value;
         if ( e.ContainsKey(codEntity) ) // es una entidad?
         {
                 // entonces, creamos una nueva
                 // poner en minuscula para anular la entidad
-                if (Gb.InStr("VIEWPORT LEADER HATCH POLYLINE ENDBLK SEQEND VERTEX POINT ATTDEF ATTRIB LINE LWPOLYLINE CIRCLE ELLIPSE ARC TEXT MTEXT SPLINE SOLID INSERT DIMENSION DIMENSION_LINEAR DIMENSION_DIAMETEr DIMENSION_RADIUs DIMENSION_ANG3Pt DIMENSION_ALIGNED DIMENSION_ORDINATE LARGE_RADIAL_DIMENSION ARC_DIMENSION MLINE", (string)e[codEntity].Higher())) { IsDummy = true; } else { IsDummy = false; }
+                if (Gb.InStr("VIEWPORT LEADER HATCH POLYLINE ENDBLK SEQEND VERTEX POINT ATTDEF ATTRIB LINE LWPOLYLINE CIRCLE ELLIPSE ARC TEXT MTEXT SPLINE SOLID INSERT DIMENSION DIMENSION_LINEAR DIMENSION_DIAMETEr DIMENSION_RADIUs DIMENSION_ANG3Pt DIMENSION_ALIGNED DIMENSION_ORDINATE LARGE_RADIAL_DIMENSION ARC_DIMENSION MLINE", e[codEntity].ToUpper())>0 ) { IsDummy = true; } else { IsDummy = false; }
 
             if ( e[codEntity].ToUpper() == "ENDBLK" ) continue;
 
             if ( IsDummy )
             {
                  // no esta implementada
-                Gcd.debuginfo("Entidad no implementada o con errores: " + e[codId] + "," + e[codEntity]);
+                Gcd.debugInfo("Entidad no implementada o con errores: " + e[codid] + "," + e[codEntity]);
 
             }
             else
             {
 
-                t = Timer;
+               // var t = System.Threading.Timer;
 
                 entNueva = clsEntities.DXFImportToEntity(drw, e, IsDummy);
 
-                if ( !(entNueva) ) continue; // si esta implementada, llenamos los datos
-                if ( entNueva.Gender == cadEndBlk.Gender ) continue;
+                if ( !(entNueva==null) ) continue; // si esta implementada, llenamos los datos
+                if ( entNueva.Gender == "ENDBLK" ) continue;
 
-                 //stats
-                if ( ! ReadTimes.ContainsKey(entNueva.Gender) ) ReadTimes.Add(fTime, entNueva.Gender);
-                if ( ! ReadEntities.ContainsKey(entNueva.Gender) ) ReadEntities.Add(1, entNueva.Gender);
+                    //stats
+                    // if ( ! ReadTimes.ContainsKey(entNueva.Gender) ) ReadTimes.Add(fTime, entNueva.Gender);
+                    // if ( ! ReadEntities.ContainsKey(entNueva.Gender) ) ReadEntities.Add(1, entNueva.Gender);
 
-                 //Debug "Contenedor", hContainer
-                 // -hBlock-Record
-                 // -hInsert
-                 // -hHatch               OTRA ENTIDAD que tenga .pBlock.enities as Dictionary<string, Dictionary>
-                 // -Polyline
+                    //Debug "Contenedor", hContainer
+                    // -hBlock-Record
+                    // -hInsert
+                    // -hHatch               OTRA ENTIDAD que tenga .pBlock.enities as Dictionary<string, Dictionary>
+                    // -Polyline
 
-                if ( bContainer ) entNueva.Container = bContainer;
-                if ( entNueva.Container )
-                {
-                    obx = entNueva.Container.entities;
-                }
-                else if ( bContainer )
-                {
-                    obx = bContainer.entities; //drw.Blocks[entNueva.IdContainer]
-                     // Else If hContainers.ContainsKey(entNueva.idContainer) Then
-                     //     obx = hContainers[entNueva.idContainer].entities
-                }
-                else
-                {
-                     //If Not obx Then
-                    obx = drw.Sheet.Entities;
-                    entNueva.Container = drw.Sheet.Block;
-                }
+                    // if ( bContainer ) entNueva.Container = bContainer;
+                    // if ( entNueva.Container )
+                    // {
+                    //     obx = entNueva.Container.entities;
+                    // }
+                    // else if ( bContainer )
+                    // {
+                    //     obx = bContainer.entities; //drw.Blocks[entNueva.IdContainer]
+                    //      // Else If hContainers.ContainsKey(entNueva.idContainer) Then
+                    //      //     obx = hContainers[entNueva.idContainer].entities
+                    // }
+                    // else
+                    // {
+                    //      //If Not obx Then
+                    //     obx = drw.Sheet.Entities;
+                    //     entNueva.Container = drw.Sheet.Block;
+                    // }
 
-                if ("HATCH INSERT POLYLINE POLYLINE_2D".Contains(entNueva.Gender))
-                {
-                    
-                        if ( entNueva.pBlock )
+                    if ("HATCH INSERT POLYLINE POLYLINE_2D".Contains(entNueva.Gender))
+                    {
+
+                        if (!(entNueva.pBlock == null))
                         {
-                            hContainers.Add(entNueva.pBlock, entNueva.Id);
+                            obx = entNueva.pBlock.entities;
                         }
-                        if ( entNueva.Gender == "POLYLINE" )
-                        {
-                            if ( (entNueva.iParam[cadPolyline.iiiPolylineType] && 64) == 64 )
-                            {
-                                drw.Has3dEntities = true;
-                            }
-                        }
-                }
-                 //End If
+                        // if ( entNueva.Gender == "POLYLINE" ) // TODO, ver 3D
+                        // {
+                        //     if ( (entNueva.iParam[cadPolyline.iiiPolylineType] && 64) == 64 )
+                        //     {
+                        //         drw.Has3dEntities = true;
+                        //     }
+                        // }
+                    }
+                    else
+                    {
+                        obx = entis;
+                       
+                    }
+                    //End If
 
-                if ( e[codEntity] != "SEQEND" ) obx.Add(entNueva, entNueva.Id);
+                    if (e[codEntity] != "SEQEND")
+                    {
+                        if (!(obx == null)) obx.Add(entNueva.id, entNueva);
+                    }
+                    else
+                    {
+                        // es el fin de una polilinea
+                    }   
 
                  // //Gcd.debugInfo("Leida entidad tipo" & entNueva.Gender & " id " & entNueva.id,false,false,true)
                  // If e[codEntity] = "POLYLINE" Then //Stop
@@ -2962,10 +2978,10 @@ public void DXFtoEntity(Dictionary<string, Dictionary<string, string>> cDxfEntit
                  //
                  // End If
 
-                fTime = (Timer - t);
-                ReadTimes[entNueva.Gender] += fTime;
+                // fTime = (Timer - t);
+                // ReadTimes[entNueva.Gender] += fTime;
 
-                ReadEntities[entNueva.Gender] = ReadEntities[entNueva.Gender] + 1;
+                // ReadEntities[entNueva.Gender] = ReadEntities[entNueva.Gender] + 1;
 
                  // If entNueva.Gender = "HATCH" Then
                  //     ReadTimes.Add(fTime, entNueva.Handle)
@@ -3024,17 +3040,17 @@ public void ReadObjectsFromDXF(Dictionary<string, Dictionary<string, string>> cD
     Gcd.debugInfo("Importing DXF object data",false,false,true);
      //Handle_Layout = Dictionary<string, Dictionary>
     if ( ! cData.ContainsKey("OBJECTS") ) return;
-    foreach (var cObject in cData)
+    foreach (var cObject2 in cData)
     {
-
+        cObject = cObject2.Value;
         if ( cObject["0"] == "Dictionary<string, Dictionary>" )
         {
 
             this.DigestColeccion(cObject, ref sClaves, ref sValues);
-            entry =  DictEntry;
+            entry =  new DictEntry();
              //entry.idSoftOwner = ReadCodeFromCol(cObject, 330, true)
             entry.Name = ReadCodeFromCol(cObject, 3, true); // Name
-            entry.idSoftOwner = ReadCodeFromCol(cObject, 330, true);
+            entry.IdSoftOwner = ReadCodeFromCol(cObject, 330, true);
 
         }
 
@@ -3043,10 +3059,10 @@ public void ReadObjectsFromDXF(Dictionary<string, Dictionary<string, string>> cD
 
             DigestColeccion(cObject, ref sClaves, ref sValues);
             s =  new Sheet();
-            objLayout.importDXF(s, cObject);
+            // objLayout.importDXF(s, cObject); TODO 
             if ( s.Name == "" ) s.Name = s.pPrintStyle.ViewName;
-            if ( S.Name == "" ) s.Name = "Sheet " + drw.Sheets.Count.ToString();
-            drw.Sheets.Add(s, s.Name);
+            if ( s.Name == "" ) s.Name = "Sheet " + drw.Sheets.Count.ToString();
+            drw.Sheets.Add(s.Name,s);
              //Handle_Layout.Add(s.Name, s.id)
              //hContainers.Add(s.Entities, s.id)
             if ( s.Name.ToLower() == "model" )

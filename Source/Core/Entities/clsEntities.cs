@@ -703,7 +703,7 @@
         public static bool SelPartial(Entity eTesting, double X1real, double Y1real, double X2real, double Y2real)
             => Gcd.CCC[eTesting.Gender].SelPArtial(eTesting, X1real, Y1real, X2real, Y2real);
 
-        public static Entity DXFImportToEntity(Drawing drw, IDictionary<string, string> c, bool IsDummy = false)
+        public static Entity DXFImportToEntity(Drawing drw, Dictionary<string, string> c, bool IsDummy = false)
         {
             // This function depends on dxf parsing utilities and entity factories.
             // Keep the logic and delegate to per-entity importers.

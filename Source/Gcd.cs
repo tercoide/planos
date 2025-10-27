@@ -369,7 +369,8 @@ public static class Gcd
                      Config.WhiteAndBlack = RGB(Colors.White);
                     break;
                 default:
-                     Config.WhiteAndBlack = RGB(Colors.Black);
+                Config.WhiteAndBlack = RGB(Colors.Black);
+                break;
 
             }
 
