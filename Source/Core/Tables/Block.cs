@@ -4,9 +4,9 @@ public class Block
     public const string Gender = "BLOCK";
     public string Name = "";                       //// nombre del bloque
     public string Description = "";
-    public float X0 = 0;                          //// Insertion point X
-    public float Y0 = 0;                          //// Insertion point Y
-    public float Z0 = 0;                          //// Insertion point Z
+    public float x0 = 0;                          //// Insertion point X
+    public float y0 = 0;                          //// Insertion point Y
+    public float z0 = 0;                          //// Insertion point Z
     public int LineWt = -3;
     public int InsertionPlace;
     public int InsertUnits;   // 0=unitless

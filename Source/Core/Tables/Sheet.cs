@@ -36,9 +36,9 @@ public class Sheet
 
     public double ScaleZoomBase = 1;
 
-    //public Viewport Viewport = new Viewport();                         //// el viewport actual en uso
+    public Viewport Viewport = new Viewport();                         //// el viewport actual en uso
 
-    //public Collection Viewports = new Collection(); // of Viewports
+    public Dictionary<string, Viewport> Viewports = new Dictionary<string, Viewport>(); // of Viewports
     public int TabOrder = 0;
     public Dictionary<string, Entity> Entities = new Dictionary<string, Entity>();                      //// Apunta a .BLock.entities
     public List<Entity> EntitiesSelected = new List<Entity>();
